@@ -14,11 +14,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\balaz\\Desktop\\Balu\\University\\Sky_Gardens\\WorldOfZuul\\WorldOfZuul\\WorldOfZuul.csproj",
+      "projectUniqueName": "D:\\Balu\\University\\Sky_Gardens\\WorldOfZuul\\WorldOfZuul\\WorldOfZuul.csproj",
       "projectName": "WorldOfZuul",
-      "projectPath": "C:\\Users\\balaz\\Desktop\\Balu\\University\\Sky_Gardens\\WorldOfZuul\\WorldOfZuul\\WorldOfZuul.csproj",
+      "projectPath": "D:\\Balu\\University\\Sky_Gardens\\WorldOfZuul\\WorldOfZuul\\WorldOfZuul.csproj",
       "packagesPath": "C:\\Users\\balaz\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\balaz\\Desktop\\Balu\\University\\Sky_Gardens\\WorldOfZuul\\WorldOfZuul\\obj\\",
+      "outputPath": "D:\\Balu\\University\\Sky_Gardens\\WorldOfZuul\\WorldOfZuul\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

@@ -4,30 +4,22 @@
     {
         private Room? currentRoom;
         private Room? previousRoom;
+        private Inventory inv = new();
 
         public Game()
         {
-            CreateRooms();
+            CreateScene();
         }
-
-        private void CreateRooms()
+        private void CreateScene()
         {
-  
-            Room? outside = new("Outside", "You are standing outside the main entrance of the university. To the east is a large building, to the south is a computing lab, and to the west is the campus pub.");
+            Item? popcorn = new("Popcorn", "A bag of popcorn. It's a bit stale.");
+            Room? outside = new("Outside", "You are standing outside the main entrance of the university. If you go east you will enter the building where the Theatre is.");
             Room? theatre = new("Theatre", "You find yourself inside a large lecture theatre. Rows of seats ascend up to the back, and there's a podium at the front. It's quite dark and quiet.");
-            Room? pub = new("Pub", "You've entered the campus pub. It's a cozy place, with a few students chatting over drinks. There's a bar near you and some pool tables at the far end.");
-            Room? lab = new("Lab", "You're in a computing lab. Desks with computers line the walls, and there's an office to the east. The hum of machines fills the room.");
-            Room? office = new("Office", "You've entered what seems to be an administration office. There's a large desk with a computer on it, and some bookshelves lining one wall.");
 
-            outside.SetExits(null, theatre, lab, pub); // North, East, South, West
+            outside.SetExit("east", theatre); // North, East, South, West
 
             theatre.SetExit("west", outside);
-
-            pub.SetExit("east", outside);
-
-            lab.SetExits(outside, office, null, null);
-
-            office.SetExit("west", lab);
+            theatre.AddItem(popcorn);
 
             currentRoom = outside;
         }
@@ -64,6 +56,18 @@
                 {
                     case "look":
                         Console.WriteLine(currentRoom?.LongDescription);
+                        if (currentRoom?.Items.Count > 0)
+                        {
+                            Console.WriteLine("You see the following items:");
+                            foreach (Item i in currentRoom.Items)
+                            {
+                                Console.WriteLine($"- {i.Name}: {i.Description}");
+                            }
+                        }
+                        else
+                        {
+                            Console.WriteLine("There are no items in this room");
+                        }
                         break;
 
                     case "back":
@@ -86,6 +90,35 @@
 
                     case "help":
                         PrintHelp();
+                        break;
+
+                    case "take":
+                        Console.WriteLine("What item would you like to take?");
+                        string? item = Console.ReadLine();
+                        if (currentRoom?.Items.Count > 0)
+                        {
+                            Item? tempitem = null;
+                            foreach (Item i in currentRoom.Items)
+                            {
+                                if (i.Name == item)
+                                {
+                                    inv.PickUp(i);
+                                    tempitem = i;
+                                }
+                                else
+                                {
+                                    Console.WriteLine("There is no such item in the room");
+                                }
+                            }
+                            if (tempitem != null)
+                            {
+                                currentRoom.Items.Remove(tempitem);
+                            }
+                        }
+                        else
+                        {
+                            Console.WriteLine("There are no items in this room");
+                        }
                         break;
 
                     default:
@@ -129,6 +162,7 @@
             Console.WriteLine("Type 'back' to go to the previous room.");
             Console.WriteLine("Type 'help' to print this message again.");
             Console.WriteLine("Type 'quit' to exit the game.");
+            Console.WriteLine("Type 'take' to pick up an item.");
         }
     }
 }
