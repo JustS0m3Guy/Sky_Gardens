@@ -34,5 +34,19 @@ namespace WorldOfZuul
                 Console.WriteLine("Item not in inventory");
             }
         }
+        public void inventory()
+        {
+            if (0 < items.Count)
+            {
+                foreach (Item i in items)
+                {
+                    Console.WriteLine(i.Name);
+                }
+            }
+            else
+            {
+                Console.WriteLine("Inventory is empty");
+            }
+        }
     }
 }

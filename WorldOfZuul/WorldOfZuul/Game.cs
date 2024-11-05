@@ -15,7 +15,6 @@
             Item? popcorn = new("Popcorn", "A bag of popcorn. It's a bit stale.");
             Room? outside = new("Outside", "You are standing outside the main entrance of the university. If you go east you will enter the building where the Theatre is.");
             Room? theatre = new("Theatre", "You find yourself inside a large lecture theatre. Rows of seats ascend up to the back, and there's a podium at the front. It's quite dark and quiet.");
-
             outside.SetExit("east", theatre); // North, East, South, West
 
             theatre.SetExit("west", outside);
