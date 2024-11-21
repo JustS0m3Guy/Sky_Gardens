@@ -1,4 +1,6 @@
-﻿namespace WorldOfZuul
+﻿using System.Reflection.Metadata.Ecma335;
+
+namespace WorldOfZuul
 {
     public class Game
     {
@@ -20,6 +22,7 @@
             theatre.SetExit("west", outside);
             theatre.AddItem(popcorn);
 
+            NPC? ben = new("Biodiversity Ben", outside);
             currentRoom = outside;
         }
 
@@ -28,7 +31,6 @@
             Parser parser = new();
 
             PrintWelcome();
-
             bool continuePlaying = true;
             while (continuePlaying)
             {

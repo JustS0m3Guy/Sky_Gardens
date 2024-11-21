@@ -1,3 +1,4 @@
 # Ignore build output directories
 /WorldOfZuul/WorldOfZuul/bin/
 /WorldOfZuul/WorldOfZuul/obj/
+/Misc
