@@ -4,6 +4,7 @@
     {
         public string ShortDescription { get; private set; }
         public string LongDescription { get; private set;}
+        public List<Item> Items { get; set; } = new();
         public Dictionary<string, Room> Exits { get; private set; } = new();
 
         public Room(string shortDesc, string longDesc)
@@ -24,6 +25,10 @@
         {
             if (neighbor != null)
                 Exits[direction] = neighbor;
+        }
+        public void AddItem(Item item)
+        {
+            Items.Add(item);
         }
     }
 }
