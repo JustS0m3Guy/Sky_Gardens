@@ -4,7 +4,7 @@
 ### OOP Principles
 
 1. **Encapsulation**: 
-This principle is about bundling the data (attributes) and the methods (functions) that operate on the data into a single unit, 
+This principle is about bundling the dataz (attributes) and the methods (functions) that operate on the data into a single unit, 
 and restricting the direct access to some of the object's components.
 
     - In the program, each class encapsulates its own data and behaviors. For instance, the Room class encapsulates the room description and neighboring rooms. 
