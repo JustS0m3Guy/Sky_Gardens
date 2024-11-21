@@ -99,6 +99,7 @@ namespace WorldOfZuul
                         string? item = Console.ReadLine();
                         if (currentRoom?.Items.Count > 0)
                         {
+                            // A tempitem is needed to remove the item from the room after it has been picked up because the foreach loop can't remove items from a list while iterating over it.
                             Item? tempitem = null;
                             foreach (Item i in currentRoom.Items)
                             {
@@ -120,6 +121,33 @@ namespace WorldOfZuul
                         else
                         {
                             Console.WriteLine("There are no items in this room");
+                        }
+                        break;
+
+                    case "inventory":
+                        inv.ViewInventory();
+                        break;
+
+                    case "talk":
+                        Console.WriteLine("Who would you like to talk to?");
+                        string? npcname = Console.ReadLine();
+                        if (currentRoom?.NPCs.Count > 0)
+                        {
+                            foreach (NPC n in currentRoom.NPCs)
+                            {
+                                if (n.Name == npcname)
+                                {
+                                    n.Talk();
+                                }
+                                else
+                                {
+                                    Console.WriteLine("There is no such NPC in the room");
+                                }
+                            }
+                        }
+                        else
+                        {
+                            Console.WriteLine("There are no one in this room");
                         }
                         break;
 

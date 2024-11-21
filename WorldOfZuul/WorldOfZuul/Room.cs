@@ -5,6 +5,7 @@
         public string ShortDescription { get; private set; }
         public string LongDescription { get; private set;}
         public List<Item> Items { get; set; } = new();
+        public List<NPC> NPCs { get; set; } = new();
         public Dictionary<string, Room> Exits { get; private set; } = new();
 
         public Room(string shortDesc, string longDesc)
@@ -29,6 +30,10 @@
         public void AddItem(Item item)
         {
             Items.Add(item);
+        }
+        public void AddNPC(NPC npc)
+        {
+            NPCs.Add(npc);
         }
     }
 }

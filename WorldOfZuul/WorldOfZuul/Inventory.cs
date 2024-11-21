@@ -34,7 +34,7 @@ namespace WorldOfZuul
                 Console.WriteLine("Item not in inventory");
             }
         }
-        public void inventory()
+        public void ViewInventory()
         {
             if (0 < items.Count)
             {

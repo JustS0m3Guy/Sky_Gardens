@@ -19,5 +19,9 @@ namespace WorldOfZuul
             //Biodiversity Ben -> "Biodiversity_Ben" in order for it to find the file
             Dialogue = File.ReadAllLines("dialogues/" + Name.Split(' ')[0] + "_" + Name.Split(' ')[1]).Select(x => x.Trim()).ToArray();
         }
+        public void Talk()
+        {
+            //formatting update required
+        }
     }
 }
