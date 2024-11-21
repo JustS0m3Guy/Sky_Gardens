@@ -1,8 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "HGRgzMVX2ZlzZ+aWkvO6BEpp9UbaDk7cWEteKVE17iRwUvY37XAMTkHtTkqrl/VK0v4VgnSg/5GeAhv/XFrhgA==",
+  "dgSpecHash": "cQrfMejlY3k=",
   "success": true,
-  "projectFilePath": "C:\\Users\\balaz\\Desktop\\Balu\\University\\Sky_Gardens\\WorldOfZuul\\WorldOfZuul\\WorldOfZuul.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "/Users/dodo/Library/Mobile Documents/com~apple~CloudDocs/personal/SDU/sdu-project/Sky_Gardens/WorldOfZuul/WorldOfZuul/WorldOfZuul.csproj",
+  "expectedPackageFiles": [
+    "/Users/dodo/.nuget/packages/microsoft.netcore.app.ref/6.0.33/microsoft.netcore.app.ref.6.0.33.nupkg.sha512",
+    "/Users/dodo/.nuget/packages/microsoft.aspnetcore.app.ref/6.0.33/microsoft.aspnetcore.app.ref.6.0.33.nupkg.sha512",
+    "/Users/dodo/.nuget/packages/microsoft.netcore.app.host.osx-x64/6.0.33/microsoft.netcore.app.host.osx-x64.6.0.33.nupkg.sha512"
+  ],
   "logs": []
 }
