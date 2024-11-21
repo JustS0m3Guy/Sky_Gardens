@@ -23,6 +23,7 @@ namespace WorldOfZuul
             theatre.AddItem(popcorn);
 
             NPC? ben = new("Biodiversity Ben", outside);
+            
             currentRoom = outside;
         }
 
