@@ -1,0 +1,29 @@
+You are <insert name>, right? I have been meaning to get a word with you ever since you arrived! Recently I have been learning about composting. It is such an easy way to reduce waste and improve soil quality, don’t you think? Have you considered it for the Sky Garden?
+    Ask about composting
+        I noticed the building is throwing away a lot of organic waste. It could be composted and used to nourish the garden!
+    Ask about sustainability in the city
+        I’m passionate about finding solutions that help both people and the planet.
+I can provide you with a compost bin and some tips on what to compost if you are interested.
+    Ask Emma for composting supplies
+        I recommend setting up a compost system on the rooftop garden to get started.  I would be glad to show you all I know if you meet me there later.
+    Ask about the benefits of composting
+        Composting reduces landfill waste, creates nutrient-rich soil for gardens, and helps lower greenhouse gas emissions. I would be more than happy to meet you on the spot of the rooftop garden to help you get started.
+[next time upon the player entering the botanical garden, the player is presented with the following options new location and is presented ]
+    Set up composting bin
+        Great work! Now you’ll have rich, healthy soil for the garden, and you’ll be helping to reduce waste! Don’t forget to regularly turn the compost to help it break down faster.
+    Ask about composting materials
+        You can compost fruit and vegetable scraps, coffee grounds, and even some paper products. Avoid composting meat or dairy, as they can attract pests.
+I’m so glad you set up the composting system! It’s a great way to recycle organic waste and improve the soil.
+    Compost system set up
+        This will be a great addition to the Sky Garden project!
+    Ask about composting tips
+        It’s important to keep a balance of green (nitrogen-rich) and brown (carbon-rich) materials in the compost bin. You should also make sure the compost stays moist but not too wet.
+
+
+
+
+
+
+
+
+
