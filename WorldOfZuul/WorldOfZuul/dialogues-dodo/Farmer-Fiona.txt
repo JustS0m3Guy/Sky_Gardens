@@ -1,13 +1,16 @@
+0
 I’ve been running a small farm just outside the city, and I’ve been thinking about how we can make food production more local. With the Sky Garden, we could create a farm-to-table system, delivering fresh produce right to the building. What do you think?
     Ask about her farm-to-table idea
         My idea is simple—produce the food as locally as possible, and reduce waste by composting. I’d love to integrate my farm with the Sky Garden, using the rooftop as part of the system for growing and delivering fresh food to the residents.
     Ask about the challenges of such a system
         The main challenge is making sure it’s sustainable. We need to manage irrigation, transportation of produce, and ensure that everything we grow fits into the garden. We also need to make sure the building residents get involved.
+0
 So here’s the plan: I’ll start growing certain crops on my farm, but we’ll also grow some complementary plants right here on the rooftop. We need to work together on irrigation, composting, and educating the residents.
     Ask about crop selection
         We’ll grow easy-to-harvest vegetables like tomatoes, lettuce, and herbs. The key is to make sure we grow crops that can be easily used in everyday meals. But we’ll also plant pollinators like lavender to help sustain the garden.
     Ask about transportation logistics
         We need to set up a simple delivery system to bring the fresh produce from the farm to the residents. It’ll probably be a weekly delivery to start. We’ll need to arrange a pickup point for the produce right here in the building.
+0
 We’ve got the first batch of plants ready. Now we need to set up a space where the residents can pick up the produce and a system for them to sign up for regular deliveries.
     Help Fiona organize a pickup point
         Let’s set up a table near the entrance where residents can pick up their weekly share. Maybe we can decorate it with a few more plants to make it welcoming.
