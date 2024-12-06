@@ -8,32 +8,24 @@
     "net6.0": []
   },
   "packageFolders": {
-    "C:\\Users\\balaz\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\downy\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\balaz\\Desktop\\Balu\\University\\Sky_Gardens\\WorldOfZuul\\WorldOfZuul\\WorldOfZuul.csproj",
+      "projectUniqueName": "C:\\Users\\downy\\Documents\\SDU\\SMSPRY\\Sky_Gardens\\WorldOfZuul\\WorldOfZuul\\WorldOfZuul.csproj",
       "projectName": "WorldOfZuul",
-      "projectPath": "C:\\Users\\balaz\\Desktop\\Balu\\University\\Sky_Gardens\\WorldOfZuul\\WorldOfZuul\\WorldOfZuul.csproj",
-      "packagesPath": "C:\\Users\\balaz\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\balaz\\Desktop\\Balu\\University\\Sky_Gardens\\WorldOfZuul\\WorldOfZuul\\obj\\",
+      "projectPath": "C:\\Users\\downy\\Documents\\SDU\\SMSPRY\\Sky_Gardens\\WorldOfZuul\\WorldOfZuul\\WorldOfZuul.csproj",
+      "packagesPath": "C:\\Users\\downy\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\downy\\Documents\\SDU\\SMSPRY\\Sky_Gardens\\WorldOfZuul\\WorldOfZuul\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\balaz\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "C:\\Users\\downy\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net6.0"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -46,6 +38,11 @@
         "warnAsError": [
           "NU1605"
         ]
+      },
+      "restoreAuditProperties": {
+        "enableAudit": "true",
+        "auditLevel": "low",
+        "auditMode": "direct"
       }
     },
     "frameworks": {
@@ -62,12 +59,30 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
+        "downloadDependencies": [
+          {
+            "name": "Microsoft.AspNetCore.App.Ref",
+            "version": "[6.0.33, 6.0.33]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Host.win-x64",
+            "version": "[6.0.33, 6.0.33]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Ref",
+            "version": "[6.0.33, 6.0.33]"
+          },
+          {
+            "name": "Microsoft.WindowsDesktop.App.Ref",
+            "version": "[6.0.33, 6.0.33]"
+          }
+        ],
         "frameworkReferences": {
           "Microsoft.NETCore.App": {
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.402\\RuntimeIdentifierGraph.json"
       }
     }
   }
