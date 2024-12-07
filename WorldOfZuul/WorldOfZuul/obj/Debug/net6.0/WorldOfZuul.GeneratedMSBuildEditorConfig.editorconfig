@@ -8,6 +8,10 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = WorldOfZuul
+<<<<<<< HEAD
 build_property.ProjectDir = C:\Users\downy\Documents\SDU\PROJ\Sky_Gardens\WorldOfZuul\WorldOfZuul\
+=======
+build_property.ProjectDir = /Users/dodo/Library/Mobile Documents/com~apple~CloudDocs/personal/SDU/sdu-project/Sky_Gardens/WorldOfZuul/WorldOfZuul/
+>>>>>>> b16b7fc60eb0e452fb8c8fd88321c25bea30cb75
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
