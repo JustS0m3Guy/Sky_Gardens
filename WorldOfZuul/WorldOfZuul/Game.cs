@@ -36,7 +36,7 @@
         {
             Parser parser = new();
 
-            PrintWelcome();
+            PrintIntro();
 
             bool continuePlaying = true;
             while (continuePlaying)
@@ -110,13 +110,34 @@
             }
         }
 
-
-        private static void PrintWelcome()
+        static void DisplayTextSlowly(string text, int delay = 50)
         {
-            Console.WriteLine("Welcome to the World of Zuul!");
-            Console.WriteLine("World of Zuul is a new, incredibly boring adventure game.");
-            PrintHelp();
-            Console.WriteLine();
+            foreach (char c in text)
+            {
+                if (Console.KeyAvailable)
+                {
+                    Console.ReadKey(true);
+                    Console.Write(text.Substring(text.IndexOf(c)));
+                    return;
+                }
+ 
+                Console.Write(c);
+                Thread.Sleep(delay);
+            }
+        }
+
+        private static void PrintIntro()
+        {
+            string gameIntroduction = "\nWelcome to the world of adventures!\n"
+                                    + "You are about to embark on a journey filled with mystery and challenges.\n"
+                                    + "Prepare yourself for an unforgettable experience.\n\n"
+                                    + "Press any key to begin...";
+
+            DisplayTextSlowly(gameIntroduction);
+
+            Console.ReadKey();
+            Console.WriteLine("\nLet the adventure begin!");
+            Console.ReadLine();
         }
 
         private static void PrintHelp()

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "c:\\Users\\downy\\Documents\\SDU\\SMSPRY\\Sky_Gardens\\WorldOfZuul\\WorldOfZuul\\WorldOfZuul.csproj": {}
+    "C:\\Users\\downy\\Documents\\SDU\\PROJ\\Sky_Gardens\\WorldOfZuul\\WorldOfZuul\\WorldOfZuul.csproj": {}
   },
   "projects": {
-    "c:\\Users\\downy\\Documents\\SDU\\SMSPRY\\Sky_Gardens\\WorldOfZuul\\WorldOfZuul\\WorldOfZuul.csproj": {
+    "C:\\Users\\downy\\Documents\\SDU\\PROJ\\Sky_Gardens\\WorldOfZuul\\WorldOfZuul\\WorldOfZuul.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\downy\\Documents\\SDU\\SMSPRY\\Sky_Gardens\\WorldOfZuul\\WorldOfZuul\\WorldOfZuul.csproj",
+        "projectUniqueName": "C:\\Users\\downy\\Documents\\SDU\\PROJ\\Sky_Gardens\\WorldOfZuul\\WorldOfZuul\\WorldOfZuul.csproj",
         "projectName": "WorldOfZuul",
-        "projectPath": "c:\\Users\\downy\\Documents\\SDU\\SMSPRY\\Sky_Gardens\\WorldOfZuul\\WorldOfZuul\\WorldOfZuul.csproj",
+        "projectPath": "C:\\Users\\downy\\Documents\\SDU\\PROJ\\Sky_Gardens\\WorldOfZuul\\WorldOfZuul\\WorldOfZuul.csproj",
         "packagesPath": "C:\\Users\\downy\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\downy\\Documents\\SDU\\SMSPRY\\Sky_Gardens\\WorldOfZuul\\WorldOfZuul\\obj\\",
+        "outputPath": "C:\\Users\\downy\\Documents\\SDU\\PROJ\\Sky_Gardens\\WorldOfZuul\\WorldOfZuul\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\downy\\AppData\\Roaming\\NuGet\\NuGet.Config"

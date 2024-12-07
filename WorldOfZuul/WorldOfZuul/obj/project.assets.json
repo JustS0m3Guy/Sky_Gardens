@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\downy\\Documents\\SDU\\SMSPRY\\Sky_Gardens\\WorldOfZuul\\WorldOfZuul\\WorldOfZuul.csproj",
+      "projectUniqueName": "C:\\Users\\downy\\Documents\\SDU\\PROJ\\Sky_Gardens\\WorldOfZuul\\WorldOfZuul\\WorldOfZuul.csproj",
       "projectName": "WorldOfZuul",
-      "projectPath": "C:\\Users\\downy\\Documents\\SDU\\SMSPRY\\Sky_Gardens\\WorldOfZuul\\WorldOfZuul\\WorldOfZuul.csproj",
+      "projectPath": "C:\\Users\\downy\\Documents\\SDU\\PROJ\\Sky_Gardens\\WorldOfZuul\\WorldOfZuul\\WorldOfZuul.csproj",
       "packagesPath": "C:\\Users\\downy\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\downy\\Documents\\SDU\\SMSPRY\\Sky_Gardens\\WorldOfZuul\\WorldOfZuul\\obj\\",
+      "outputPath": "C:\\Users\\downy\\Documents\\SDU\\PROJ\\Sky_Gardens\\WorldOfZuul\\WorldOfZuul\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\downy\\AppData\\Roaming\\NuGet\\NuGet.Config"
