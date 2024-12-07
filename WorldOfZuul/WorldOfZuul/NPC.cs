@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WorldOfZuul;
+namespace SkyGarden;
 
 public class NPC
 {
     
-}
+};

@@ -76,7 +76,8 @@ to maintain modularity, extensibility, and maintainability.
 */
 
 
-namespace WorldOfZuul
+namespace SkyGarden
+
 {
     public class Program
     {
@@ -84,6 +85,9 @@ namespace WorldOfZuul
         {
             Game game = new();
             game.Play();
+
+            Quiz quiz = new Quiz();
+            quiz.StartQuiz();
         }
     }
 }
