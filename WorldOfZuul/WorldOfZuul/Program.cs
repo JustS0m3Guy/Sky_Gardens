@@ -72,9 +72,9 @@ It interacts with the Parser and Command classes via their public methods, ensur
 In its current state, the game employs the basic concepts of OOP, especially encapsulation and abstraction. 
 As the game grows and evolves, care should be taken to ensure that it continues to adhere to OOP and SOLID principles 
 to maintain modularity, extensibility, and maintainability.
-
 */
 
+using System.Security.Cryptography.X509Certificates;
 
 namespace SkyGarden
 
@@ -85,10 +85,6 @@ namespace SkyGarden
         {
             Game game = new();
             game.Play();
-
-            Quiz quiz = new Quiz();
-            quiz.StartQuiz();
         }
     }
 }
-

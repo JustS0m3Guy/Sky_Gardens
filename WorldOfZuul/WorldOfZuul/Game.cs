@@ -38,6 +38,11 @@
 
             PrintIntro();
 
+            PreQuiz prequiz = new();
+            prequiz.StartPreQuiz();
+
+            PrintHelp();
+
             bool continuePlaying = true;
             while (continuePlaying)
             {
@@ -110,7 +115,7 @@
             }
         }
 
-        static void DisplayTextSlowly(string text, int delay = 50)
+        static void DisplayTextSlowly(string text, int delay = 33)
         {
             foreach (char c in text)
             {
@@ -128,9 +133,9 @@
 
         private static void PrintIntro()
         {
-            string gameIntroduction = "\nWelcome to the world of adventures!\n"
-                                    + "You are about to embark on a journey filled with mystery and challenges.\n"
-                                    + "Prepare yourself for an unforgettable experience.\n\n"
+            string gameIntroduction = "\nWelcome to Sky Garden, a festival of urban greenery!\n"
+                                    + "You are about to embark on a journey filled with characters and quests.\n"
+                                    + "Prepare yourself for helping a neighbourhood restore it's greenery and beauty.\n\n"
                                     + "Press any key to begin...";
 
             DisplayTextSlowly(gameIntroduction);
