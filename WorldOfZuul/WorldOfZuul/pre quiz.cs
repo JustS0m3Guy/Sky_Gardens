@@ -63,7 +63,7 @@ public class PreQuiz
                 question.Display();
                 Console.Write("Enter your answer (A, B or C): ");
                 char userAnswer = char.ToUpper(Console.ReadKey().KeyChar);
-                Console.WriteLine();
+                Console.WriteLine("\n");
 
                 if (question.IsValidAnswer(userAnswer))
                 {
