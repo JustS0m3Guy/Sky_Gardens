@@ -17,15 +17,15 @@ public class Badge
     {
         badges = new List<Badge>
         {
-            new Badge("Eco-Enthusiast"),
-            new Badge("A Recycled Memory"),
-            new Badge("Pollution Pro"),
-            new Badge("Farmer"),
-            new Badge("Renewable Energy Pioneer"),
-            new Badge("Plumbing Captain"),
-            new Badge("Social Connectivity"),
-            new Badge("Biodiversity"),
-            new Badge("Silence!")
+            new("Eco-Enthusiast"),
+            new("A Recycled Memory"),
+            new("Pollution Pro"),
+            new("Farmer"),
+            new("Renewable Energy Pioneer"),
+            new("Plumbing Captain"),
+            new("Social Connectivity"),
+            new("Biodiversity"),
+            new("Silence!")
         };
     }
 

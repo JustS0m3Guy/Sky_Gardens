@@ -47,11 +47,11 @@ public class PreQuiz
     {
         questions = new List<Question>
         {
-            new Question("How many people already live in cities today?", new List<string> { "A) more than a 25% of the world population", "B) more than a 33% of the world population", "C) more than the 50% of the world population" }, 'C'),
-            new Question("Especially in cities it is getting hotter and hotter as a result of climate change. Which measure does NOT help to cool down?", new List<string> { "A) Venus", "B) Mars", "C) Jupiter", }, 'B'),
-            new Question("What is the largest mammal?", new List<string> { "A) Elephant", "B) Blue Whale", "C) Giraffe", }, 'B'),
-            new Question("Who wrote 'Hamlet'?", new List<string> { "A) Charles Dickens", "B) William Shakespeare", "C) Mark Twain", }, 'B'),
-            new Question("What is the chemical symbol for water?", new List<string> { "A) H2O", "B) CO2", "C) O2", }, 'A')
+            new ("How many people already live in cities today?", new List<string> { "A) more than a 25% of the world population", "B) more than a 33% of the world population", "C) more than the 50% of the world population" }, 'C'),
+            new ("Especially in cities it is getting hotter and hotter as a result of climate change. Which measure does NOT help to cool down?", new List<string> { "A) Venus", "B) Mars", "C) Jupiter", }, 'B'),
+            new ("What is the largest mammal?", new List<string> { "A) Elephant", "B) Blue Whale", "C) Giraffe", }, 'B'),
+            new ("Who wrote 'Hamlet'?", new List<string> { "A) Charles Dickens", "B) William Shakespeare", "C) Mark Twain", }, 'B'),
+            new ("What is the chemical symbol for water?", new List<string> { "A) H2O", "B) CO2", "C) O2", }, 'A')
         };
     }
 
