@@ -1,6 +1,4 @@
-
-
-namespace WorldOfZuul;
+namespace SkyGarden;
 
 public class Badge
 {

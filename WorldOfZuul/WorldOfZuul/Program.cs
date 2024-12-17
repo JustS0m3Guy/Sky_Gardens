@@ -76,7 +76,7 @@ to maintain modularity, extensibility, and maintainability.
 
 using System.Security.Cryptography.X509Certificates;
 
-namespace WorldOfZuul
+namespace SkyGarden
 {
     public class Program
     {
