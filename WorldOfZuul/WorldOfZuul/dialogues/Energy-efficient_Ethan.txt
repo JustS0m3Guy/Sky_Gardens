@@ -1,0 +1,31 @@
+0
+I've been tracking our building's energy use. Look at these charts on my tablet.
+    Analyse the data
+        See these spikes? That's when everyone's using air conditioning. We need to find a more efficient solution.
+    Ask about current energy sources
+        We're still relying mostly on the grid. I think solar power could make a huge difference here.
+0
+I've been thinking about installing solar panels up here. What do you think?
+    Discuss solar panel feasibility
+        With our sunny climate, we could generate a significant portion of our energy needs.
+    Suggest additional energy-saving measures
+0
+Good point! We should also look into energy-efficient appliances and better insulation. To get this project off the ground, we'll need a few key items.
+    Ask what items are needed
+        We'll need a solar panel kit, an energy monitoring system, and some educational materials about energy conservation.
+    Suggest alternative items
+        Those are interesting ideas, but let's start with the basics I mentioned. We can always expand later!   
+0
+This is amazing! I can already see the energy production on my app.
+    Set up solar panels
+        Perfect placement! We're maximising our sun exposure here.
+    Install energy monitoring system
+        Great! Now we can track our usage in real-time and identify areas for improvement.
+    Place educational materials
+        These posters and flyers will help everyone understand how they can contribute to saving energy.
+0
+I can't believe how much we've accomplished! Our energy consumption is already dropping.
+    Review the project's impact
+        Look at these numbers! We've reduced our carbon footprint and our energy bills. It's a win-win!
+    Discuss future sustainability plans
+        This is just the beginning. I'm thinking about electric vehicle charging stations next. What do you think?

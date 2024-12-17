@@ -1,6 +1,13 @@
-﻿using System.Reflection.Metadata.Ecma335;
+using System.Reflection.Metadata.Ecma335;
 
 namespace WorldOfZuul
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace SkyGarden
 {
     public class Game
     {
@@ -25,6 +32,17 @@ namespace WorldOfZuul
             Room? theatre = new("Theatre", "You find yourself inside a large lecture theatre. Rows of seats ascend up to the back, and there's a podium at the front. It's quite dark and quiet.");
             outside.SetExit("east", theatre); // North, East, South, West
 
+        private void CreateRooms()
+        {
+  
+            Room? outside = new("Street", "You are standing outside the main entrance of the university. To the east is a large building, to the south is a computing lab, and to the west is the campus pub.");
+            Room? theatre = new("Town Hall", "You find yourself inside a large lecture theatre. Rows of seats ascend up to the back, and there's a podium at the front. It's quite dark and quiet.");
+            Room? pub = new("Building", "You've entered the campus pub. It's a cozy place, with a few students chatting over drinks. There's a bar near you and some pool tables at the far end.");
+            Room? lab = new("Botanical Garden", "You're in a computing lab. Desks with computers line the walls, and there's an office to the east. The hum of machines fills the room.");
+            Room? office = new("Shop", "You've entered what seems to be an administration office. There's a large desk with a computer on it, and some bookshelves lining one wall.");
+
+            outside.SetExits(null, theatre, lab, pub); // North, East, South, West
+
             theatre.SetExit("west", outside);
             theatre.AddItem(popcorn);
 
@@ -39,6 +57,12 @@ namespace WorldOfZuul
             Parser parser = new();
 
             PrintWelcome();
+            PrintIntro();
+
+            new PreQuiz().StartPreQuiz();
+
+            PrintHelp();
+
             bool continuePlaying = true;
             while (continuePlaying)
             {
@@ -194,13 +218,34 @@ namespace WorldOfZuul
             }
         }
 
-
-        private static void PrintWelcome()
+        public static void DisplayTextSlowly(string text, int delay = 33)
         {
-            Console.WriteLine("Welcome to the World of Zuul!");
-            Console.WriteLine("World of Zuul is a new, incredibly boring adventure game.");
-            PrintHelp();
-            Console.WriteLine();
+            foreach (char c in text)
+            {
+                if (Console.KeyAvailable)
+                {
+                    Console.ReadKey(true);
+                    Console.Write(text.Substring(text.IndexOf(c)));
+                    return;
+                }
+ 
+                Console.Write(c);
+                Thread.Sleep(delay);
+            }
+        }
+
+        private static void PrintIntro()
+        {
+            string gameIntroduction = "\nWelcome to Sky Garden, a festival of urban greenery!\n"
+                                    + "You are about to embark on a journey filled with characters and quests.\n"
+                                    + "Prepare yourself for helping a neighbourhood restore it's greenery and beauty.\n\n"
+                                    + "Press any key to begin...";
+
+            DisplayTextSlowly(gameIntroduction);
+
+            Console.ReadKey();
+            Console.WriteLine("\nLet the adventure begin!");
+            Console.ReadLine();
         }
 
         private static void PrintHelp()
@@ -214,6 +259,11 @@ namespace WorldOfZuul
             Console.WriteLine("Type 'help' to print this message again.");
             Console.WriteLine("Type 'quit' to exit the game.");
             Console.WriteLine("Type 'take' to pick up an item.");
+        }
+
+        private static void SelectQuest()
+        {
+            
         }
     }
 }
