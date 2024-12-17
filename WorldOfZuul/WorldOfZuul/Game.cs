@@ -14,6 +14,12 @@ namespace WorldOfZuul
         }
         private void CreateScene()
         {
+            // To create a room, type Room? <roomname> = new("Short description", "Long description");
+            // To create an item, type Item? <itemname> = new("Item name", "Item description");
+            // To create an NPC, type NPC? <npcname> = new("NPC name", <roomname>);
+            // To add dialogues to an NPC, add the dialogues to the dialogues folder, and name the file <npcfirstname>_<npclastname>.txt
+            // To add an item to a room, type <roomname>.AddItem(<itemname>);
+            // To add an NPC to a room, type <roomname>.AddNPC(<npcname>);
             Item? popcorn = new("Popcorn", "A bag of popcorn. It's a bit stale.");
             Room? outside = new("Outside", "You are standing outside the main entrance of the university. If you go east you will enter the building where the Theatre is.");
             Room? theatre = new("Theatre", "You find yourself inside a large lecture theatre. Rows of seats ascend up to the back, and there's a podium at the front. It's quite dark and quiet.");
@@ -23,13 +29,7 @@ namespace WorldOfZuul
             theatre.AddItem(popcorn);
 
             NPC? ben = new("Biodiversity Ben", outside);
-            for (int i = 0; i < ben.Dialogues.Count; i++)
-            {
-                for (int j = 0; j < ben.Dialogues[i].Count; j++)
-                {
-                    Console.WriteLine(ben.Dialogues[i][j]);
-                }
-            }
+            outside.AddNPC(ben);
             
             currentRoom = outside;
         }
@@ -76,6 +76,18 @@ namespace WorldOfZuul
                         else
                         {
                             Console.WriteLine("There are no items in this room");
+                        }
+                        if (currentRoom?.NPCs.Count > 0)
+                        {
+                            Console.WriteLine("In the room you see");
+                            foreach (NPC n in currentRoom.NPCs)
+                            {
+                                Console.WriteLine($"- {n.Name}");
+                            }
+                        }
+                        else
+                        {
+                            Console.WriteLine("There are no NPCs in this room");
                         }
                         break;
 
@@ -138,23 +150,25 @@ namespace WorldOfZuul
                     case "talk":
                         Console.WriteLine("Who would you like to talk to?");
                         string? npcname = Console.ReadLine();
+                        bool found = false;
                         if (currentRoom?.NPCs.Count > 0)
                         {
                             foreach (NPC n in currentRoom.NPCs)
                             {
-                                if (n.Name == npcname)
+                                if (n.Name.ToLower() == npcname.ToLower() || n.Name.ToLower().Split(' ')[1] == npcname.ToLower())
                                 {
+                                    found = true;
                                     n.Talk();
                                 }
-                                else
-                                {
-                                    Console.WriteLine("There is no such NPC in the room");
-                                }
+                            }
+                            if (!found)
+                            {
+                                Console.WriteLine("There is no such NPC in the room");
                             }
                         }
                         else
                         {
-                            Console.WriteLine("There are no one in this room");
+                            Console.WriteLine("There is no one in this room");
                         }
                         break;
 
