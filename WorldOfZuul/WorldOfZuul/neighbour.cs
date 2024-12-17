@@ -1,4 +1,4 @@
-namespace SkyGarden
+namespace WorldOfZuul
 {
     public class Neighbour
     {

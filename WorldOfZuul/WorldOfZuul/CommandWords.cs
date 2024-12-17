@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SkyGarden
+namespace WorldOfZuul
 {
     public class CommandWords
     {
