@@ -17,21 +17,23 @@ namespace SkyGarden
             LongDescription = longDesc;
         }
 
-        public void SetExits(Room? north, Room? east, Room? south, Room? west, Room? elevator)
+        public void SetExits(Room? north, Room? east, Room? south, Room? west, Room? npcFlat)
         {
             SetExit("north", north);
             SetExit("east", east);
             SetExit("south", south);
             SetExit("west", west);
-            SetExit("elevator", elevator);
-            if (elevator != null)
-                ElevatorButtons.Add(elevator);
+            SetExit("elevator", npcFlat);
         }
 
         public void SetExit(string direction, Room? neighbor)
         {
             if (neighbor != null)
+            {
                 Exits[direction] = neighbor;
+                if (direction == "elevator")
+                    ElevatorButtons.Add(neighbor);
+            }
         }
         public void AddItem(Item item)
         {

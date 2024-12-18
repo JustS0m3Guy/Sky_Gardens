@@ -5,11 +5,11 @@ Intro
         response a
     option b
         response b
-/ec
+/c
 end
-
 /d
 asdada
+/c
     asdsad
         dddss
     assd
