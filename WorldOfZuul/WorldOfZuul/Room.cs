@@ -1,4 +1,6 @@
-﻿namespace SkyGarden
+﻿using System.Diagnostics.Contracts;
+
+namespace SkyGarden
 {
     public class Room
     {
@@ -7,6 +9,7 @@
         public List<Item> Items { get; set; } = new();
         public List<NPC> NPCs { get; set; } = new();
         public Dictionary<string, Room> Exits { get; private set; } = new();
+        public List<Room> ElevatorButtons { get; set; } = new();
 
         public Room(string shortDesc, string longDesc)
         {
@@ -14,12 +17,15 @@
             LongDescription = longDesc;
         }
 
-        public void SetExits(Room? north, Room? east, Room? south, Room? west)
+        public void SetExits(Room? north, Room? east, Room? south, Room? west, Room? elevator)
         {
             SetExit("north", north);
             SetExit("east", east);
             SetExit("south", south);
             SetExit("west", west);
+            SetExit("elevator", elevator);
+            if (elevator != null)
+                ElevatorButtons.Add(elevator);
         }
 
         public void SetExit(string direction, Room? neighbor)

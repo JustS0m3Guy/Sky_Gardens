@@ -12,13 +12,16 @@ namespace SkyGarden
         public Room Home { get; set; } 
         public List<List<List<string>>> Dialogues = new List<List<List<string>>>();
         public int Interacted = 0;
-        public NPC(string name, Room home)
+        public Quest Quest { get; set; }
+        public NPC(string name, Quest quest)
         {
             Name = name;
-            Home = home;
+            Quest = quest;
+            Room? NPCHome = new Room($"{Name}'s flat", $"This is the home of {Name}");
+            Home = NPCHome;
             //Biodiversity Ben -> "Biodiversity_Ben" in order for it to find file in the dialogues folder
             //uses a lambda expression to format the name of the npc to match the file name
-            string[] dialogue = File.ReadAllLines("dialogues/" + Name.Split(' ')[0] + "_" + Name.Split(' ')[1]).Select(x => x.Trim()).ToArray();
+            string[] dialogue = File.ReadAllLines("dialogues/" + Name.Split(' ')[0] + "_" + Name.Split(' ')[1] + ".txt").Select(x => x.Trim()).ToArray();
             for (int i = 0; i < dialogue.Length; i++)
             {
                 if (dialogue[i] == "/d")
@@ -60,34 +63,7 @@ namespace SkyGarden
         }
         public void Talk()
         {
-            // The dialogue is stored as Dialogue[interaction][Line/coice][option]
-            for (int i = 0; i < Dialogues[Interacted].Count; i++)
-            {
-                bool isChoice = Dialogues[Interacted][i][0] == "/c";
-                if (!isChoice)
-                {
-                    System.Console.WriteLine(Dialogues[Interacted][i][0]);
-                }
-                else
-                {
-                    System.Console.WriteLine("Choose an option:");
-                    for (int j = 1; j < Dialogues[Interacted][i].Count; j++)
-                    {
-                        if (j/2 == 1)
-                        {
-                            System.Console.WriteLine(Dialogues[Interacted][i][j]);
-                        }
-                    }
-                    for (int j = 1; j < Dialogues[Interacted][i].Count; j++)
-                    {
-                        if (j/2 == 0)
-                        {
-                            System.Console.WriteLine(Dialogues[Interacted][i][j]);
-                        }
-                    }
-                }
-            }
-            Interacted++;
+            // Implementation needed
         }
     }
 }
