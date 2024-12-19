@@ -63,7 +63,12 @@ public class PreQuiz
         {
             while (true) // Repeat until valid input
             {
-                question.Display();
+                //question.Display();
+                Game.DisplayTextSlowly(question.Text);
+                foreach (var option in question.Options)
+                {
+                    Game.DisplayTextSlowly($"\n{option}");
+                }
                 Console.Write("Enter your answer (A, B or C): ");
                 char userAnswer = char.ToUpper(Console.ReadKey().KeyChar);
                 Console.WriteLine("\n");
@@ -83,7 +88,7 @@ public class PreQuiz
             }
         }
         
-        Game.DisplayTextSlowly($"You completed the quiz! Your final score is {score1}/{questions.Count}.");
-        Game.DisplayTextSlowly("\nThis score will be used in the future to evaluate your evolution in sustanability knowledge :)\n");
+        Game.DisplayTextSlowly($"You completed the quiz! Your final score is {score1}/{questions.Count}.\n");
+        Game.DisplayTextSlowly("This score will be used in the future to evaluate your evolution in sustanability knowledge :)\n\n");
     }
 }
