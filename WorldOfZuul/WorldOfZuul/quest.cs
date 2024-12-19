@@ -2,16 +2,18 @@ namespace SkyGarden;
 
 public class Badge
 {
-    public string Name { get; private set; } = string.Empty;
+    public string? Name { get; private set; }
+    private List<Badge>? badges;
 
     public Badge(string name)
     {
         Name = name;
     }
-
-    private List<Badge> badges;
-
     public Badge()
+    {
+        Initialization();
+    }
+    private void Initialization()
     {
         badges = new List<Badge>
         {
@@ -26,10 +28,9 @@ public class Badge
             new("Silence!")
         };
     }
-
     public List<Badge> GetBadges()
     {
-        return badges;
+        return new List<Badge>(badges);
     }
 }
 

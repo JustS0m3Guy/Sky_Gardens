@@ -10,14 +10,14 @@ namespace SkyGarden
     {
         public string Name { get; set; } 
         public Room Home { get; set; } 
-        public List<List<List<string>>> Dialogues = new List<List<List<string>>>();
+        public List<List<List<string>>> Dialogues = new();
         public int Interacted = 0;
         public Quest Quest { get; set; }
         public NPC(string name, Quest quest)
         {
             Name = name;
             Quest = quest;
-            Room? NPCHome = new Room($"{Name}'s flat", $"This is the home of {Name}");
+            Room? NPCHome = new ($"{Name}'s flat", $"This is the home of {Name}");
             Home = NPCHome;
             //Biodiversity Ben -> "Biodiversity_Ben" in order for it to find file in the dialogues folder
             //uses a lambda expression to format the name of the npc to match the file name
@@ -25,16 +25,17 @@ namespace SkyGarden
             
             for (int i = 0; i < dialogue.Length; i++)
             {
+                // ^1 means the last element of a list
                 // Adds Dialogue [] [] to the end of the list
                 if (dialogue[i] == "/d")
                     Dialogues.Add(new List<List<string>>() { new List<string>() });
                 // Adds Dialogue [] to the end of the list
                 else if (dialogue[i] == "/c")
-                    Dialogues[Dialogues.Count - 1].Add(new List<string>());
+                    Dialogues[^1].Add(new List<string>());
                 // Adds Dialogue a string to the end of the list
                 else
-                    Dialogues[Dialogues.Count - 1][Dialogues[Dialogues.Count - 1].Count - 1].Add(dialogue[i]);
-                // // Diagnostic code to check if the dialogues are stored correctly in Dialogues <List<List<List<string>>>>
+                    Dialogues[^1][^1].Add(dialogue[i]);
+                // Diagnostic code to check if the dialogues are stored correctly in Dialogues <List<List<List<string>>>>
                 // if (Name == "Biodiversity Ben")
                 // {
                 //     Console.WriteLine("i: " + i);
