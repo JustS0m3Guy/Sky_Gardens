@@ -14,7 +14,6 @@ namespace SkyGarden
         private Room? currentRoom;
         private Room? previousRoom;
         private Inventory inv = new();
-        private List<NPC>? npcs;
 
         public Game()
         {
@@ -44,7 +43,7 @@ namespace SkyGarden
             NPC? Lucy = new("Lonely Lucy", new Quest("Lonely Lucy's Quest", "Lucy quest description", null, badgeList[6]));
             NPC? Ben = new("Biodiversity Ben", new Quest("Biodiversity Ben's Quest", "Ben quest description", null, badgeList[7]));
             NPC? Nora = new("Noisy Nora", new Quest("Noisy Nora's Quest", "Nora quest description", null, badgeList[8]));
-            npcs = new List<NPC> { Emma, Walter, Paula, Fiona, Ethan, Fred, Lucy, Ben, Nora };
+            List<NPC>? npcs = new() { Emma, Walter, Paula, Fiona, Ethan, Fred, Lucy, Ben, Nora };
 
             Room? TCC = new("The City Center","You find yourself in the city center. There are people bustling about, and you can see a large fountain in the middle of the square. From here you can see The Town Hall, The Botanical Garden, The Store and the entrence to your new apartment building.");
             Room? TABE = new("The Apartment Building Entrance","You are standing in the entrance of your new apartment building. You can see the elevator and the stairs leading up to your apartment and a small door leading down to the basement. You can also see the city center from here.");

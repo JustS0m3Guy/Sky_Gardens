@@ -8,13 +8,14 @@ namespace SkyGarden
 {
     public class Inventory
     {
-        public List<Item> items { get; } = new();
+        public List<Item> Items { get; } = new();
+        public List<Badge> Badges { get; } = new();
         public int space { get; } = 10;
         public void PickUp(Item item)
         {
-            if ((items.Count < space))
+            if ((Items.Count < space))
             {
-                items.Add(item);
+                Items.Add(item);
                 System.Console.WriteLine($"Added {item.Name} to inventory");
             }
             else
@@ -24,9 +25,9 @@ namespace SkyGarden
         }
         public void Use(Item item)
         {
-            if (items.Contains(item))
+            if (Items.Contains(item))
             {
-                items.Remove(item);
+                Items.Remove(item);
                 System.Console.WriteLine($"Used {item.Name}");
             }
             else
@@ -36,9 +37,9 @@ namespace SkyGarden
         }
         public void ViewInventory()
         {
-            if (0 < items.Count)
+            if (0 < Items.Count)
             {
-                foreach (Item i in items)
+                foreach (Item i in Items)
                 {
                     Console.WriteLine(i.Name);
                 }

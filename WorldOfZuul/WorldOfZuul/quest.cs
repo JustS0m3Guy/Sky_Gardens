@@ -41,6 +41,7 @@ public class Quest
     public List<Item>? RequiredItems { get; private set; }
     public Badge? Reward { get; }
     public bool IsCompleted { get; set; } = false;
+    public int QuestProgress { get; set; }
 
     public bool CanComplete(List<Item> inventory)
     {
@@ -54,4 +55,5 @@ public class Quest
         RequiredItems = requireditems;
         Reward = reward;
     }
+    
 }
