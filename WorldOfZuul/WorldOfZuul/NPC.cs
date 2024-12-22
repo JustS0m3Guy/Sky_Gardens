@@ -21,7 +21,8 @@ namespace SkyGarden
             Home = NPCHome;
             //Biodiversity Ben -> "Biodiversity_Ben" in order for it to find file in the dialogues folder
             //uses a lambda expression to format the name of the npc to match the file name
-            string[] dialogue = File.ReadAllLines("dialogues/" + Name.Split(' ')[0] + "_" + Name.Split(' ')[1] + ".txt").Select(x => x.Trim()).ToArray();
+            string fileName = $"dialogues/{Name.Split(' ')[0]}_{Name.Split(' ')[1]}.txt";
+            string[] dialogue = File.ReadAllLines(fileName).Select(x => x.Trim()).ToArray();
             
             for (int i = 0; i < dialogue.Length; i++)
             {
@@ -58,42 +59,62 @@ namespace SkyGarden
         }
         public void Talk()
         {
-            Console.Clear();
-            foreach (List<string> dialogue in Dialogues[0])
+            foreach (List<string> dialogue in Dialogues[Quest.QuestProgress])
             {
                 if (dialogue.Count%2 == 1)
-                    Console.WriteLine(dialogue[0]);
+                    Game.DisplayTextSlowly(dialogue[0] + "\n");
                 else
                 {
                     int selectedIndex = 0;
                     bool selected = false;
+                    int optionsStartLine = Console.CursorTop;
+                    for (int i = 0; i < dialogue.Count; i += 2)
+                    {
+                        if (i / 2 == selectedIndex)
+                        {
+                            Console.BackgroundColor = ConsoleColor.DarkGreen;
+                            Console.ForegroundColor = ConsoleColor.Black;                                
+                        }
+                        Console.Write(i / 2 + 1 + ". " + dialogue[i]);
+                        Thread.Sleep(750);
+                        Console.ResetColor();
+                        Console.WriteLine();
+                    }
+                    Console.SetCursorPosition(0, optionsStartLine - dialogue.Count / 2);
                     while (!selected)
                     {
                         for (int i = 0; i < dialogue.Count; i += 2)
                         {
                             if (i / 2 == selectedIndex)
                             {
-                                Console.BackgroundColor = ConsoleColor.Gray;
-                                Console.ForegroundColor = ConsoleColor.Black;
+                                Console.BackgroundColor = ConsoleColor.DarkGreen;
+                                Console.ForegroundColor = ConsoleColor.Black;                                
                             }
-                            Console.WriteLine($"{i / 2 + 1}. {dialogue[i]}");
+                            Console.Write(i / 2 + 1 + ". " + dialogue[i]);
                             Console.ResetColor();
+                            Console.WriteLine();
                         }
 
                         var key = Console.ReadKey(true).Key;
                         if (key == ConsoleKey.UpArrow)
+                        {
                             selectedIndex = (selectedIndex == 0) ? (dialogue.Count / 2 - 1) : selectedIndex - 1;
+                            Console.SetCursorPosition(0, optionsStartLine - dialogue.Count / 2);
+                        }
                         else if (key == ConsoleKey.DownArrow)
+                        {
                             selectedIndex = (selectedIndex == dialogue.Count / 2 - 1) ? 0 : selectedIndex + 1;
+                            Console.SetCursorPosition(0, optionsStartLine - dialogue.Count / 2);
+                        }
                         else if (key == ConsoleKey.Enter)
                         {
-                            Console.WriteLine(dialogue[selectedIndex * 2 + 1]);
+                            Game.DisplayTextSlowly(dialogue[selectedIndex * 2 + 1] + "\n");
                             selected = true;
                         }
                     }
                 }
-                
             }
+            Quest.QuestProgress++;
         }
     }
 }

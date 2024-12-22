@@ -54,6 +54,7 @@ public class Quest
         Description = description;
         RequiredItems = requireditems;
         Reward = reward;
+        QuestProgress = 0;
     }
     
 }

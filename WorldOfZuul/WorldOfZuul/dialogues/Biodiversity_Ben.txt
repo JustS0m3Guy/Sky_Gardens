@@ -1,16 +1,20 @@
 /d
 Intro
 /c
-    option a
-        response a
-    option b
-        response b
+    Option a
+        Response a
+    Option b
+        Response b
 /c
 end
 /d
-asdada
+Come back with XYZ
+/d
+Congrats!
 /c
-    asdsad
-        dddss
-    assd
-        aaasss
+    yippie
+        YIPPIE
+    nope
+        AAAAA
+    meh
+        WOAH

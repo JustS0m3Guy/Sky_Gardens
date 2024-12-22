@@ -73,13 +73,12 @@ namespace SkyGarden
             }
             TRG.SetExit("elevator", TABE);
 
-            TABE.AddNPC(Ben);
+            TABE.AddNPC(Ethan);
         }
         public void Play()
         {
             Parser parser = new();
-            PrintIntro();
-
+            //PrintIntro();
             //new PreQuiz().StartPreQuiz();
 
             bool continuePlaying = true;
