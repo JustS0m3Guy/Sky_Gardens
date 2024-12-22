@@ -47,6 +47,23 @@ public class Quest
         return RequiredItems.All(item => inventory.Contains(item));
     }
 
+    public void CompleteQuest(List<Item> inventory)
+    {
+        if (CanComplete(inventory))
+        {
+            IsCompleted = true;
+            foreach (var item in RequiredItems)
+            {
+                inventory.Remove(item);
+            }
+            Console.WriteLine("You have all the required items to complete the quest.");
+        }
+        else
+        {
+            Console.WriteLine($"You do not have all the required items to complete the quest '{Title}'.");
+        }
+    }
+
     public Quest(string title, string description, List<Item>? requireditems, Badge? reward)
     {
         Title = title;
