@@ -52,6 +52,7 @@ namespace SkyGarden
             Room? TTH = new("The Town Hall","You are in the town hall. You can see the mayor's office, the reception and the city council room. You can see the city center from here.");
             Room? TS = new("The Store","You are in the store. You can see the cashier, the shelves and the exit. You can see the city center from here.");
             Room? TGB = new("The Botanical Garden","You are in the botanical garden. You can see the plants, the flowers and the trees. You can see the city center from here.");
+            Room? YR = new("Your Room","You are in your room. You can see the bed, the desk and the window. You can see the city center from here.");
             currentRoom = TABE;
 
             TCC.SetExits(TTH, TABE, TGB, TS, null);
@@ -63,6 +64,7 @@ namespace SkyGarden
             {
                 TABE.SetExit("elevator", npc.Home);
                 TRG.SetExit("elevator", npc.Home);
+                TABE.AddNPC(npc);
                 foreach (NPC npc2 in npcs)
                 {
                     if (npc != npc2)
@@ -72,23 +74,23 @@ namespace SkyGarden
                 npc.Home.SetExit("elevator", TRG);
             }
             TRG.SetExit("elevator", TABE);
-
-            TABE.AddNPC(Ethan);
+            YR.SetExit("elevator", TABE);
+            TABE.SetExit("elevator", YR);
         }
         public void Play()
         {
             Parser parser = new();
-            //PrintIntro();
+            Console.Clear();
+            PrintIntro();
             //new PreQuiz().StartPreQuiz();
 
             bool continuePlaying = true;
             while (continuePlaying)
             {
-                Console.WriteLine(currentRoom?.ShortDescription);
+                Console.WriteLine("\n" + currentRoom?.ShortDescription);
                 Console.Write("> ");
-
                 string? input = Console.ReadLine();
-
+                Console.WriteLine();
                 if (string.IsNullOrEmpty(input))
                 {
                     Console.WriteLine("Please enter a command.");
@@ -106,10 +108,10 @@ namespace SkyGarden
                 switch(command.Name)
                 {
                     case "look":
-                        Console.WriteLine($"{currentRoom?.LongDescription}\n");
+                        DisplayTextSlowly(currentRoom?.LongDescription + "\n\n" ?? "You are in a room with no description.");
 
                         // foreach function that itterates over the exits of the current room and prints them
-                        Console.WriteLine("From here you can go:");
+                        DisplayTextSlowly("From here you can go:");
                         if (currentRoom?.Exits.Count > 0)
                         {
                             foreach (string direction in currentRoom.Exits.Keys)
@@ -117,36 +119,37 @@ namespace SkyGarden
                                 if (direction != "elevator")
                                     Console.WriteLine($"To the {direction}, you can see {currentRoom.Exits[direction].ShortDescription}");
                                 else
-                                    Console.WriteLine($"You can also see an elevator");
+                                    Console.WriteLine($"You also see an elevator");
+                                Thread.Sleep(750);
                             }
                             Console.WriteLine();
                         }
 
                         if (currentRoom?.Items.Count > 0)
                         {
-                            Console.WriteLine("You see the following items:");
+                            DisplayTextSlowly("You see the following items:");
                             foreach (Item i in currentRoom.Items)
                             {
                                 Console.WriteLine($"- {i.Name}: {i.Description}");
-                            }
-                            System.Console.WriteLine();
-                        }
-                        else
-                            Console.WriteLine("There are no items in this room\n");
-                        
-                        if (currentRoom?.NPCs.Count > 0)
-                        {
-                            Console.WriteLine("In the room you see");
-                            foreach (NPC n in currentRoom.NPCs)
-                            {
-                                Console.WriteLine($"- {n.Name}");
+                                Thread.Sleep(750);
                             }
                             Console.WriteLine();
                         }
                         else
+                            DisplayTextSlowly("There are no items in this room.\n");
+                        
+                        if (currentRoom?.NPCs.Count > 0)
                         {
-                            Console.WriteLine("There are no NPCs in this room\n");
+                            DisplayTextSlowly("In the room, you see:");
+                            foreach (NPC n in currentRoom.NPCs)
+                            {
+                                Console.WriteLine($"- {n.Name}");
+                                Thread.Sleep(750);
+                            }
+                            Console.WriteLine();
                         }
+                        else
+                            DisplayTextSlowly("There is no one in this room.\n");
                         break;
 
                     case "back":
@@ -161,15 +164,16 @@ namespace SkyGarden
                     case "east":
                     case "west":
                         Move(command.Name);
-                        break;
+                        goto case "look";
                     
                     case "elevator":
                         if (currentRoom?.ElevatorButtons.Count > 0)
                         {
-                            Console.WriteLine("Where would you like to go?");
+                            DisplayTextSlowly("Where would you like to go?");
                             foreach (Room r in currentRoom.ElevatorButtons)
                             {
                                 Console.WriteLine(r.ShortDescription);
+                                Thread.Sleep(500);
                             }
                             string? destination = Console.ReadLine();
                             bool valid = false;
@@ -180,6 +184,11 @@ namespace SkyGarden
                                     previousRoom = currentRoom;
                                     currentRoom = r;
                                     valid = true;
+                                    if (currentRoom.IsFirstIteration)
+                                    {
+                                        currentRoom.IsFirstIteration = false;
+                                        goto case "look";
+                                    }
                                 }
                             }
                             if (!valid)
@@ -280,6 +289,8 @@ namespace SkyGarden
             {
                 Console.WriteLine($"You can't go {direction}!");
             }
+            if (currentRoom?.IsFirstIteration == true)
+                currentRoom.IsFirstIteration = false;
         }
 
         public static void DisplayTextSlowly(string text, int delay = 33)
@@ -296,6 +307,7 @@ namespace SkyGarden
                 Console.Write(c);
                 Thread.Sleep(delay);
             }
+            Console.WriteLine();
         }
 
         private static void PrintIntro()
@@ -315,7 +327,7 @@ namespace SkyGarden
         private static void PrintHelp()
         {
             Console.WriteLine("Navigate by typing 'north', 'south', 'east', or 'west'.");
-            Console.WriteLine("Type 'look' for more details.");
+            Console.WriteLine("Type 'look' for more details. Will also run after entering a room for the first time.");
             Console.WriteLine("Type 'back' to go to the previous room.");
             Console.WriteLine("Type 'help' to print this message again.");
             Console.WriteLine("Type 'quit' to exit the game.");

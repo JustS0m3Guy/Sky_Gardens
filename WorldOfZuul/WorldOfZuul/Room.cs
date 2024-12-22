@@ -10,11 +10,13 @@ namespace SkyGarden
         public List<NPC> NPCs { get; set; } = new();
         public Dictionary<string, Room> Exits { get; private set; } = new();
         public List<Room> ElevatorButtons { get; set; } = new();
+        public bool IsFirstIteration;
 
         public Room(string shortDesc, string longDesc)
         {
             ShortDescription = shortDesc;
             LongDescription = longDesc;
+            IsFirstIteration = true;
         }
 
         public void SetExits(Room? north, Room? east, Room? south, Room? west, Room? npcFlat)

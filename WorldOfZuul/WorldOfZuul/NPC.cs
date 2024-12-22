@@ -62,25 +62,13 @@ namespace SkyGarden
             foreach (List<string> dialogue in Dialogues[Quest.QuestProgress])
             {
                 if (dialogue.Count%2 == 1)
-                    Game.DisplayTextSlowly(dialogue[0] + "\n");
+                    Game.DisplayTextSlowly(dialogue[0]);
                 else
                 {
                     int selectedIndex = 0;
                     bool selected = false;
                     int optionsStartLine = Console.CursorTop;
-                    for (int i = 0; i < dialogue.Count; i += 2)
-                    {
-                        if (i / 2 == selectedIndex)
-                        {
-                            Console.BackgroundColor = ConsoleColor.DarkGreen;
-                            Console.ForegroundColor = ConsoleColor.Black;                                
-                        }
-                        Console.Write(i / 2 + 1 + ". " + dialogue[i]);
-                        Thread.Sleep(750);
-                        Console.ResetColor();
-                        Console.WriteLine();
-                    }
-                    Console.SetCursorPosition(0, optionsStartLine - dialogue.Count / 2);
+                    bool firstLoop = true;
                     while (!selected)
                     {
                         for (int i = 0; i < dialogue.Count; i += 2)
@@ -88,9 +76,13 @@ namespace SkyGarden
                             if (i / 2 == selectedIndex)
                             {
                                 Console.BackgroundColor = ConsoleColor.DarkGreen;
-                                Console.ForegroundColor = ConsoleColor.Black;                                
+                                Console.ForegroundColor = ConsoleColor.Black;
+                                Console.Write("> " + dialogue[i]);
                             }
-                            Console.Write(i / 2 + 1 + ". " + dialogue[i]);
+                            else
+                                Console.Write(dialogue[i] + "  ");
+                            if (firstLoop)
+                                Thread.Sleep(750);
                             Console.ResetColor();
                             Console.WriteLine();
                         }
@@ -108,9 +100,10 @@ namespace SkyGarden
                         }
                         else if (key == ConsoleKey.Enter)
                         {
-                            Game.DisplayTextSlowly(dialogue[selectedIndex * 2 + 1] + "\n");
+                            Game.DisplayTextSlowly(dialogue[selectedIndex * 2 + 1]);
                             selected = true;
                         }
+                        firstLoop = false;
                     }
                 }
             }
