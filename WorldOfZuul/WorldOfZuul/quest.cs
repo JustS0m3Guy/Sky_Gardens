@@ -42,19 +42,20 @@ public class Quest
     public Badge? Reward { get; }
     public bool IsCompleted { get; set; } = false;
     public int QuestProgress { get; set; }
+    public int QuestLength { get; set; }
 
     public bool CanComplete(List<Item> inventory)
     {
         return RequiredItems.All(item => inventory.Contains(item));
     }
 
-    public Quest(string title, string description, List<Item>? requireditems, Badge? reward)
+    public Quest(string title, string description, List<Item>? requireditems, Badge? reward, int questLength)
     {
         Title = title;
         Description = description;
         RequiredItems = requireditems;
         Reward = reward;
         QuestProgress = 0;
+        QuestLength = questLength;
     }
-    
 }

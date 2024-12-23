@@ -1,16 +1,29 @@
 /d
-Intro
+1
 /c
     Option a
         Response a
     Option b
         Response b
 /c
-end
+1 end
 /d
-Come back with XYZ
+2 Come back with XYZ
 /d
-Congrats!
+/c
+    c
+        C
+    d
+        D
+/d
+4
+/c
+    Csege
+        Merriszinsmess
+    Máté
+        Fingottam
+    Pacaa
+        ikszdé
 /c
     yippie
         YIPPIE
@@ -18,3 +31,5 @@ Congrats!
         AAAAA
     meh
         WOAH
+/d
+[FINNISH] We're done

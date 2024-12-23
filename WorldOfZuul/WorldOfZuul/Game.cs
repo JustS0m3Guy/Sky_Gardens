@@ -14,6 +14,8 @@ namespace SkyGarden
         private Room? currentRoom;
         private Room? previousRoom;
         private Inventory inv = new();
+        private Quest? activeQuest;
+        private int day = 0;
 
         public Game()
         {
@@ -34,15 +36,15 @@ namespace SkyGarden
 
             Item? item1 = new("Item1", "This is item 1");
 
-            NPC? Emma = new("Eco-enthusiast Emma", new Quest("Eco-enthusiast Emma's Quest", "Emma quest description", new List<Item>{item1}, badgeList[0]));
-            NPC? Walter = new("Wasteful Walter", new Quest("Wasteful Walter's Quest", "Walter quest description", null, badgeList[1]));
-            NPC? Paula = new("Polluted Paula", new Quest("Polluted Paula's Quest", "Paula quest description", null, badgeList[2]));
-            NPC? Fiona = new("Farmer Fiona", new Quest("Farmer Fiona's Quest", "Fiona quest description", null, badgeList[3]));
-            NPC? Ethan = new("Energy-efficient Ethan", new Quest("Energy-efficient Ethan's Quest", "Ethan quest description", null, badgeList[4]));
-            NPC? Fred = new("Flooded Fred", new Quest("Flooded Fred's Quest", "Fred quest description", null, badgeList[5]));
-            NPC? Lucy = new("Lonely Lucy", new Quest("Lonely Lucy's Quest", "Lucy quest description", null, badgeList[6]));
-            NPC? Ben = new("Biodiversity Ben", new Quest("Biodiversity Ben's Quest", "Ben quest description", null, badgeList[7]));
-            NPC? Nora = new("Noisy Nora", new Quest("Noisy Nora's Quest", "Nora quest description", null, badgeList[8]));
+            NPC? Emma = new("Eco-enthusiast Emma", new Quest("Eco-enthusiast Emma's Quest", "Emma quest description", new List<Item>{item1}, badgeList[0], 1));
+            NPC? Walter = new("Wasteful Walter", new Quest("Wasteful Walter's Quest", "Walter quest description", null, badgeList[1], 1));
+            NPC? Paula = new("Polluted Paula", new Quest("Polluted Paula's Quest", "Paula quest description", null, badgeList[2], 1));
+            NPC? Fiona = new("Farmer Fiona", new Quest("Farmer Fiona's Quest", "Fiona quest description", null, badgeList[3], 1));
+            NPC? Ethan = new("Energy-efficient Ethan", new Quest("Energy-efficient Ethan's Quest", "Ethan quest description", null, badgeList[4], 5));
+            NPC? Fred = new("Flooded Fred", new Quest("Flooded Fred's Quest", "Fred quest description", null, badgeList[5], 1));
+            NPC? Lucy = new("Lonely Lucy", new Quest("Lonely Lucy's Quest", "Lucy quest description", null, badgeList[6], 1));
+            NPC? Ben = new("Biodiversity Ben", new Quest("Biodiversity Ben's Quest", "Ben quest description", null, badgeList[7], 3));
+            NPC? Nora = new("Noisy Nora", new Quest("Noisy Nora's Quest", "Nora quest description", null, badgeList[8], 1));
             List<NPC>? npcs = new() { Emma, Walter, Paula, Fiona, Ethan, Fred, Lucy, Ben, Nora };
 
             Room? TCC = new("The City Center","You find yourself in the city center. There are people bustling about, and you can see a large fountain in the middle of the square. From here you can see The Town Hall, The Botanical Garden, The Store and the entrence to your new apartment building.");
@@ -54,6 +56,7 @@ namespace SkyGarden
             Room? TGB = new("The Botanical Garden","You are in the botanical garden. You can see the plants, the flowers and the trees. You can see the city center from here.");
             Room? YR = new("Your Room","You are in your room. You can see the bed, the desk and the window. You can see the city center from here.");
             currentRoom = TABE;
+            activeQuest = Ben.Quest;
 
             TCC.SetExits(TTH, TABE, TGB, TS, null);
             TTH.SetExit("south", TCC);
@@ -108,10 +111,10 @@ namespace SkyGarden
                 switch(command.Name)
                 {
                     case "look":
-                        DisplayTextSlowly(currentRoom?.LongDescription + "\n\n" ?? "You are in a room with no description.");
+                        DisplayTextSlowly(currentRoom?.LongDescription + "\n" ?? "You are in a room with no description.", 10);
 
                         // foreach function that itterates over the exits of the current room and prints them
-                        DisplayTextSlowly("From here you can go:");
+                        DisplayTextSlowly("From here you can go:", 10);
                         if (currentRoom?.Exits.Count > 0)
                         {
                             foreach (string direction in currentRoom.Exits.Keys)
@@ -136,7 +139,7 @@ namespace SkyGarden
                             Console.WriteLine();
                         }
                         else
-                            DisplayTextSlowly("There are no items in this room.\n");
+                            DisplayTextSlowly("There are no items in this room.\n\n");
                         
                         if (currentRoom?.NPCs.Count > 0)
                         {
@@ -144,12 +147,17 @@ namespace SkyGarden
                             foreach (NPC n in currentRoom.NPCs)
                             {
                                 Console.WriteLine($"- {n.Name}");
-                                Thread.Sleep(750);
+                                if (currentRoom.NPCs.Count < 4)
+                                    Thread.Sleep(750);
+                                else if (currentRoom.NPCs.Count < 8)
+                                    Thread.Sleep(500);
+                                else
+                                    Thread.Sleep(250);
                             }
                             Console.WriteLine();
                         }
                         else
-                            DisplayTextSlowly("There is no one in this room.\n");
+                            DisplayTextSlowly("There is no one in this room.");
                         break;
 
                     case "back":
@@ -169,17 +177,19 @@ namespace SkyGarden
                     case "elevator":
                         if (currentRoom?.ElevatorButtons.Count > 0)
                         {
-                            DisplayTextSlowly("Where would you like to go?");
+                            Console.WriteLine("Where would you like to go?");
                             foreach (Room r in currentRoom.ElevatorButtons)
                             {
                                 Console.WriteLine(r.ShortDescription);
-                                Thread.Sleep(500);
+                                Thread.Sleep(250);
                             }
+                            System.Console.Write("> ");
                             string? destination = Console.ReadLine();
+                            destination = destination?.ToLower().Trim();
                             bool valid = false;
                             foreach (Room r in currentRoom.ElevatorButtons)
                             {
-                                if (r.ShortDescription.ToLower() == destination?.ToLower())
+                                if (r.ShortDescription.ToLower() == destination || r.ShortDescription.ToLower().Split(' ')[1] == destination)
                                 {
                                     previousRoom = currentRoom;
                                     currentRoom = r;
@@ -211,7 +221,7 @@ namespace SkyGarden
                         break;
 
                     case "take":
-                        Console.WriteLine("What item would you like to take?");
+                        Console.WriteLine("What item would you like to take?\n> ");
                         string? item = Console.ReadLine();
                         if (currentRoom?.Items.Count > 0)
                         {
@@ -246,13 +256,15 @@ namespace SkyGarden
 
                     case "talk":
                         Console.WriteLine("Who would you like to talk to?");
+                        Console.Write("> ");
                         string? npcname = Console.ReadLine();
                         bool found = false;
                         if (currentRoom?.NPCs.Count > 0)
                         {
+                            npcname = npcname?.ToLower().Trim();
                             foreach (NPC n in currentRoom.NPCs)
                             {
-                                if (n.Name.ToLower() == npcname?.ToLower() || n.Name.ToLower().Split(' ')[1] == npcname?.ToLower())
+                                if (n.Name.ToLower() == npcname || n.Name.ToLower().Split(' ')[1] == npcname)
                                 {
                                     found = true;
                                     n.Talk();
@@ -268,7 +280,18 @@ namespace SkyGarden
                             Console.WriteLine("There is no one in this room");
                         }
                         break;
-
+                    
+                    case "map":
+                        break;
+                    
+                    case "sleep":
+                        if (currentRoom?.ShortDescription == "Your Room" && activeQuest != null && activeQuest.IsCompleted)
+                        {
+                            day++;
+                            activeQuest = null;
+                            PrintNextDay();
+                        }
+                        break;
                     default:
                         Console.WriteLine("I don't know what command.");
                         break;
@@ -301,6 +324,7 @@ namespace SkyGarden
                 {
                     Console.ReadKey(true);
                     Console.Write(text.Substring(text.IndexOf(c)));
+                    Console.WriteLine();
                     return;
                 }
  
@@ -309,6 +333,20 @@ namespace SkyGarden
             }
             Console.WriteLine();
         }
+        // public static void DisplayOptionsSlowly(List<Type> options, int delay = 750)
+        // {
+        //     foreach (Type option in options)
+        //     {
+        //         if(Console.KeyAvailable)
+        //         {
+        //             Console.ReadKey(true);
+        //             delay = 0;
+        //             return;
+        //         } 
+        //         Console.WriteLine(option);
+        //         Thread.Sleep(delay);
+        //     }
+        // }
 
         private static void PrintIntro()
         {
@@ -334,9 +372,14 @@ namespace SkyGarden
             Console.WriteLine("Type 'take' to pick up an item.");
             Console.WriteLine("Type 'inventory' to view your inventory.");
             Console.WriteLine("Type 'talk' to talk to an NPC in the current room.");
-            Console.WriteLine("Type 'elevator' to use the elevator.");
+            Console.WriteLine("Type 'elevator' to use the elevator.\n");
         }
 
+        private static void PrintNextDay()
+        {
+            DisplayTextSlowly("You slept soundly after a long day of helping a newfound friend.");
+            DisplayTextSlowly("You wake up to a new day, ready to continue helping your neighbourhood.\n");
+        }
         private static void SelectQuest()
         {
             

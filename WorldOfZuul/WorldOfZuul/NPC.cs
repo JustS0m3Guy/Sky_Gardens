@@ -39,12 +39,15 @@ namespace SkyGarden
                 //Diagnostics("Biodiversity Ben", dialogue, i);
             }
         }
-        private void Diagnostics(string name,string[] dialogue, int i)
+        private void Diagnostics(string name,string[] dialogue, int i = -1)
         {
             if (Name == name)
             {
-                Console.WriteLine("i: " + i);
-                Console.WriteLine(dialogue[i]);
+                if (i != -1)
+                {
+                    Console.WriteLine("i: " + i);
+                    Console.WriteLine(dialogue[i]);
+                }
                 for (int j = 0; j < Dialogues.Count; j++)
                 {
                     Console.WriteLine(j);
@@ -59,55 +62,63 @@ namespace SkyGarden
         }
         public void Talk()
         {
-            foreach (List<string> dialogue in Dialogues[Quest.QuestProgress])
+            if (Quest.QuestProgress > Quest.QuestLength)
             {
-                if (dialogue.Count%2 == 1)
-                    Game.DisplayTextSlowly(dialogue[0]);
-                else
+                Console.WriteLine(Dialogues[^1][^1][^1]);
+                Quest.IsCompleted = true;
+            }
+            else
+            {
+                foreach (List<string> dialogue in Dialogues[Quest.QuestProgress])
                 {
-                    int selectedIndex = 0;
-                    bool selected = false;
-                    int optionsStartLine = Console.CursorTop;
-                    bool firstLoop = true;
-                    while (!selected)
+                    if (dialogue.Count%2 == 1)
+                        Game.DisplayTextSlowly(dialogue[0]);
+                    else if (dialogue.Count > 0)
                     {
-                        for (int i = 0; i < dialogue.Count; i += 2)
+                        int selectedIndex = 0;
+                        bool selected = false;
+                        int optionsStartLine = Console.CursorTop;
+                        bool firstLoop = true;
+                        while (!selected)
                         {
-                            if (i / 2 == selectedIndex)
+                            for (int i = 0; i < dialogue.Count; i += 2)
                             {
-                                Console.BackgroundColor = ConsoleColor.DarkGreen;
-                                Console.ForegroundColor = ConsoleColor.Black;
-                                Console.Write("> " + dialogue[i]);
+                                if (i / 2 == selectedIndex)
+                                {
+                                    Console.BackgroundColor = ConsoleColor.DarkGreen;
+                                    Console.ForegroundColor = ConsoleColor.Black;
+                                    Console.Write("> " + dialogue[i]);
+                                }
+                                else
+                                    Console.Write(dialogue[i] + "  ");
+                                if (firstLoop)
+                                    Thread.Sleep(750);
+                                Console.ResetColor();
+                                Console.WriteLine();
                             }
-                            else
-                                Console.Write(dialogue[i] + "  ");
-                            if (firstLoop)
-                                Thread.Sleep(750);
-                            Console.ResetColor();
-                            Console.WriteLine();
-                        }
 
-                        var key = Console.ReadKey(true).Key;
-                        if (key == ConsoleKey.UpArrow)
-                        {
-                            selectedIndex = (selectedIndex == 0) ? (dialogue.Count / 2 - 1) : selectedIndex - 1;
-                            Console.SetCursorPosition(0, optionsStartLine - dialogue.Count / 2);
+                            var key = Console.ReadKey(true).Key;
+                            if (key == ConsoleKey.UpArrow)
+                            {
+                                selectedIndex = (selectedIndex == 0) ? (dialogue.Count / 2 - 1) : selectedIndex - 1;
+                                Console.SetCursorPosition(0, optionsStartLine - dialogue.Count / 2);
+                            }
+                            else if (key == ConsoleKey.DownArrow)
+                            {
+                                selectedIndex = (selectedIndex == dialogue.Count / 2 - 1) ? 0 : selectedIndex + 1;
+                                Console.SetCursorPosition(0, optionsStartLine - dialogue.Count / 2);
+                            }
+                            else if (key == ConsoleKey.Enter)
+                            {
+                                Game.DisplayTextSlowly(dialogue[selectedIndex * 2 + 1]);
+                                selected = true;
+                            }
+                            firstLoop = false;
                         }
-                        else if (key == ConsoleKey.DownArrow)
-                        {
-                            selectedIndex = (selectedIndex == dialogue.Count / 2 - 1) ? 0 : selectedIndex + 1;
-                            Console.SetCursorPosition(0, optionsStartLine - dialogue.Count / 2);
-                        }
-                        else if (key == ConsoleKey.Enter)
-                        {
-                            Game.DisplayTextSlowly(dialogue[selectedIndex * 2 + 1]);
-                            selected = true;
-                        }
-                        firstLoop = false;
                     }
                 }
+                Quest.QuestProgress++;
             }
-            Quest.QuestProgress++;
         }
     }
 }
