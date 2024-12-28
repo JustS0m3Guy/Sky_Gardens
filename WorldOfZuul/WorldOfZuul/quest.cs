@@ -2,16 +2,18 @@ namespace SkyGarden;
 
 public class Badge
 {
-    public string Name { get; private set; } = string.Empty;
+    public string? Name { get; private set; }
+    private List<Badge>? badges;
 
     public Badge(string name)
     {
         Name = name;
     }
-
-    private List<Badge> badges;
-
     public Badge()
+    {
+        Initialization();
+    }
+    private void Initialization()
     {
         badges = new List<Badge>
         {
@@ -26,33 +28,34 @@ public class Badge
             new("Silence!")
         };
     }
-
     public List<Badge> GetBadges()
     {
-        return badges;
+        return badges != null ? new List<Badge>(badges) : new List<Badge>();
     }
 }
 
 public class Quest
 {
     public string Title { get; private set; }
-    public Neighbour Name { get; private set; }
     public string Description { get; private set; }
-    public List<Item> RequiredItems { get; private set; }
-    public Badge Reward { get; }
+    public List<Item>? RequiredItems { get; private set; }
+    public Badge? Reward { get; }
     public bool IsCompleted { get; set; } = false;
+    public int QuestProgress { get; set; }
+    public int QuestLength { get; set; }
 
     public bool CanComplete(List<Item> inventory)
     {
-        return RequiredItems.All(item => inventory.Contains(item));
+        return RequiredItems != null && RequiredItems.All(item => inventory.Contains(item));
     }
 
-    public Quest(string title, Neighbour name, string description, List<Item> requireditems, Badge reward)
+    public Quest(string title, string description, List<Item>? requireditems, Badge? reward, int questLength)
     {
         Title = title;
-        Name = name;
         Description = description;
         RequiredItems = requireditems;
         Reward = reward;
+        QuestProgress = 0;
+        QuestLength = questLength;
     }
 }
