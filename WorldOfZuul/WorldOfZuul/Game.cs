@@ -139,7 +139,7 @@ namespace SkyGarden
                             Console.WriteLine();
                         }
                         else
-                            DisplayTextSlowly("There are no items in this room.\n\n");
+                            DisplayTextSlowly("There are no items in this room.\n");
                         
                         if (currentRoom?.NPCs.Count > 0)
                         {
@@ -157,7 +157,7 @@ namespace SkyGarden
                             Console.WriteLine();
                         }
                         else
-                            DisplayTextSlowly("There is no one in this room.");
+                            DisplayTextSlowly("There is no one in this room.\n");
                         break;
 
                     case "back":
