@@ -174,6 +174,14 @@ namespace SkyGarden
                         Move(command.Name);
                         goto case "look";
                     
+                    case "newspaper":    
+                            string[] newspaper = File.ReadAllLines($"newspaper_stories/Story_{day}.txt");
+                            foreach(string segment in newspaper)
+                            {
+                                Console.WriteLine(segment);
+                            }
+                        break;
+                        
                     case "elevator":
                         if (currentRoom?.ElevatorButtons.Count > 0)
                         {
