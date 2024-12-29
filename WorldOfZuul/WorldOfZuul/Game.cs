@@ -86,7 +86,8 @@ namespace SkyGarden
             Console.Clear();
             PrintIntro();
             //new PreQuiz().StartPreQuiz();
-
+            //new PostQuiz().StartPostQuiz();
+            
             bool continuePlaying = true;
             while (continuePlaying)
             {
@@ -300,6 +301,7 @@ namespace SkyGarden
                             PrintNextDay();
                         }
                         break;
+
                     default:
                         Console.WriteLine("I don't know what command.");
                         break;
@@ -324,6 +326,19 @@ namespace SkyGarden
                 currentRoom.IsFirstIteration = false;
         }
 
+        private void CheckAndStartReworks()
+        {
+            if (currentRoom?.ShortDescription == "The Rooftop Garden" && activeQuest != null && inv.HasRequiredItems(activeQuest.RequiredItems))
+            {
+                Console.WriteLine("You have all the required items to start the reworks in the rooftop garden.");
+                // Logic to start the reworks
+            }
+            else
+            {
+                Console.WriteLine("You don't have all the required items to start the reworks.");
+            }
+        }
+
         public static void DisplayTextSlowly(string text, int delay = 33)
         {
             foreach (char c in text)
@@ -341,6 +356,7 @@ namespace SkyGarden
             }
             Console.WriteLine();
         }
+        
         // public static void DisplayOptionsSlowly(List<Type> options, int delay = 750)
         // {
         //     foreach (Type option in options)

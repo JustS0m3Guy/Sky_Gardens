@@ -49,5 +49,10 @@ namespace SkyGarden
                 Console.WriteLine("Inventory is empty");
             }
         }
+
+        public bool HasRequiredItems(List<Item> requiredItems)
+        {
+            return requiredItems.All(item => Items.Contains(item));
+        }
     }
 }

@@ -1,0 +1,38 @@
+/d
+Hey! That’s the wrong trash can. Are you an idiot?! You should be throwing it out to the plastic container.
+/c
+    I believe that is the correct container.
+        See these spikes? That's when everyone's using air conditioning. We need to find a more efficient solution.
+    Does it even matter? All of these containers look the same anyway.
+        We're still relying mostly on the grid. I think solar power could make a huge difference here.
+/d
+I've been thinking about installing solar panels up here. What do you think?
+/c
+    Discuss solar panel feasibility
+        With our sunny climate, we could generate a significant portion of our energy needs.
+    Suggest additional energy-saving measures
+        Good point! We should also look into energy-efficient appliances and better insulation. To get this project off the ground, we'll need a few key items.
+/d
+/c
+    Ask what items are needed
+        We'll need a solar panel kit, an energy monitoring system, and some educational materials about energy conservation.
+    Suggest alternative items
+        Those are interesting ideas, but let's start with the basics I mentioned. We can always expand later!   
+/d
+This is amazing! I can already see the energy production on my app.
+/c
+    Set up solar panels
+        Perfect placement! We're maximising our sun exposure here.
+    Install energy monitoring system
+        Great! Now we can track our usage in real-time and identify areas for improvement.
+    Place educational materials
+        These posters and flyers will help everyone understand how they can contribute to saving energy.
+/d
+I can't believe how much we've accomplished! Our energy consumption is already dropping.
+/c
+    Review the project's impact
+        Look at these numbers! We've reduced our carbon footprint and our energy bills. It's a win-win!
+    Discuss future sustainability plans
+        This is just the beginning. I'm thinking about electric vehicle charging stations next. What do you think?
+/d
+[FINNISH]
