@@ -52,16 +52,16 @@ namespace SkyGarden
             Room? TB = new("The Basement","You are in the basement of your apartment building. It is dark and damp, and you can hear the sound of water dripping from the ceiling. You can see a small door leading back up to the entrance of the building.");
             Room? TRG = new("The Rooftop Garden","You are on the roof of your apartment building. You can see the city center from here, and you can see the roof garden that you have been hearing so much about. You can see a small door leading back down to the elevator of the building.");
             Room? TTH = new("The Town Hall","You are in the town hall. You can see the mayor's office, the reception and the city council room. You can see the city center from here.");
-            Room? TS = new("The Store","You are in the store. You can see the cashier, the shelves and the exit. You can see the city center from here.");
+            Room? TW = new("The warehouse","You are in the warehouse. You can see the shelves, the boxes and the forklift. You can see the city center from here.");
             Room? TGB = new("The Botanical Garden","You are in the botanical garden. You can see the plants, the flowers and the trees. You can see the city center from here.");
             Room? YR = new("Your Room","You are in your room. You can see the bed, the desk and the window. You can see the city center from here.");
             currentRoom = TABE;
             activeQuest = Ben.Quest;
 
-            TCC.SetExits(TTH, TABE, TGB, TS, null);
+            TCC.SetExits(TTH, TABE, TGB, TW, null);
             TTH.SetExit("south", TCC);
             TGB.SetExit("north", TCC);
-            TS.SetExit("east", TCC);
+            TW.SetExit("east", TCC);
             TABE.SetExits(null, null, TB, TCC, TRG);
             foreach (NPC npc in npcs)
             {
