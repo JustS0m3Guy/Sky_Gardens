@@ -328,14 +328,17 @@ namespace SkyGarden
 
         private void CheckAndStartReworks()
         {
-            if (currentRoom?.ShortDescription == "The Rooftop Garden" && activeQuest != null && inv.HasRequiredItems(activeQuest.RequiredItems))
+            if (currentRoom?.ShortDescription == "The Rooftop Garden" && activeQuest != null)
             {
-                Console.WriteLine("You have all the required items to start the reworks in the rooftop garden.");
-                // Logic to start the reworks
-            }
-            else
-            {
-                Console.WriteLine("You don't have all the required items to start the reworks.");
+                if (activeQuest.RequiredItems == null || inv.HasRequiredItems(activeQuest.RequiredItems))
+                {
+                    Console.WriteLine("You have all the required items to start the reworks in the rooftop garden.");
+                    // Logic to start the reworks
+                }
+                else
+                {
+                    Console.WriteLine("You don't have all the required items to start the reworks.");
+                }
             }
         }
 

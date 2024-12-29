@@ -16,7 +16,7 @@ namespace SkyGarden
         private void Initialization()
         {
             badges = new List<Badge>
-        {
+            {
             new("Eco-Enthusiast"),
             new("A Recycled Memory"),
             new("Pollution Pro"),
@@ -26,8 +26,9 @@ namespace SkyGarden
             new("Social Connectivity"),
             new("Biodiversity"),
             new("Silence!")
-        };
+            };
         }
+        
         public List<Badge> GetBadges()
         {
             return new List<Badge>(badges);
@@ -46,7 +47,7 @@ namespace SkyGarden
 
         public bool CanComplete(List<Item> inventory)
         {
-            return RequiredItems.All(item => inventory.Contains(item));
+            return RequiredItems != null && RequiredItems.All(item => inventory.Contains(item));
         }
 
         public Quest(string title, string description, List<Item>? requireditems, Badge? reward, int questLength)
