@@ -318,30 +318,9 @@ namespace SkyGarden
                         break;
                     
                     case "map":
-                        Console.WriteLine("                      +-------------+       +-------------+\n"
-                                        + "                      |             |       |             |\n"
-                                        + "                      |    Town     |       |   Rooftop   |\n"
-                                        + "                      |    Hall     |       |   Garden    |\n"
-                                        + "                      |             |       |             |\n"
-                                        + "                      +-------------+       +-------------+\n"
-                                        + "                             ^                     ^\n"
-                                        + "                             |                     |\n"
-                                        + "                             v                     v\n"
-                                        + " +-------------+       +-------------+       +-------------+       +-------------+\n"
-                                        + " |             |       |             |       |             |       |             |\n"
-                                        + " |  Warehouse  |  <->  |    City     |  <->  |  Apartment  |  <->  |  Individual |\n"
-                                        + " |             |  <->  |   Center    |  <->  |    Lobby    |  <->  |  Apartments |\n"
-                                        + " |             |       |             |       |             |       |             |\n"
-                                        + " +-------------+       +-------------+       +-------------+       +-------------+\n"
-                                        + "                             ^                     ^\n"
-                                        + "                             |                     |\n"
-                                        + "                             v                     v\n"
-                                        + "                     +-------------+       +-------------+             N\n"
-                                        + "                     |             |       |             |             |\n"
-                                        + "                     |  Botanical  |       |   Basement  |        W----+----E\n"
-                                        + "                     |   Garden    |       |             |             |\n"
-                                        + "                     |             |       |             |             S\n"
-                                        + "                     +-------------+       +-------------+");
+                        string[] map = File.ReadAllLines("misc_txt/map.txt");
+                        foreach (string line in map)
+                            Console.WriteLine(line);
                         break;
                     
                     case "sleep":
