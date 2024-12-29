@@ -10,18 +10,9 @@ namespace SkyGarden
     {
         public List<Item> Items { get; } = new();
         public List<Badge> Badges { get; } = new();
-        public int space { get; } = 10;
         public void PickUp(Item item)
         {
-            if ((Items.Count < space))
-            {
-                Items.Add(item);
-                System.Console.WriteLine($"Added {item.Name} to inventory");
-            }
-            else
-            {
-                Console.WriteLine("Inventory is full");
-            }
+            Items.Add(item);
         }
         public void Use(Item item)
         {
