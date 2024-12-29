@@ -34,19 +34,23 @@ namespace SkyGarden
             Badge badges = new();
             List<Badge> badgeList = badges.GetBadges();
 
-            Item? item1 = new("Item1", "This is item 1");
+            Item? posters = new("Posters", "Posters on recycling");
+            Item? recyclingBins = new("Recycling Bins", "Recycling bins");
+            Item? wrench = new("Wrench", "Wrench");
+            Item? barrels = new("Barrels", "Barrels");
+            List<Item>? items = new() { posters, recyclingBins, wrench, barrels };
 
-            NPC? Emma = new("Eco-enthusiast Emma", new Quest("Eco-enthusiast Emma's Quest", "Emma quest description", new List<Item>{item1}, badgeList[0], 1));
+            NPC? Emma = new("Eco-enthusiast Emma", new Quest("Eco-enthusiast Emma's Quest", "Emma quest description", new List<Item>{}, badgeList[0], 1));
             NPC? Walter = new("Wasteful Walter", new Quest("Wasteful Walter's Quest", "Walter quest description", null, badgeList[1], 1));
             NPC? Paula = new("Polluted Paula", new Quest("Polluted Paula's Quest", "Paula quest description", null, badgeList[2], 1));
             NPC? Fiona = new("Farmer Fiona", new Quest("Farmer Fiona's Quest", "Fiona quest description", null, badgeList[3], 1));
             NPC? Ethan = new("Energy-efficient Ethan", new Quest("Energy-efficient Ethan's Quest", "Ethan quest description", null, badgeList[4], 5));
-            NPC? Fred = new("Flooded Fred", new Quest("Flooded Fred's Quest", "Fred quest description", null, badgeList[5], 1));
+            NPC? Piper = new("Plumber Piper", new Quest("Plumber Piper's Quest", "Piper quest description", null, badgeList[5], 1));
             NPC? Lucy = new("Lonely Lucy", new Quest("Lonely Lucy's Quest", "Lucy quest description", null, badgeList[6], 1));
             NPC? Ben = new("Biodiversity Ben", new Quest("Biodiversity Ben's Quest", "Ben quest description", null, badgeList[7], 3));
             NPC? Nora = new("Noisy Nora", new Quest("Noisy Nora's Quest", "Nora quest description", null, badgeList[8], 1));
-            NPC? Willson = new("Worker Willson", new Quest("Worker Willson's Quest", "Wade quest description", null, null, 0));
-            List<NPC>? npcs = new() { Emma, Walter, Paula, Fiona, Ethan, Fred, Lucy, Ben, Nora };
+            NPC? Wade = new("Worker Wade", new Quest("Worker wade's Quest", "Wade quest description", null, null, 0));
+            List<NPC>? npcs = new() { Emma, Walter, Paula, Fiona, Ethan, Piper, Lucy, Ben, Nora };
 
             Room? TCC = new("The City Center","You find yourself in the city center. There are people bustling about, and you can see a large fountain in the middle of the square. From here you can see The Town Hall, The Botanical Garden, The Store and the entrence to your new apartment building.");
             Room? TABE = new("The Apartment Building Entrance","You are standing in the entrance of your new apartment building. You can see the elevator and the stairs leading up to your apartment and a small door leading down to the basement. You can also see the city center from here.");
@@ -63,7 +67,7 @@ namespace SkyGarden
             TTH.SetExit("south", TCC);
             TGB.SetExit("north", TCC);
             TW.SetExit("east", TCC);
-            TW.AddNPC(Willson);
+            TW.AddNPC(Wade);
             TABE.SetExits(null, null, TB, TCC, TRG);
             foreach (NPC npc in npcs)
             {
@@ -81,6 +85,10 @@ namespace SkyGarden
             TRG.SetExit("elevator", TABE);
             YR.SetExit("elevator", TABE);
             TABE.SetExit("elevator", YR);
+            foreach (Item i in items)
+            {
+                TW.AddItem(i);
+            }
         }
         public void Play()
         {
@@ -90,7 +98,7 @@ namespace SkyGarden
             //new PreQuiz().StartPreQuiz();
 
             bool continuePlaying = true;
-            bool firstTimeToday = true;
+            bool firstNewsToday = true;
             bool transfer = false;
             while (continuePlaying)
             {
@@ -163,7 +171,7 @@ namespace SkyGarden
                         }
                         else
                             DisplayTextSlowly("There is no one in this room.\n");
-                        if (currentRoom?.ShortDescription == "The City Center" && firstTimeToday)
+                        if (currentRoom?.ShortDescription == "The City Center" && firstNewsToday)
                             {
                                 transfer = true;
                                 goto case "news";
@@ -186,9 +194,9 @@ namespace SkyGarden
                     
                     case "news":
                         if (!transfer)
-                            firstTimeToday = false;
+                            firstNewsToday = false;
 
-                        if (!firstTimeToday)
+                        if (!firstNewsToday)
                             DisplayTextSlowly("You take out your phone and start reading the news:");
                         else
                             DisplayTextSlowly("A newspaper vendor hands you a newspaper and on your way to your next destination you start reading it:");
@@ -197,7 +205,7 @@ namespace SkyGarden
                         {
                             DisplayTextSlowly(segment);
                         }
-                        firstTimeToday = false;
+                        firstNewsToday = false;
                         break;
                         
                     case "elevator":
