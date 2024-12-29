@@ -39,6 +39,17 @@ namespace SkyGarden
             {
                 Console.WriteLine("Inventory is empty");
             }
+            if (0 < Badges.Count)
+            {
+                foreach (Badge b in Badges)
+                {
+                    Console.WriteLine(b.Name);
+                }
+            }
+            else
+            {
+                Console.WriteLine("You don't have any badges yet");
+            }
         }
     }
 }

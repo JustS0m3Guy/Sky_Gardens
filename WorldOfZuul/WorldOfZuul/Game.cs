@@ -50,7 +50,8 @@ namespace SkyGarden
             NPC? Ben = new("Biodiversity Ben", new Quest("Biodiversity Ben's Quest", "Ben quest description", null, badgeList[7], 3));
             NPC? Nora = new("Noisy Nora", new Quest("Noisy Nora's Quest", "Nora quest description", null, badgeList[8], 1));
             NPC? Wade = new("Worker Wade", new Quest("Worker wade's Quest", "Wade quest description", null, null, 0));
-            List<NPC>? npcs = new() { Emma, Walter, Paula, Fiona, Ethan, Piper, Lucy, Ben, Nora };
+            NPC? Sally = new("Secretary Sally", new Quest("Secretary Sally's Quest", "Sally quest description", null, null, 0));
+            List<NPC>? npcs = new() { Emma, Walter, Paula, Fiona, Ethan, Piper, Lucy, Ben, Nora, Wade, Sally };
 
             Room? TCC = new("The City Center","You find yourself in the city center. There are people bustling about, and you can see a large fountain in the middle of the square. From here you can see The Town Hall, The Botanical Garden, The Store and the entrence to your new apartment building.");
             Room? TABE = new("The Apartment Building Entrance","You are standing in the entrance of your new apartment building. You can see the elevator and the stairs leading up to your apartment and a small door leading down to the basement. You can also see the city center from here.");
@@ -85,6 +86,7 @@ namespace SkyGarden
             TRG.SetExit("elevator", TABE);
             YR.SetExit("elevator", TABE);
             TABE.SetExit("elevator", YR);
+            TTH.AddNPC(Sally);
             foreach (Item i in items)
             {
                 TW.AddItem(i);
@@ -316,6 +318,30 @@ namespace SkyGarden
                         break;
                     
                     case "map":
+                        Console.WriteLine("                      +-------------+       +-------------+\n"
+                                        + "                      |             |       |             |\n"
+                                        + "                      |    Town     |       |   Rooftop   |\n"
+                                        + "                      |    Hall     |       |   Garden    |\n"
+                                        + "                      |             |       |             |\n"
+                                        + "                      +-------------+       +-------------+\n"
+                                        + "                             ^                     ^\n"
+                                        + "                             |                     |\n"
+                                        + "                             v                     v\n"
+                                        + " +-------------+       +-------------+       +-------------+       +-------------+\n"
+                                        + " |             |       |             |       |             |       |             |\n"
+                                        + " |  Warehouse  |  <->  |    City     |  <->  |  Apartment  |  <->  |  Individual |\n"
+                                        + " |             |  <->  |   Center    |  <->  |    Lobby    |  <->  |  Apartments |\n"
+                                        + " |             |       |             |       |             |       |             |\n"
+                                        + " +-------------+       +-------------+       +-------------+       +-------------+\n"
+                                        + "                             ^                     ^\n"
+                                        + "                             |                     |\n"
+                                        + "                             v                     v\n"
+                                        + "                     +-------------+       +-------------+             N\n"
+                                        + "                     |             |       |             |             |\n"
+                                        + "                     |  Botanical  |       |   Basement  |        W----+----E\n"
+                                        + "                     |   Garden    |       |             |             |\n"
+                                        + "                     |             |       |             |             S\n"
+                                        + "                     +-------------+       +-------------+");
                         break;
                     
                     case "sleep":
@@ -367,21 +393,7 @@ namespace SkyGarden
             }
             Console.WriteLine();
         }
-        // public static void DisplayOptionsSlowly(List<Type> options, int delay = 750)
-        // {
-        //     foreach (Type option in options)
-        //     {
-        //         if(Console.KeyAvailable)
-        //         {
-        //             Console.ReadKey(true);
-        //             delay = 0;
-        //             return;
-        //         } 
-        //         Console.WriteLine(option);
-        //         Thread.Sleep(delay);
-        //     }
-        // }
-
+        
         private static void PrintIntro()
         {
             string gameIntroduction = "\nWelcome to Sky Garden, a festival of urban greenery!\n"
@@ -406,10 +418,10 @@ namespace SkyGarden
             Console.WriteLine("Type 'take' to pick up an item.");
             Console.WriteLine("Type 'inventory' to view your inventory.");
             Console.WriteLine("Type 'talk' to talk to an NPC in the current room.");
-            Console.WriteLine("Type 'elevator' to use the elevator.\n");
+            Console.WriteLine("Type 'elevator' to use the elevator.");
             Console.WriteLine("Type 'map' to view the map.");
-            Console.WriteLine("Type 'sleep' to sleep in your room.\n");
-            Console.WriteLine("Type 'news' to read the news.");
+            Console.WriteLine("Type 'sleep' to sleep in your room.");
+            Console.WriteLine("Type 'news' to read the news.\n");
         }
         private static void PrintNextDay()
         {
