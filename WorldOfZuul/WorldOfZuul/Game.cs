@@ -56,7 +56,7 @@ namespace SkyGarden
             Room? TGB = new("The Botanical Garden","You are in the botanical garden. You can see the plants, the flowers and the trees. You can see the city center from here.");
             Room? YR = new("Your Room","You are in your room. You can see the bed, the desk and the window. You can see the city center from here.");
             currentRoom = TABE;
-            activeQuest = Ben.Quest;
+            activeQuest = null;     //Set to null to start the game without a quest
 
             TCC.SetExits(TTH, TABE, TGB, TS, null);
             TTH.SetExit("south", TCC);
@@ -398,7 +398,7 @@ namespace SkyGarden
             if (activeQuest != null)
             {
                 Console.WriteLine($"Current Quest: {activeQuest.Title}");
-                Console.WriteLine($"Quest Description: {activeQuest.Description}");
+                Console.WriteLine($"Description: {activeQuest.Description}");
             }
             else
             {
@@ -455,25 +455,25 @@ namespace SkyGarden
 
         private static void PrintHelp()
         {
-            Console.WriteLine("Navigate by typing 'north', 'south', 'east', or 'west'.");
-            Console.WriteLine("Type 'look' for more details. Will also run after entering a room for the first time.");
-            Console.WriteLine("Type 'back' to go to the previous room.");
-            Console.WriteLine("Type 'help' to print this message again.");
-            Console.WriteLine("Type 'quit' to exit the game.");
-            Console.WriteLine("Type 'take' to pick up an item.");
-            Console.WriteLine("Type 'inventory' to view your inventory.");
-            Console.WriteLine("Type 'talk' to talk to an NPC in the current room.");
-            Console.WriteLine("Type 'elevator' to use the elevator.\n");
+            string gameHelp = "Navigate by typing 'north', 'south', 'east', or 'west'.\n"
+                            + "Type 'look' for more details. Will also run after entering a room for the first time.\n"
+                            + "Type 'back' to go to the previous room.\n"
+                            + "Type 'take' to pick up an item.\n"
+                            + "Type 'inventory' to view your inventory.\n"
+                            + "Type 'talk' to talk to an NPC in the current room.\n"
+                            + "Type 'elevator' to use the elevator.\n"
+                            + "Type 'newspaper' to read the latest news.\n"
+                            + "Type 'questinfo' to check your active quest.\n"
+                            + "Type 'help' to print this message again.\n"
+                            + "Type 'quit' to exit the game.\n";
+
+            Console.WriteLine(gameHelp);
         }
 
         private static void PrintNextDay()
         {
             DisplayTextSlowly("You slept soundly after a long day of helping a newfound friend.");
             DisplayTextSlowly("You wake up to a new day, ready to continue helping your neighbourhood.\n");
-        }
-        private static void SelectQuest()
-        {
-            
         }
     }
 }
