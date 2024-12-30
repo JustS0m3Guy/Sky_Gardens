@@ -159,6 +159,11 @@ namespace SkyGarden
                         }
                         else
                             DisplayTextSlowly("There is no one in this room.\n");
+
+                        if (currentRoom?.ShortDescription == "The Rooftop Garden")
+                        {
+                            Console.WriteLine("You can type 'startreworks' to start the reworks if you have the required items.");
+                        }
                         break;
 
                     case "back":
@@ -277,6 +282,7 @@ namespace SkyGarden
                                 {
                                     found = true;
                                     n.Talk();
+                                    ReceiveQuest(n);
                                 }
                             }
                             if (!found)
@@ -300,6 +306,14 @@ namespace SkyGarden
                             activeQuest = null;
                             PrintNextDay();
                         }
+                        break;
+
+                    case "startreworks":
+                        StartReworks();
+                        break;
+
+                    case "questinfo":
+                        DisplayQuestInfo();
                         break;
 
                     default:
@@ -339,6 +353,55 @@ namespace SkyGarden
                 {
                     Console.WriteLine("You don't have all the required items to start the reworks.");
                 }
+            }
+        }
+
+        private void StartReworks()
+        {
+            if (currentRoom?.ShortDescription == "The Rooftop Garden" && activeQuest != null)
+            {
+                if (activeQuest.RequiredItems != null && inv.HasRequiredItems(activeQuest.RequiredItems))
+                {
+                    Console.WriteLine("You have all the required items to start the reworks in the rooftop garden.");
+                    // Logic to start the reworks
+                    activeQuest.IsCompleted = true;
+                    Console.WriteLine("Reworks have started successfully!");
+                }
+                else if (activeQuest == null)
+                {
+                    Console.WriteLine("You don't have a quest to start the reworks.");
+                }
+                else
+                {
+                    Console.WriteLine("You don't have all the required items to start the reworks.");
+                }
+            }
+            else
+            {
+                Console.WriteLine("You need to be in the Rooftop Garden to start the reworks.");
+            }
+        }
+
+        private void ReceiveQuest(NPC npc)
+        {
+            if (npc.Quest != null && !npc.Quest.IsCompleted)
+            {
+                activeQuest = npc.Quest;
+                Console.WriteLine($"You have received a new quest: {npc.Quest.Title}");
+                Console.WriteLine(npc.Quest.Description);
+            }
+        }
+
+        private void DisplayQuestInfo()
+        {
+            if (activeQuest != null)
+            {
+                Console.WriteLine($"Current Quest: {activeQuest.Title}");
+                Console.WriteLine($"Quest Description: {activeQuest.Description}");
+            }
+            else
+            {
+                Console.WriteLine("There is no active quest.");
             }
         }
 

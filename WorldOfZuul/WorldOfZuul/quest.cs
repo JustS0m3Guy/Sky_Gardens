@@ -31,7 +31,7 @@ namespace SkyGarden
         
         public List<Badge> GetBadges()
         {
-            return new List<Badge>(badges);
+            return badges != null ? new List<Badge>(badges) : new List<Badge>();
         }
     }
 
