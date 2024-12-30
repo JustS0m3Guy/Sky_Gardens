@@ -181,6 +181,7 @@ namespace SkyGarden
                         goto case "look";
                     
                     case "newspaper":    
+                            Console.WriteLine("BREAKING NEWS: ");
                             string[] newspaper = File.ReadAllLines($"newspaper_stories/Story_{day}.txt");
                             foreach(string segment in newspaper)
                             {
