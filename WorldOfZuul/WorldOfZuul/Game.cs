@@ -99,11 +99,7 @@ namespace SkyGarden
                 }
                 npc.Home.SetExit("elevator", ABE);
                 npc.Home.SetExit("elevator", RG);
-                Console.BackgroundColor = ConsoleColor.Red;
-                Console.ForegroundColor = ConsoleColor.Black;
                 npc.CurrentRoom?.AddNPC(npc);
-                Console.WriteLine($"{npc.Name} got added to {npc.CurrentRoom?.ShortDescription}");
-                Console.ResetColor();
             }
             RG.SetExit("elevator", ABE);
             YR.SetExit("elevator", ABE);
