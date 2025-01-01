@@ -45,13 +45,9 @@ namespace SkyGarden
         {
             NPCs.Add(npc);
         }
-
-        public void AssignNPCToRoom(NPC npc, Room room)
+        public void RemoveNPC(NPC npc)
         {
-            Contract.Requires(npc != null);
-            Contract.Requires(room != null);
-
-            room?.AddNPC(npc);
+            NPCs.Remove(npc);
         }
     }
 }

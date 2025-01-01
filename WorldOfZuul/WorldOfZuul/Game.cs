@@ -16,6 +16,7 @@ namespace SkyGarden
         private Inventory inv = new();
         private Quest? activeQuest;
         private int day = 0;
+        private List<NPC>? npcs;
 
         public Game()
         {
@@ -78,10 +79,8 @@ namespace SkyGarden
 
             NPC? Wade = new("Worker Wade", null);
             NPC? Sally = new("Secretary Sally", null);
-            NPC? Mayor = new("Mayor Niko", null);
-            List<NPC>? npcs = new() { Emma, Walter, Paula, Fiona, Ethan, Piper, Lucy, Ben, Nora, Wade, Sally };
+            npcs = new() { Emma, Walter, Paula, Fiona, Ethan, Piper, Lucy, Ben, Nora, Wade, Sally };
             currentRoom = ABE;
-            activeQuest = null;     //Set to null to start the game without a quest
 
             CC.SetExits(TH, ABE, BG, CW, null);
             TH.SetExit("south", CC);
@@ -100,6 +99,11 @@ namespace SkyGarden
                 }
                 npc.Home.SetExit("elevator", ABE);
                 npc.Home.SetExit("elevator", RG);
+                Console.BackgroundColor = ConsoleColor.Red;
+                Console.ForegroundColor = ConsoleColor.Black;
+                npc.CurrentRoom?.AddNPC(npc);
+                Console.WriteLine($"{npc.Name} got added to {npc.CurrentRoom?.ShortDescription}");
+                Console.ResetColor();
             }
             RG.SetExit("elevator", ABE);
             YR.SetExit("elevator", ABE);
@@ -117,9 +121,9 @@ namespace SkyGarden
         public void Play()
         {
             Parser parser = new();
-            Console.Clear();
-            new PreQuiz().StartPreQuiz();
-            Console.Clear();
+            //Console.Clear();
+            //new PreQuiz().StartPreQuiz();
+            //Console.Clear();
             //new PostQuiz().StartPostQuiz();
             PrintIntro();
             
@@ -133,6 +137,19 @@ namespace SkyGarden
                 Console.Write("> ");
                 string? input = Console.ReadLine();
                 Console.WriteLine();
+
+                if (npcs != null)
+                {
+                    foreach (NPC n in npcs)
+                    {
+                        if (n.Quest != null && n.Quest.Places != null)
+                        {
+                            var place = n.Quest.Places[n.Quest.QuestProgress];
+                            MoveNPC(n, place);
+                        }
+                    }
+                }
+
                 if (string.IsNullOrEmpty(input))
                 {
                     Console.WriteLine("Please enter a command.");
@@ -245,7 +262,7 @@ namespace SkyGarden
                             Console.WriteLine("Where would you like to go?");
                             for (int i = 0; i < currentRoom?.ElevatorButtons.Count; i++)
                             {
-                                Console.WriteLine($"{i+1} {currentRoom?.ElevatorButtons[i].ShortDescription}");
+                                Console.WriteLine($"{i + 1} {currentRoom?.ElevatorButtons[i].ShortDescription}");
                                 Thread.Sleep(250);
                             }
                             System.Console.Write("> ");
@@ -389,6 +406,13 @@ namespace SkyGarden
             }
 
             Console.WriteLine("Thank you for playing Sky Garden!");
+        }
+
+        private void MoveNPC(NPC n, Room to)
+        {
+            n.CurrentRoom?.RemoveNPC(n);
+            to.AddNPC(n);
+            n.CurrentRoom = to;
         }
 
         private void Move(string direction)

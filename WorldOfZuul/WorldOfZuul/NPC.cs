@@ -12,6 +12,7 @@ namespace SkyGarden
     {
         public string Name { get; set; } 
         public Room Home { get; set; } 
+        public Room? CurrentRoom { get; set; }
         private List<List<List<string>>> Dialogues = new();
         public Quest? Quest { get; set; }
         public NPC(string name, Quest? quest)
@@ -20,6 +21,7 @@ namespace SkyGarden
             Quest = quest;
             Room? NPCHome = new ($"{Name}'s flat", $"This is the home of {Name}");
             Home = NPCHome;
+            CurrentRoom = Quest?.Places?[0];
             //Biodiversity Ben -> "Biodiversity_Ben" in order for it to find file in the dialogues folder
             //uses a lambda expression to format the name of the npc to match the file name
             string fileName = $"dialogues/{Name.Split(' ')[0]}_{Name.Split(' ')[1]}.txt";
