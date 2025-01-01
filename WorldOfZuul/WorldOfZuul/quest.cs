@@ -44,13 +44,14 @@ namespace SkyGarden
         public bool IsCompleted { get; set; } = false;
         public int QuestProgress { get; set; }
         public int QuestLength { get; set; }
+        public int ItemRemoval { get; set; }
 
         public bool CanComplete(List<Item> inventory)
         {
             return RequiredItems != null && RequiredItems.All(item => inventory.Contains(item));
         }
 
-        public Quest(string title, string description, List<Item>? requireditems, Badge? reward, int questLength)
+        public Quest(string title, string description, List<Item>? requireditems, Badge? reward, int questLength, int itemRemoval)
         {
             Title = title;
             Description = description;
@@ -58,7 +59,9 @@ namespace SkyGarden
             Reward = reward;
             QuestProgress = 0;
             QuestLength = questLength;
+            ItemRemoval = itemRemoval;
         }
+
         public void DisplayQuestInfo()
         {
             if (this != null)
