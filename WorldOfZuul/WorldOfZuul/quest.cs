@@ -51,7 +51,7 @@ namespace SkyGarden
             return RequiredItems != null && RequiredItems.All(item => inventory.Contains(item));
         }
 
-        public Quest(string title, string description, List<Item>? requireditems, List<Room> places, Badge? reward, int questLength)
+        public Quest(string title, string description, List<Item>? requireditems, List<Room> places, Badge? reward)
         {
             Title = title;
             Description = description;
@@ -59,7 +59,7 @@ namespace SkyGarden
             Reward = reward;
             Places = places;
             QuestProgress = 0;
-            QuestLength = questLength;
+            QuestLength = places.Count - 1;
         }
         public void DisplayQuestInfo()
         {

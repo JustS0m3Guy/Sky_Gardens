@@ -62,20 +62,20 @@ namespace SkyGarden
             Room? BG = new("Botanical Garden","You are in the botanical garden. You can see the plants, the flowers and the trees. You can see the city center from here.");
             Room? YR = new("Your Room","You are in your room. You can see the bed, the desk and the window. You can see the city center from here.");
 
-            NPC? Emma = new("Eco-enthusiast Emma", new Quest("Eco-enthusiast Emma's Quest", "Emma quest description", new List<Item>{compostBins}, new List<Room>{BG, RG, BG}, badgeList[0], 1));
+            NPC? Emma = new("Eco-enthusiast Emma", new Quest("Eco-enthusiast Emma's Quest", "Emma quest description", new List<Item>{compostBins}, new List<Room>{BG, RG, BG}, badgeList[0]));
             NPC? Walter = new("Wasteful Walter", null);
-            Walter.Quest = new Quest("Wasteful Walter's Quest", "Walter quest description", new List<Item>{posters, recyclingBins}, new List<Room>{CC, Walter.Home, BG, Walter.Home}, badgeList[1], 1);
-            NPC? Paula = new("Polluted Paula", new Quest("Polluted Paula's Quest", "Paula quest description", new List<Item>{treeSaplings}, new List<Room>{ABE, RG, RG}, badgeList[2], 1));
-            NPC? Fiona = new("Farmer Fiona", new Quest("Farmer Fiona's Quest", "Fiona quest description", new List<Item>{plantSeeds, sprinkler}, new List<Room>{RG, RG, RG, ABE}, badgeList[3], 1));
+            Walter.Quest = new Quest("Wasteful Walter's Quest", "Walter quest description", new List<Item>{posters, recyclingBins}, new List<Room>{CC, Walter.Home, BG, Walter.Home}, badgeList[1]);
+            NPC? Paula = new("Polluted Paula", new Quest("Polluted Paula's Quest", "Paula quest description", new List<Item>{treeSaplings}, new List<Room>{ABE, RG, RG}, badgeList[2]));
+            NPC? Fiona = new("Farmer Fiona", new Quest("Farmer Fiona's Quest", "Fiona quest description", new List<Item>{plantSeeds, sprinkler}, new List<Room>{RG, RG, RG, ABE}, badgeList[3]));
             NPC? Ethan = new("Energy-efficient Ethan", null);
-            Ethan.Quest = new Quest("Energy-efficient Ethan's Quest", "Ethan quest description", new List<Item>{posters}, new List<Room>{Ethan.Home, RG, RG}, badgeList[4], 1);
+            Ethan.Quest = new Quest("Energy-efficient Ethan's Quest", "Ethan quest description", new List<Item>{posters}, new List<Room>{Ethan.Home, RG, RG}, badgeList[4]);
             NPC? Piper = new("Plumber Piper", null);
-            Piper.Quest = new Quest("Plumber Piper's Quest", "Piper quest description", new List<Item>{wrench, barrels}, new List<Room>{B, RG, B, B}, badgeList[5], 1);
-            NPC? Lucy = new("Lonely Lucy", new Quest("Lonely Lucy's Quest", "Lucy quest description", new List<Item>{benches, communityBoard, gardenTools}, new List<Room>{ABE, RG, RG}, badgeList[6], 1));
+            Piper.Quest = new Quest("Plumber Piper's Quest", "Piper quest description", new List<Item>{wrench, barrels}, new List<Room>{B, RG, B, B}, badgeList[5]);
+            NPC? Lucy = new("Lonely Lucy", new Quest("Lonely Lucy's Quest", "Lucy quest description", new List<Item>{benches, communityBoard, gardenTools}, new List<Room>{ABE, RG, RG}, badgeList[6]));
             NPC? Ben = new("Biodiversity Ben", null);
-            Ben.Quest = new Quest("Biodiversity Ben's Quest", "Ben quest description", new List<Item>{birdFeed, birdFeeders, localFlowers}, new List<Room>{RG, Ben.Home, RG, RG}, badgeList[7], 3);
+            Ben.Quest = new Quest("Biodiversity Ben's Quest", "Ben quest description", new List<Item>{birdFeed, birdFeeders, localFlowers}, new List<Room>{RG, Ben.Home, RG, RG}, badgeList[7]);
             NPC? Nora = new("Noisy Nora", null);
-            Nora.Quest = new Quest("Noisy Nora's Quest", "Nora quest description", new List<Item>{noiseMeter, denseBush}, new List<Room>{Nora.Home, RG, RG}, badgeList[8], 1);
+            Nora.Quest = new Quest("Noisy Nora's Quest", "Nora quest description", new List<Item>{noiseMeter, denseBush}, new List<Room>{Nora.Home, RG, RG}, badgeList[8]);
 
             NPC? Wade = new("Worker Wade", null);
             NPC? Sally = new("Secretary Sally", null);
@@ -117,9 +117,9 @@ namespace SkyGarden
         public void Play()
         {
             Parser parser = new();
-            //Console.Clear();
+            Console.Clear();
             //new PreQuiz().StartPreQuiz();
-            //Console.Clear();
+            Console.Clear();
             //new PostQuiz().StartPostQuiz();
             PrintIntro();
             
