@@ -34,34 +34,41 @@ namespace SkyGarden
             Badge badges = new();
             List<Badge> badgeList = badges.GetBadges();
 
-            Item? item1 = new("Item1", "This is item 1");
+            Item? posters = new("Posters", "Posters on recycling");
+            Item? recyclingBins = new("Recycling Bins", "Recycling bins");
+            Item? wrench = new("Wrench", "Wrench");
+            Item? barrels = new("Barrels", "Barrels");
+            List<Item>? items = new() { posters, recyclingBins, wrench, barrels };
 
-            NPC? Emma = new("Eco-enthusiast Emma", new Quest("Eco-enthusiast Emma's Quest", "Emma quest description", new List<Item>{item1}, badgeList[0], 1));
+            NPC? Emma = new("Eco-enthusiast Emma", new Quest("Eco-enthusiast Emma's Quest", "Emma quest description", new List<Item>{}, badgeList[0], 1));
             NPC? Walter = new("Wasteful Walter", new Quest("Wasteful Walter's Quest", "Walter quest description", null, badgeList[1], 1));
             NPC? Paula = new("Polluted Paula", new Quest("Polluted Paula's Quest", "Paula quest description", null, badgeList[2], 1));
             NPC? Fiona = new("Farmer Fiona", new Quest("Farmer Fiona's Quest", "Fiona quest description", null, badgeList[3], 1));
             NPC? Ethan = new("Energy-efficient Ethan", new Quest("Energy-efficient Ethan's Quest", "Ethan quest description", null, badgeList[4], 5));
-            NPC? Fred = new("Flooded Fred", new Quest("Flooded Fred's Quest", "Fred quest description", null, badgeList[5], 1));
+            NPC? Piper = new("Plumber Piper", new Quest("Plumber Piper's Quest", "Piper quest description", null, badgeList[5], 1));
             NPC? Lucy = new("Lonely Lucy", new Quest("Lonely Lucy's Quest", "Lucy quest description", null, badgeList[6], 1));
             NPC? Ben = new("Biodiversity Ben", new Quest("Biodiversity Ben's Quest", "Ben quest description", null, badgeList[7], 3));
             NPC? Nora = new("Noisy Nora", new Quest("Noisy Nora's Quest", "Nora quest description", null, badgeList[8], 1));
-            List<NPC>? npcs = new() { Emma, Walter, Paula, Fiona, Ethan, Fred, Lucy, Ben, Nora };
+            NPC? Wade = new("Worker Wade", new Quest("Worker wade's Quest", "Wade quest description", null, null, 0));
+            NPC? Sally = new("Secretary Sally", new Quest("Secretary Sally's Quest", "Sally quest description", null, null, 0));
+            List<NPC>? npcs = new() { Emma, Walter, Paula, Fiona, Ethan, Piper, Lucy, Ben, Nora, Wade, Sally };
 
             Room? TCC = new("The City Center","You find yourself in the city center. There are people bustling about, and you can see a large fountain in the middle of the square. From here you can see The Town Hall, The Botanical Garden, The Store and the entrence to your new apartment building.");
             Room? TABE = new("The Apartment Building Entrance","You are standing in the entrance of your new apartment building. You can see the elevator and the stairs leading up to your apartment and a small door leading down to the basement. You can also see the city center from here.");
             Room? TB = new("The Basement","You are in the basement of your apartment building. It is dark and damp, and you can hear the sound of water dripping from the ceiling. You can see a small door leading back up to the entrance of the building.");
             Room? TRG = new("The Rooftop Garden","You are on the roof of your apartment building. You can see the city center from here, and you can see the roof garden that you have been hearing so much about. You can see a small door leading back down to the elevator of the building.");
             Room? TTH = new("The Town Hall","You are in the town hall. You can see the mayor's office, the reception and the city council room. You can see the city center from here.");
-            Room? TS = new("The Store","You are in the store. You can see the cashier, the shelves and the exit. You can see the city center from here.");
+            Room? TW = new("The Company Warehouse","You are in the company warehouse. You can see the storage shelves, the forklift and Wade! You can see the city center from here.");
             Room? TGB = new("The Botanical Garden","You are in the botanical garden. You can see the plants, the flowers and the trees. You can see the city center from here.");
             Room? YR = new("Your Room","You are in your room. You can see the bed, the desk and the window. You can see the city center from here.");
             currentRoom = TABE;
             activeQuest = null;     //Set to null to start the game without a quest
 
-            TCC.SetExits(TTH, TABE, TGB, TS, null);
+            TCC.SetExits(TTH, TABE, TGB, TW, null);
             TTH.SetExit("south", TCC);
             TGB.SetExit("north", TCC);
-            TS.SetExit("east", TCC);
+            TW.SetExit("east", TCC);
+            TW.AddNPC(Wade);
             TABE.SetExits(null, null, TB, TCC, TRG);
             foreach (NPC npc in npcs)
             {
@@ -79,6 +86,11 @@ namespace SkyGarden
             TRG.SetExit("elevator", TABE);
             YR.SetExit("elevator", TABE);
             TABE.SetExit("elevator", YR);
+            TTH.AddNPC(Sally);
+            foreach (Item i in items)
+            {
+                TW.AddItem(i);
+            }
 
             // Assign NPCs to rooms and load their dialogues
             Ethan.LoadDialogues("dialogues/Energy-efficient_Ethan.txt");
@@ -93,8 +105,11 @@ namespace SkyGarden
             //new PostQuiz().StartPostQuiz();
             
             bool continuePlaying = true;
+            bool firstNewsToday = true;
+            bool transfer = false;
             while (continuePlaying)
             {
+                transfer = false;
                 Console.WriteLine("\n" + currentRoom?.ShortDescription);
                 Console.Write("> ");
                 string? input = Console.ReadLine();
@@ -163,6 +178,11 @@ namespace SkyGarden
                         }
                         else
                             DisplayTextSlowly("There is no one in this room.\n");
+                        if (currentRoom?.ShortDescription == "The City Center" && firstNewsToday)
+                            {
+                                transfer = true;
+                                goto case "news";
+                            }
 
                         if (currentRoom?.ShortDescription == "The Rooftop Garden")
                         {
@@ -184,13 +204,20 @@ namespace SkyGarden
                         Move(command.Name);
                         goto case "look";
                     
-                    case "newspaper":    
-                            Console.WriteLine("BREAKING NEWS: ");
-                            string[] newspaper = File.ReadAllLines($"newspaper_stories/Story_{day}.txt");
-                            foreach(string segment in newspaper)
-                            {
-                                Console.WriteLine(segment);
-                            }
+                    case "news":
+                        if (!transfer)
+                            firstNewsToday = false;
+
+                        if (!firstNewsToday)
+                            DisplayTextSlowly("You take out your phone and start reading the news:");
+                        else
+                            DisplayTextSlowly("A newspaper vendor hands you a newspaper and on your way to your next destination you start reading it:");
+                        string[] newspaper = File.ReadAllLines($"newspaper_stories/Story_{day}.txt");
+                        foreach(string segment in newspaper)
+                        {
+                            DisplayTextSlowly(segment);
+                        }
+                        firstNewsToday = false;
                         break;
                         
                     case "elevator":
@@ -302,6 +329,9 @@ namespace SkyGarden
                         break;
                     
                     case "map":
+                        string[] map = File.ReadAllLines("misc_txt/map.txt");
+                        foreach (string line in map)
+                            Console.WriteLine(line);
                         break;
                     
                     case "sleep":
@@ -412,6 +442,7 @@ namespace SkyGarden
             Console.WriteLine();
         }
         
+        
         // public static void DisplayOptionsSlowly(List<Type> options, int delay = 750)
         // {
         //     foreach (Type option in options)
@@ -443,6 +474,18 @@ namespace SkyGarden
 
         private static void PrintHelp()
         {
+            Console.WriteLine("Navigate by typing 'north', 'south', 'east', or 'west'.");
+            Console.WriteLine("Type 'look' for more details. Will also run after entering a room for the first time.");
+            Console.WriteLine("Type 'back' to go to the previous room.");
+            Console.WriteLine("Type 'help' to print this message again.");
+            Console.WriteLine("Type 'quit' to exit the game.");
+            Console.WriteLine("Type 'take' to pick up an item.");
+            Console.WriteLine("Type 'inventory' to view your inventory.");
+            Console.WriteLine("Type 'talk' to talk to an NPC in the current room.");
+            Console.WriteLine("Type 'elevator' to use the elevator.");
+            Console.WriteLine("Type 'map' to view the map.");
+            Console.WriteLine("Type 'sleep' to sleep in your room.");
+            Console.WriteLine("Type 'news' to read the news.\n");
             string gameHelp = "Navigate by typing 'north', 'south', 'east', or 'west'.\n"
                             + "Type 'look' for more details. Will also run after entering a room for the first time.\n"
                             + "Type 'back' to go to the previous room.\n"
@@ -457,7 +500,6 @@ namespace SkyGarden
 
             Console.WriteLine(gameHelp);
         }
-
         private static void PrintNextDay()
         {
             DisplayTextSlowly("You slept soundly after a long day of helping a newfound friend.");
