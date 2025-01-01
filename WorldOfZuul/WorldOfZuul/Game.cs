@@ -79,6 +79,10 @@ namespace SkyGarden
             TRG.SetExit("elevator", TABE);
             YR.SetExit("elevator", TABE);
             TABE.SetExit("elevator", YR);
+
+            // Assign NPCs to rooms and load their dialogues
+            Ethan.LoadDialogues("dialogues/Energy-efficient_Ethan.txt");
+            TRG.AddNPC(Ethan);
         }
         public void Play()
         {
@@ -341,22 +345,6 @@ namespace SkyGarden
                 currentRoom.IsFirstIteration = false;
         }
 
-        private void CheckAndStartReworks()
-        {
-            if (currentRoom?.ShortDescription == "The Rooftop Garden" && activeQuest != null)
-            {
-                if (activeQuest.RequiredItems == null || inv.HasRequiredItems(activeQuest.RequiredItems))
-                {
-                    Console.WriteLine("You have all the required items to start the reworks in the rooftop garden.");
-                    // Logic to start the reworks
-                }
-                else
-                {
-                    Console.WriteLine("You don't have all the required items to start the reworks.");
-                }
-            }
-        }
-
         private void StartReworks()
         {
             if (currentRoom?.ShortDescription == "The Rooftop Garden" && activeQuest != null)
@@ -441,10 +429,10 @@ namespace SkyGarden
 
         private static void PrintIntro()
         {
-            string gameIntroduction = "\nWelcome to Sky Garden, a festival of urban greenery!\n"
+            string gameIntroduction = "Welcome to Sky Garden, a festival of urban greenery!\n"
                                     + "You are about to embark on a journey filled with characters and quests.\n"
-                                    + "Prepare yourself for helping a neighbourhood restore it's greenery and beauty.\n\n"
-                                    + "Press any key to continue...";
+                                    + "Prepare yourself for helping a neighbourhood restore it's greenery and beauty.\n"
+                                    + "\nPress any key to continue...";
 
             DisplayTextSlowly(gameIntroduction);
 

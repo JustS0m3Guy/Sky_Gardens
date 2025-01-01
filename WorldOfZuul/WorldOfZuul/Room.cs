@@ -28,13 +28,13 @@ namespace SkyGarden
             SetExit("elevator", npcFlat);
         }
 
-        public void SetExit(string direction, Room? neighbor)
+        public void SetExit(string direction, Room? NPC)
         {
-            if (neighbor != null)
+            if (NPC != null)
             {
-                Exits[direction] = neighbor;
+                Exits[direction] = NPC;
                 if (direction == "elevator")
-                    ElevatorButtons.Add(neighbor);
+                    ElevatorButtons.Add(NPC);
             }
         }
         public void AddItem(Item item)
@@ -44,6 +44,14 @@ namespace SkyGarden
         public void AddNPC(NPC npc)
         {
             NPCs.Add(npc);
+        }
+
+        public void AssignNPCToRoom(NPC npc, Room room)
+        {
+            Contract.Requires(npc != null);
+            Contract.Requires(room != null);
+
+            room?.AddNPC(npc);
         }
     }
 }
