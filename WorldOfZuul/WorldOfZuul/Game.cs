@@ -224,21 +224,21 @@ namespace SkyGarden
                         if (currentRoom?.ElevatorButtons.Count > 0)
                         {
                             Console.WriteLine("Where would you like to go?");
-                            foreach (Room r in currentRoom.ElevatorButtons)
+                            for (int i = 0; i < currentRoom?.ElevatorButtons.Count; i++)
                             {
-                                Console.WriteLine(r.ShortDescription);
+                                Console.WriteLine($"{i+1} {currentRoom?.ElevatorButtons[i].ShortDescription}");
                                 Thread.Sleep(250);
                             }
                             System.Console.Write("> ");
                             string? destination = Console.ReadLine();
                             destination = destination?.ToLower().Trim();
                             bool valid = false;
-                            foreach (Room r in currentRoom.ElevatorButtons)
+                            for (int i = 0; i < currentRoom?.ElevatorButtons.Count; i++)
                             {
-                                if (r.ShortDescription.ToLower() == destination || r.ShortDescription.ToLower().Split(' ')[1] == destination)
+                                if (currentRoom?.ElevatorButtons[i].ShortDescription.ToLower() == destination || (i+1).ToString() == destination)
                                 {
                                     previousRoom = currentRoom;
-                                    currentRoom = r;
+                                    currentRoom = currentRoom?.ElevatorButtons[i];
                                     valid = true;
                                     if (currentRoom.IsFirstIteration)
                                     {
@@ -442,7 +442,6 @@ namespace SkyGarden
             Console.WriteLine();
         }
         
-        
         // public static void DisplayOptionsSlowly(List<Type> options, int delay = 750)
         // {
         //     foreach (Type option in options)
@@ -474,18 +473,6 @@ namespace SkyGarden
 
         private static void PrintHelp()
         {
-            Console.WriteLine("Navigate by typing 'north', 'south', 'east', or 'west'.");
-            Console.WriteLine("Type 'look' for more details. Will also run after entering a room for the first time.");
-            Console.WriteLine("Type 'back' to go to the previous room.");
-            Console.WriteLine("Type 'help' to print this message again.");
-            Console.WriteLine("Type 'quit' to exit the game.");
-            Console.WriteLine("Type 'take' to pick up an item.");
-            Console.WriteLine("Type 'inventory' to view your inventory.");
-            Console.WriteLine("Type 'talk' to talk to an NPC in the current room.");
-            Console.WriteLine("Type 'elevator' to use the elevator.");
-            Console.WriteLine("Type 'map' to view the map.");
-            Console.WriteLine("Type 'sleep' to sleep in your room.");
-            Console.WriteLine("Type 'news' to read the news.\n");
             string gameHelp = "Navigate by typing 'north', 'south', 'east', or 'west'.\n"
                             + "Type 'look' for more details. Will also run after entering a room for the first time.\n"
                             + "Type 'back' to go to the previous room.\n"
@@ -493,7 +480,7 @@ namespace SkyGarden
                             + "Type 'inventory' to view your inventory.\n"
                             + "Type 'talk' to talk to an NPC in the current room.\n"
                             + "Type 'elevator' to use the elevator.\n"
-                            + "Type 'newspaper' to read the latest news.\n"
+                            + "Type 'news' to read the latest news.\n"
                             + "Type 'questinfo' to check your active quest.\n"
                             + "Type 'help' to print this message again.\n"
                             + "Type 'quit' to exit the game.\n";
