@@ -1,35 +1,30 @@
 /d
-1
+The city feels empty without nature.
 /c
-    Option a
-        Response a
-    Option b
-        Response b
-/c
-1 end
+    Talk about making the sky garden as pretty as possible.
+        Dislike the idea because of a lack of functionality.
+    Talk about local plant life in order to sustain biodiversity.
+        Agreement and excitement about thinking alike.
 /d
-2 Come back with XYZ
-/d
+I feel lost on where to start, there's so many angles this could be approached from.
 /c
-    c
-        C
-    d
-        D
+    Put in minimal effort
+        Dislike due to not being diverse and functional.
+    Talk about putting animals first in your way of planning.
+        Loves the idea and thinks it might work out.
 /d
-4
+Okay, we have the bird feeders and we have some potted plants from right outside the city. Now to where to add them.
 /c
-    Csege
-        Merriszinsmess
-    Máté
-        Fingottam
-    Pacaa
-        ikszdé
-/c
-    yippie
-        YIPPIE
-    nope
-        AAAAA
-    meh
-        WOAH
+    Try to mimic nature in the way you put the items.
+        Agreement and further input.
+    Offer a human centric solution
+        Expresses disdain towards not prioritising nature.
+    Randomly put the items into the garden.
+        Dislikes and shares some knowledge about nature.
 /d
-[FINNISH] We're done
+I love what the place turned into! It’s so vibrant and lively! I’ll definitely come up daily to check up on it and feed the birds!
+/c
+    Express joy of seeing it be in good hands.
+        He thanks you for what you have done.
+/d
+[FINISH]
