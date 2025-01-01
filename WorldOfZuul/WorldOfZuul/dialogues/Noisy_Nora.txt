@@ -1,0 +1,23 @@
+/d
+Hi, I’m Nora. I’m really frustrated with the constant noise in this area. We need to do something about it.
+/c
+    Ask about the noise problem
+        The traffic is unbearable, and we can’t enjoy our homes or even sleep well at night.
+    Ask about solutions
+        I’ve read about using plants as sound barriers. We can plant trees and bushes to help absorb the noise.
+/d
+Would you like to help me implement some landscaping solutions to minimise the noise?
+/c
+    Ask about landscaping techniques
+        One effective approach is to plant dense shrubs along the road; they work well to block sound waves.
+    Ask about the importance of reducing noise.
+        Reducing noise pollution can significantly improve our quality of life, making our neighbourhood feel safer and calmer.
+/d
+Perfect! We’ve made great progress. Now, I want to host a community event to raise awareness about noise.
+/c
+    Ask about the event
+        I’m planning a workshop where we can teach others about the benefits of landscaping for noise reduction.
+    Ask more about the plants used
+        We should choose native plants that thrive in our area and are effective at noise reduction, like evergreens.
+/d
+[FINISH]

@@ -1,0 +1,43 @@
+/d
+I NEED HELP! Phew...Phew... You there, I have an urgent request. The "Mighty seas" are flooding in and I need a brave soul to help me fix this conundrum.
+/c
+    Ignore the weird man in front of you.
+    "Mhm..."
+/d
+Don't be so cold mate, this venture will also be beneficial to you so meet me on the roof, I can tell you more about this grave situation.
+/c
+    Try to calm the scruffy man down
+    Why don't you calm down and explain the situation first?
+/d
+NO TIME! It's not safe here. Meet me on the roof, that's where the "Mighty seas" won't reach us.
+/c
+    Ask the old man to clarify
+    What even are the "Mighty seas" and "Kraken"? I don't understand what you are saying.
+/d
+I'm glad you asked, mate. As a veteran plumber I am always happy to clarify the terminology. My basement is currently flooding due to poor water management and piping. So I need you to get some barrels and a "mighty scabbard", also called a wrench, in order to help me fix this ordeal. I believe you are a perfect fit for this job. NOW GO! Save this building from its demise.
+/c
+    Confront Piper on his absurdity
+    Can you please talk like a normal person?
+/d
+NO. Anyways, to put it simply mate, my basement is currently flooding due to poor water management and piping. So I need you to get some barrels and a "mighty scabbard", also called a wrench, in order to help me fix this ordeal. Hurry now, the fate of this building is in your hands! HA! HA!
+/c
+    Give Piper a wrench.
+/d
+Ahoy, mate! I see you got the barrels. Now here's a quick tip from a veteran. Keep those lids, we don't want any mosquitoes breeding in them. ALRIGHT! No time to stand about gawking at nothing, let's get moving. We don't have much time.
+/c
+    Set up the barrels.
+/d
+The "Mighty seas" have finally calmed down thanks to these barrels.
+/d
+YO HO! YO HO! Magnificent work mate! Today is the day you earned yourself the title "Captain". Of course you are also deserving of a reward for your great deeds.
+/c
+    Ask about the reward
+    What's the reward?
+    Ask about the point of the title
+    What is the point of the "Captain" title? It's a bit weird.
+/d
+Your rooftop "Jungle island" is going to need to quell a "Kraken" of its own, so I will gladly come over and set up the water piping. Because the reward you earned is my friendship. HA! HA!
+/d
+You can think about it whatever you want, but it is what earns you the reward, which is my friendship. HA! HA! And since your rooftop "Jungle island" is in need of plumbing I will gladly set it up for you, mate. YO HO!
+/d
+[FINISH]

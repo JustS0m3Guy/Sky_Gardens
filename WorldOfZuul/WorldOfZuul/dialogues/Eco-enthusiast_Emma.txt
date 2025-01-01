@@ -1,0 +1,30 @@
+/d
+Composting is such an easy way to reduce waste and improve soil quality. Have you considered it for the Sky Garden?
+/c
+    Ask about composting
+        I noticed the building is throwing away a lot of organic waste. It could be composted and used to nourish the garden!
+    Ask about sustainability in the city
+        I’m passionate about finding solutions that help both people and the planet.
+/d
+I can provide you with a compost bin and some tips on what to compost.
+/c
+    Ask Emma for composting supplies
+        I recommend setting up a compost system on the rooftop garden to get started.
+    Ask about the benefits of composting
+        Composting reduces landfill waste, creates nutrient-rich soil for gardens, and helps lower greenhouse gas emissions.
+/d
+Great work! Now you’ll have rich, healthy soil for the garden, and you’ll be helping to reduce waste!
+/c
+    Set up composting bin
+        Don’t forget to regularly turn the compost to help it break down faster.
+    Ask about composting materials
+        You can compost fruit and vegetable scraps, coffee grounds, and even some paper products. Avoid composting meat or dairy, as they can attract pests.
+/d
+I’m so glad you set up the composting system! It’s a great way to recycle organic waste and improve the soil
+/c
+    Compost system set up
+        This will be a great addition to the Sky Garden project!
+    Ask about composting tips
+        It’s important to keep a balance of green (nitrogen-rich) and brown (carbon-rich) materials in the compost bin. You should also make sure the compost stays moist but not too wet.
+/d
+[FINISH]
