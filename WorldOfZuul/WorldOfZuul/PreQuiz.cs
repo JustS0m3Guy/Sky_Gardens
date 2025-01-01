@@ -99,6 +99,8 @@ namespace SkyGarden
 
             Game.DisplayTextSlowly($"You completed the quiz! Your final score is {score1}/{Question.QuestionBank.Questions.Count}.");
             Game.DisplayTextSlowly("\nThis score will be used in the future to evaluate your evolution in sustanability knowledge :)\n");
+            Console.WriteLine("Press any key to continue...");
+            Console.ReadKey();
         }
     }
 }
