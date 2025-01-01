@@ -59,5 +59,17 @@ namespace SkyGarden
             QuestProgress = 0;
             QuestLength = questLength;
         }
+        public void DisplayQuestInfo()
+        {
+            if (this != null)
+            {
+                Console.WriteLine($"Current Quest: {this.Title}");
+                Console.WriteLine($"Description: {this.Description}");
+            }
+            else
+            {
+                Console.WriteLine("There is no active quest.");
+            }
+        }
     }
 }

@@ -100,9 +100,10 @@ namespace SkyGarden
         {
             Parser parser = new();
             Console.Clear();
-            PrintIntro();
-            //new PreQuiz().StartPreQuiz();
+            new PreQuiz().StartPreQuiz();
+            Console.Clear();
             //new PostQuiz().StartPostQuiz();
+            PrintIntro();
             
             bool continuePlaying = true;
             bool firstNewsToday = true;
@@ -314,7 +315,12 @@ namespace SkyGarden
                                 {
                                     found = true;
                                     n.Talk();
-                                    ReceiveQuest(n);
+                                    if (n.Quest != null && !n.Quest.IsCompleted && activeQuest == null)
+                                    {
+                                        activeQuest = n.Quest;
+                                        Console.WriteLine($"You have received a new quest: {n.Quest.Title}");
+                                        Console.WriteLine(n.Quest.Description);
+                                    }
                                 }
                             }
                             if (!found)
@@ -348,7 +354,14 @@ namespace SkyGarden
                         break;
 
                     case "questinfo":
-                        DisplayQuestInfo();
+                        if (activeQuest != null)
+                        {
+                            activeQuest.DisplayQuestInfo();
+                        }
+                        else
+                        {
+                            Console.WriteLine("You don't have an active quest.");
+                        }
                         break;
 
                     default:
@@ -401,29 +414,6 @@ namespace SkyGarden
             }
         }
 
-        private void ReceiveQuest(NPC npc)
-        {
-            if (npc.Quest != null && !npc.Quest.IsCompleted)
-            {
-                activeQuest = npc.Quest;
-                Console.WriteLine($"You have received a new quest: {npc.Quest.Title}");
-                Console.WriteLine(npc.Quest.Description);
-            }
-        }
-
-        private void DisplayQuestInfo()
-        {
-            if (activeQuest != null)
-            {
-                Console.WriteLine($"Current Quest: {activeQuest.Title}");
-                Console.WriteLine($"Description: {activeQuest.Description}");
-            }
-            else
-            {
-                Console.WriteLine("There is no active quest.");
-            }
-        }
-
         public static void DisplayTextSlowly(string text, int delay = 33)
         {
             foreach (char c in text)
@@ -441,22 +431,6 @@ namespace SkyGarden
             }
             Console.WriteLine();
         }
-        
-        // public static void DisplayOptionsSlowly(List<Type> options, int delay = 750)
-        // {
-        //     foreach (Type option in options)
-        //     {
-        //         if(Console.KeyAvailable)
-        //         {
-        //             Console.ReadKey(true);
-        //             delay = 0;
-        //             return;
-        //         } 
-        //         Console.WriteLine(option);
-        //         Thread.Sleep(delay);
-        //     }
-        // }
-
         private static void PrintIntro()
         {
             string gameIntroduction = "Welcome to Sky Garden, a festival of urban greenery!\n"
@@ -482,6 +456,8 @@ namespace SkyGarden
                             + "Type 'elevator' to use the elevator.\n"
                             + "Type 'news' to read the latest news.\n"
                             + "Type 'questinfo' to check your active quest.\n"
+                            + "Type 'map' to view the map.\n"
+                            + "Type 'sleep' to sleep in your room once you're done with a quest.\n"
                             + "Type 'help' to print this message again.\n"
                             + "Type 'quit' to exit the game.\n";
 
