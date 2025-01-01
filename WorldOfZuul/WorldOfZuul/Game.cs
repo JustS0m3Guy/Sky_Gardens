@@ -34,67 +34,85 @@ namespace SkyGarden
             Badge badges = new();
             List<Badge> badgeList = badges.GetBadges();
 
-            Item? posters = new("Posters", "Posters on recycling");
+            Item? compostBins = new("Compost Bins", "Compost bins");
+            Item? posters = new("Posters", "Posters that you printed recyclying information on");
             Item? recyclingBins = new("Recycling Bins", "Recycling bins");
             Item? wrench = new("Wrench", "Wrench");
             Item? barrels = new("Barrels", "Barrels");
-            List<Item>? items = new() { posters, recyclingBins, wrench, barrels };
+            Item? treeSaplings = new("Tree Saplings", "Tree saplings");
+            Item? plantSeeds = new("Plant Seeds", "Complimentary Plant seeds");
+            Item? sprinkler = new("Sprinkler", "Sprinkler for irrigation");
+            Item? benches = new("Benches", "Benches for the garden, ready to be put together");
+            Item? communityBoard = new("Community Board", "Community board for the garden");
+            Item? gardenTools = new("Garden Tools", "Garden tools for community use");
+            Item? birdFeeders = new("Bird Feeders", "Bird feeders for the garden");
+            Item? birdFeed = new("Bird Seed", "Bird seed for the bird feeders");
+            Item? localFlowers = new("Local Flowers", "Flowers native to the area. Perfect to attract bees and butterflies.");
+            Item? denseBush = new("Dense evergreen bush saplings", "A dense evergreen bush that can be used to create a hedge. Perfect for reducing noise pollution.");
+            Item? noiseMeter = new("Noise Meter", "A noise meter to measure the noise pollution in the area.");
+            List<Item>? items = new() { compostBins, posters, recyclingBins, wrench, barrels, treeSaplings, plantSeeds, sprinkler, benches, communityBoard, gardenTools, birdFeeders, birdFeed, localFlowers, denseBush, noiseMeter };
 
-            NPC? Emma = new("Eco-enthusiast Emma", new Quest("Eco-enthusiast Emma's Quest", "Emma quest description", new List<Item>{}, badgeList[0], 1));
-            NPC? Walter = new("Wasteful Walter", new Quest("Wasteful Walter's Quest", "Walter quest description", null, badgeList[1], 1));
-            NPC? Paula = new("Polluted Paula", new Quest("Polluted Paula's Quest", "Paula quest description", null, badgeList[2], 1));
-            NPC? Fiona = new("Farmer Fiona", new Quest("Farmer Fiona's Quest", "Fiona quest description", null, badgeList[3], 1));
-            NPC? Ethan = new("Energy-efficient Ethan", new Quest("Energy-efficient Ethan's Quest", "Ethan quest description", null, badgeList[4], 5));
-            NPC? Piper = new("Plumber Piper", new Quest("Plumber Piper's Quest", "Piper quest description", null, badgeList[5], 1));
-            NPC? Lucy = new("Lonely Lucy", new Quest("Lonely Lucy's Quest", "Lucy quest description", null, badgeList[6], 1));
-            NPC? Ben = new("Biodiversity Ben", new Quest("Biodiversity Ben's Quest", "Ben quest description", null, badgeList[7], 3));
-            NPC? Nora = new("Noisy Nora", new Quest("Noisy Nora's Quest", "Nora quest description", null, badgeList[8], 1));
-            NPC? Wade = new("Worker Wade", new Quest("Worker wade's Quest", "Wade quest description", null, null, 0));
-            NPC? Sally = new("Secretary Sally", new Quest("Secretary Sally's Quest", "Sally quest description", null, null, 0));
-            List<NPC>? npcs = new() { Emma, Walter, Paula, Fiona, Ethan, Piper, Lucy, Ben, Nora, Wade, Sally };
-
-            Room? TCC = new("The City Center","You find yourself in the city center. There are people bustling about, and you can see a large fountain in the middle of the square. From here you can see The Town Hall, The Botanical Garden, The Store and the entrence to your new apartment building.");
-            Room? TABE = new("The Apartment Building Entrance","You are standing in the entrance of your new apartment building. You can see the elevator and the stairs leading up to your apartment and a small door leading down to the basement. You can also see the city center from here.");
-            Room? TB = new("The Basement","You are in the basement of your apartment building. It is dark and damp, and you can hear the sound of water dripping from the ceiling. You can see a small door leading back up to the entrance of the building.");
-            Room? TRG = new("The Rooftop Garden","You are on the roof of your apartment building. You can see the city center from here, and you can see the roof garden that you have been hearing so much about. You can see a small door leading back down to the elevator of the building.");
-            Room? TTH = new("The Town Hall","You are in the town hall. You can see the mayor's office, the reception and the city council room. You can see the city center from here.");
-            Room? TW = new("The Company Warehouse","You are in the company warehouse. You can see the storage shelves, the forklift and Wade! You can see the city center from here.");
-            Room? TGB = new("The Botanical Garden","You are in the botanical garden. You can see the plants, the flowers and the trees. You can see the city center from here.");
+            Room? CC = new("City Center","You find yourself in the city center. There are people bustling about, and you can see a large fountain in the middle of the square. From here you can see The Town Hall, The Botanical Garden, The Store and the entrence to your new apartment building.");
+            Room? ABE = new("Apartment Building Entrance","You are standing in the entrance of your new apartment building. You can see the elevator and the stairs leading up to your apartment and a small door leading down to the basement. You can also see the city center from here.");
+            Room? B = new("Basement","You are in the basement of your apartment building. It is dark and damp, and you can hear the sound of water dripping from the ceiling. You can see a small door leading back up to the entrance of the building.");
+            Room? RG = new("Rooftop Garden","You are on the roof of your apartment building. You can see the city center from here, and you can see the roof garden that you have been hearing so much about. You can see a small door leading back down to the elevator of the building.");
+            Room? TH = new("Town Hall","You are in the town hall. You can see the mayor's office, the reception and the city council room. You can see the city center from here.");
+            Room? CW = new("Company Warehouse","You are in the company warehouse. You can see the storage shelves, the forklift and Wade! You can see the city center from here.");
+            Room? BG = new("Botanical Garden","You are in the botanical garden. You can see the plants, the flowers and the trees. You can see the city center from here.");
             Room? YR = new("Your Room","You are in your room. You can see the bed, the desk and the window. You can see the city center from here.");
-            currentRoom = TABE;
+
+            NPC? Emma = new("Eco-enthusiast Emma", new Quest("Eco-enthusiast Emma's Quest", "Emma quest description", new List<Item>{compostBins}, new List<Room>{BG, RG, BG}, badgeList[0], 1));
+            NPC? Walter = new("Wasteful Walter", null);
+            Walter.Quest = new Quest("Wasteful Walter's Quest", "Walter quest description", new List<Item>{posters, recyclingBins}, new List<Room>{CC, Walter.Home, BG, Walter.Home}, badgeList[1], 1);
+            NPC? Paula = new("Polluted Paula", new Quest("Polluted Paula's Quest", "Paula quest description", new List<Item>{treeSaplings}, new List<Room>{ABE, RG, RG}, badgeList[2], 1));
+            NPC? Fiona = new("Farmer Fiona", new Quest("Farmer Fiona's Quest", "Fiona quest description", new List<Item>{plantSeeds, sprinkler}, new List<Room>{RG, RG, RG, ABE}, badgeList[3], 1));
+            NPC? Ethan = new("Energy-efficient Ethan", null);
+            Ethan.Quest = new Quest("Energy-efficient Ethan's Quest", "Ethan quest description", new List<Item>{posters}, new List<Room>{Ethan.Home, RG, RG}, badgeList[4], 1);
+            NPC? Piper = new("Plumber Piper", null);
+            Piper.Quest = new Quest("Plumber Piper's Quest", "Piper quest description", new List<Item>{wrench, barrels}, new List<Room>{B, RG, B, B}, badgeList[5], 1);
+            NPC? Lucy = new("Lonely Lucy", new Quest("Lonely Lucy's Quest", "Lucy quest description", new List<Item>{benches, communityBoard, gardenTools}, new List<Room>{ABE, RG, RG}, badgeList[6], 1));
+            NPC? Ben = new("Biodiversity Ben", null);
+            Ben.Quest = new Quest("Biodiversity Ben's Quest", "Ben quest description", new List<Item>{birdFeed, birdFeeders, localFlowers}, new List<Room>{RG, Ben.Home, RG, RG}, badgeList[7], 3);
+            NPC? Nora = new("Noisy Nora", null);
+            Nora.Quest = new Quest("Noisy Nora's Quest", "Nora quest description", new List<Item>{noiseMeter, denseBush}, new List<Room>{Nora.Home, RG, RG}, badgeList[8], 1);
+
+            NPC? Wade = new("Worker Wade", null);
+            NPC? Sally = new("Secretary Sally", null);
+            NPC? Mayor = new("Mayor Niko", null);
+            List<NPC>? npcs = new() { Emma, Walter, Paula, Fiona, Ethan, Piper, Lucy, Ben, Nora, Wade, Sally };
+            currentRoom = ABE;
             activeQuest = null;     //Set to null to start the game without a quest
 
-            TCC.SetExits(TTH, TABE, TGB, TW, null);
-            TTH.SetExit("south", TCC);
-            TGB.SetExit("north", TCC);
-            TW.SetExit("east", TCC);
-            TW.AddNPC(Wade);
-            TABE.SetExits(null, null, TB, TCC, TRG);
+            CC.SetExits(TH, ABE, BG, CW, null);
+            TH.SetExit("south", CC);
+            BG.SetExit("north", CC);
+            CW.SetExit("east", CC);
+            CW.AddNPC(Wade);
+            ABE.SetExits(null, null, B, CC, RG);
             foreach (NPC npc in npcs)
             {
-                TABE.SetExit("elevator", npc.Home);
-                TRG.SetExit("elevator", npc.Home);
-                TABE.AddNPC(npc);
+                ABE.SetExit("elevator", npc.Home);
+                RG.SetExit("elevator", npc.Home);
                 foreach (NPC npc2 in npcs)
                 {
                     if (npc != npc2)
                         npc.Home.SetExit("elevator", npc2.Home);
                 }
-                npc.Home.SetExit("elevator", TABE);
-                npc.Home.SetExit("elevator", TRG);
+                npc.Home.SetExit("elevator", ABE);
+                npc.Home.SetExit("elevator", RG);
             }
-            TRG.SetExit("elevator", TABE);
-            YR.SetExit("elevator", TABE);
-            TABE.SetExit("elevator", YR);
-            TTH.AddNPC(Sally);
+            RG.SetExit("elevator", ABE);
+            YR.SetExit("elevator", ABE);
+            ABE.SetExit("elevator", YR);
+            TH.AddNPC(Sally);
             foreach (Item i in items)
             {
-                TW.AddItem(i);
+                CW.AddItem(i);
             }
 
             // Assign NPCs to rooms and load their dialogues
             Ethan.LoadDialogues("dialogues/Energy-efficient_Ethan.txt");
-            TRG.AddNPC(Ethan);
+            RG.AddNPC(Ethan);
         }
         public void Play()
         {

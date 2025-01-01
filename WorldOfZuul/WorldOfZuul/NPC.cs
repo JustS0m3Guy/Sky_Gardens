@@ -13,8 +13,8 @@ namespace SkyGarden
         public string Name { get; set; } 
         public Room Home { get; set; } 
         private List<List<List<string>>> Dialogues = new();
-        public Quest Quest { get; set; }
-        public NPC(string name, Quest quest)
+        public Quest? Quest { get; set; }
+        public NPC(string name, Quest? quest)
         {
             Name = name;
             Quest = quest;
@@ -86,7 +86,7 @@ namespace SkyGarden
         }
         public void Talk()
         {
-            if (Quest.QuestProgress > Quest.QuestLength)
+            if (Quest != null && Quest.QuestProgress > Quest.QuestLength)
             {
                 Console.WriteLine(Dialogues[^1][^1][^1]);
                 Quest.IsCompleted = true;
