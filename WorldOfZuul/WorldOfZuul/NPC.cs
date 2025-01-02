@@ -14,14 +14,14 @@ namespace SkyGarden
         public Room Home { get; set; } 
         public Room? CurrentRoom { get; set; }
         private List<List<List<string>>> Dialogues = new();
-        public Quest? Quest { get; set; }
+        public Quest? NPCQuest { get; set; }
         public NPC(string name, Quest? quest)
         {
             Name = name;
-            Quest = quest;
+            NPCQuest = quest;
             Room? NPCHome = new ($"{Name}'s flat", $"This is the home of {Name}");
             Home = NPCHome;
-            CurrentRoom = Quest?.Places?[0];
+            CurrentRoom = NPCQuest?.Places?[0];
             //Biodiversity Ben -> "Biodiversity_Ben" in order for it to find file in the dialogues folder
             //uses a lambda expression to format the name of the npc to match the file name
             string fileName = $"dialogues/{Name.Split(' ')[0]}_{Name.Split(' ')[1]}.txt";
@@ -40,28 +40,6 @@ namespace SkyGarden
                 else
                     Dialogues[^1][^1].Add(dialogue[i]);
                 //Diagnostics("Biodiversity Ben", dialogue, i);
-            }
-        }
-
-        public void LoadDialogues(string filePath)
-        {
-            try
-            {
-                string[] dialogue = File.ReadAllLines(filePath).Select(x => x.Trim()).ToArray();
-                Dialogues.Clear();
-                for (int i = 0; i < dialogue.Length; i++)
-                {
-                    if (dialogue[i] == "/d")
-                        Dialogues.Add(new List<List<string>>() { new List<string>() });
-                    else if (dialogue[i] == "/c")
-                        Dialogues[^1].Add(new List<string>());
-                    else
-                        Dialogues[^1][^1].Add(dialogue[i]);
-                }
-            } 
-            catch (IOException e) 
-            {
-                Console.WriteLine(e.Message);
             }
         }
 
@@ -88,13 +66,13 @@ namespace SkyGarden
         }
         public void Talk()
         {
-            if (Quest == null || Quest.QuestProgress > Quest.QuestLength)
+            if (NPCQuest == null || NPCQuest.QuestProgress > NPCQuest.QuestLength)
             {
                 Console.WriteLine(Dialogues[^1][^1][^1]);
             }
             else
             {
-                foreach (List<string> dialogue in Dialogues[Quest.QuestProgress])
+                foreach (List<string> dialogue in Dialogues[NPCQuest.QuestProgress])
                 {
                     if (dialogue.Count%2 == 1)
                         Game.DisplayTextSlowly(dialogue[0]);
@@ -142,7 +120,7 @@ namespace SkyGarden
                         }
                     }
                 }
-                Quest.QuestProgress++;
+                NPCQuest.QuestProgress++;
             }
         }
     }

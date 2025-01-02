@@ -92,6 +92,7 @@ namespace SkyGarden
             {
                 IsCompleted = true;
                 Console.WriteLine($"{Title} Completed!");
+                
             }
         }
     }

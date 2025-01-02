@@ -1,5 +1,5 @@
 /d
-Ah, you must be the one who was sent to help us out. Welcome to our little community! I’m Mayor …. We could really use your expertise around here.
+Ah, you must be the one who was sent to help us out. Welcome to our little community! I’m Mayor Niko. We could really use your expertise around here.
 /c
     Thank you, Mayor. Can you tell me more about the issues the community is facing?
         Of course. We’re dealing with a lot—social isolation, outdated infrastructure, and environmental challenges. But I believe with the right support, we can turn things around.
@@ -7,10 +7,9 @@ Ah, you must be the one who was sent to help us out. Welcome to our little commu
         The Sky Garden is our chance to bring the community together while tackling some of our sustainability issues. I want it to be a place where people connect, share ideas, and work towards a brighter future.
     Let’s get to work. What’s the first task?
         That’s what I like to hear! First, I’d like you to meet some key residents. They’ll help you understand what needs to be done and how you can make the most impact.
-But first you should start off by meeting everyone. I asked the residents of the apartment you'll be staying in to gather in at the entrance.
 /d
-/c
 I trust you to complete the project in a way that will benefit everyone in the building.
+/c
     You can count on me, Mayor. We’ll make this project a success.
         I’m glad to hear it. Let’s get started!
     I’m eager to help, but I might need some direction along the way.
