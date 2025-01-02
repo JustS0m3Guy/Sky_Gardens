@@ -373,7 +373,6 @@ namespace SkyGarden
                                     else if (AllQuestsCompleted() == true)
                                     {
                                         continuePlaying = false;
-                                        Console.WriteLine($"You are talking to {n.Name}");
                                     }
                                     else if (activeQuest == n.NPCQuest || activeQuest == null)
                                     {
@@ -499,27 +498,6 @@ namespace SkyGarden
             }
             return true;
         }
-
-        private void MayorCongrats()
-        {
-            if (currentRoom?.ShortDescription == "Town Hall")
-            {
-                if (AllQuestsCompleted())
-                {
-                    string dialog = File.ReadAllText("dialogues/Mayor_Niko_2.txt");
-                    Console.WriteLine(dialog);
-                }
-                else
-                {
-                    Console.WriteLine("You need to complete all quests before talking to the mayor.");
-                }
-            }
-            else
-            {
-                Console.WriteLine("The mayor is not here.");
-            }
-        }
-
         public static void DisplayTextSlowly(string text, int delay = 33)
         {
             foreach (char c in text)

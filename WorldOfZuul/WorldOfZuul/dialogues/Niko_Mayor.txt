@@ -1,19 +1,19 @@
 /d
-Welcome back! I’ve been hearing wonderful things about the transformation of your building. Congratulations on completing all the reworks and, of course, the beautiful Sky Garden!
+1
 /c
-    Thank you, Mayor. It’s been a journey, but we’re thrilled with how everything turned out.
-        You and your team have done a remarkable job. The Sky Garden is truly a gem—a place where everyone can come together and feel proud of their community.
-    It feels amazing to see the building and garden finally completed!
-        It’s a testament to your hard work and vision. The Sky Garden isn’t just a project—it’s a symbol of what’s possible when a community comes together.
-    The building feels so revitalized, and the garden has already brought neighbours closer.
-        That’s exactly what we hoped for! It’s inspiring to see how this project has not only improved the space but also strengthened connections among residents.
-This project is more than just bricks and greenery. It’s a reflection of collaboration, care, and a shared vision for the future. I’m so proud of what you’ve achieved and can’t wait to see how the Sky Garden continues to enrich the lives of everyone in the building.
+    a
+        A
+    b
+        B
+    c
+        C
+2
 /c
-    It’s a dream come true for all of us. Thank you for your support, Mayor!
-        The thanks goes to you. You’ve turned a dream into a reality. Cheers to all the good times ahead in the Sky Garden!
-    This wouldn’t have been possible without everyone’s help and dedication.
-        Absolutely. It’s a shining example of teamwork at its best. You’ve all set a standard for what a community can achieve.
-    It wasn’t always easy, but seeing the results makes it all worth it.
-        The best things in life rarely come easy. Your perseverance and commitment are what made this success possible.
+    d
+        D
+    e
+        E
+    f
+        F
 /d
 [FINISH]
