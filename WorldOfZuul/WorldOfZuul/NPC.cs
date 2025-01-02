@@ -43,28 +43,6 @@ namespace SkyGarden
             }
         }
 
-        public void LoadDialogues(string filePath)
-        {
-            try
-            {
-                string[] dialogue = File.ReadAllLines(filePath).Select(x => x.Trim()).ToArray();
-                Dialogues.Clear();
-                for (int i = 0; i < dialogue.Length; i++)
-                {
-                    if (dialogue[i] == "/d")
-                        Dialogues.Add(new List<List<string>>() { new List<string>() });
-                    else if (dialogue[i] == "/c")
-                        Dialogues[^1].Add(new List<string>());
-                    else
-                        Dialogues[^1][^1].Add(dialogue[i]);
-                }
-            } 
-            catch (IOException e) 
-            {
-                Console.WriteLine(e.Message);
-            }
-        }
-
         private void Diagnostics(string name,string[] dialogue, int i = -1)
         {
             if (Name == name)
@@ -88,10 +66,9 @@ namespace SkyGarden
         }
         public void Talk()
         {
-            if (NPCQuest != null && NPCQuest.QuestProgress > NPCQuest.QuestLength)
+            if (NPCQuest == null || NPCQuest.QuestProgress > NPCQuest.QuestLength)
             {
                 Console.WriteLine(Dialogues[^1][^1][^1]);
-                NPCQuest.IsCompleted = true;
             }
             else
             {
@@ -143,11 +120,7 @@ namespace SkyGarden
                         }
                     }
                 }
-                
-                if (NPCQuest != null)
-                {
-                    NPCQuest.QuestProgress++;
-                }
+                NPCQuest.QuestProgress++;
             }
         }
     }

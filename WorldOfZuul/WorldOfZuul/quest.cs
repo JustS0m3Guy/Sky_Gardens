@@ -60,30 +60,41 @@ namespace SkyGarden
             Reward = reward;
             Places = places;
             QuestProgress = 0;
-            QuestLength = places.Count - 1;
+            QuestLength = places.Count;
             //ItemRemovalIndex = itemRemovalIndex;
         }
 
         public void DisplayQuestInfo()
         {
+            string text = "";
             if (this != null)
             {
-                Console.WriteLine($"Current Quest: {this.Title}");
-                Console.WriteLine($"Description: {this.Description}");
+                text += $"Current Quest: {this.Title}\n"
+                     +  $"Description: {this.Description}\n";
 
                 if (Places != null && Places.Count > 0)
                 {
                     Room currentLocation = Places[QuestProgress];
-                    Console.WriteLine($"Current Location of NPC: {currentLocation.ShortDescription}");
+                    text += $"Current Location of NPC: {currentLocation.ShortDescription}\n";
                 }
                 else
                 {
-                    Console.WriteLine("Current Location of NPC: Unknown");
+                    text += "Current Location of NPC: Unknown\n";
                 }
             }
             else
             {
-                Console.WriteLine("There is no active quest.");
+                text += "There's no active quest at the moment.\n";
+            }
+            Game.DisplayTextSlowly(text);
+        }
+        public void Check()
+        {
+            if (QuestProgress == QuestLength)
+            {
+                IsCompleted = true;
+                Game.DisplayTextSlowly($"{Title} Completed!");
+                
             }
         }
     }

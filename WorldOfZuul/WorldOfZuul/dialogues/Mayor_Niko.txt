@@ -1,19 +1,19 @@
 /d
-Ah, you must be the one who was sent to help us out. Welcome to our little community! I’m Mayor …. We could really use your expertise around here.
+Ah, you must be the one who was sent to help us out. Welcome to our little community! I’m Mayor Niko. We could really use your expertise around here.
 /c
     Thank you, Mayor. Can you tell me more about the issues the community is facing?
         Of course. We’re dealing with a lot—social isolation, outdated infrastructure, and environmental challenges. But I believe with the right support, we can turn things around.
     I’m here to help with the Sky Garden project. What are your expectations for it?
         The Sky Garden is our chance to bring the community together while tackling some of our sustainability issues. I want it to be a place where people connect, share ideas, and work towards a brighter future.
     Let’s get to work. What’s the first task?
-        That’s what I like to hear! First, I’d like you to meet some key residents. They’ll help you understand what needs to be done and how you can make the most impact.
+        That’s what I like to hear! But it's probably for the best if you go rest for today, you already moved in, you can start work tomorrow by talking to some residents.
 /d
-This isn’t just about fixing problems—it’s about creating a community where people feel connected and proud of where they live. I’ll introduce you to Lucy. She’s been a resident here for years and has some great ideas for the Sky Garden. But she needs support to make them happen.
+I trust you to complete the project in a way that will benefit everyone in the building.
 /c
     You can count on me, Mayor. We’ll make this project a success.
         I’m glad to hear it. Let’s get started!
     I’m eager to help, but I might need some direction along the way.
-        No problem. I’ll be here to provide support whenever you need it.
+        No problem. If you talk to the residents, they should tell you their problems and give you a direction.
     This sounds ambitious. Are you sure the community is ready for this?
         Change isn’t easy, but I believe in this town. With your help, we can make it happen.
 /d

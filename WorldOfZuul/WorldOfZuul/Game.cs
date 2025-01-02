@@ -15,11 +15,12 @@ namespace SkyGarden
         private Room? previousRoom;
         private Inventory inv = new();
         private Quest? activeQuest;
-        private int day = 0;
+        private int day = -1;
         private List<NPC>? npcs;
         private List<Quest> quests = new();
         private NPC? Niko2;
-        private bool introDay = false;
+        private bool introDay = true;
+        public bool canSleep;
 
         public Game()
         {
@@ -72,28 +73,33 @@ namespace SkyGarden
             NPC? Fiona = new("Farmer Fiona", new Quest("Farmer Fiona's Quest", "Farmer Fiona is a local urban farmer who runs a small community-supported agriculture (CSA) farm on the outskirts of the city. She’s passionate about creating sustainable farming practices that minimize environmental impact. With the growing popularity of the Sky Garden, Fiona sees an opportunity to integrate her farm into the rooftop garden and create a farm-to-table system. The idea is to provide fresh, local produce directly to the residents while promoting sustainable food practices and reducing the carbon footprint of food transportation. Fiona needs the player’s help to bring her vision to life.", new List<Item> { plantSeeds, sprinkler }, new List<Room> { RG, RG, RG, ABE }, badgeList[3]));
             NPC? Ethan = new("Energy-efficient Ethan", null);
             Ethan.NPCQuest = new Quest("Energy-efficient Ethan's Quest", "Ethan, a tech-savvy resident, is concerned about high energy bills and the building's carbon footprint. The player must assist Ethan in implementing renewable energy solutions and promoting energy-saving practices. The player task is reducing energy consumption in an apartment building.", new List<Item> { posters }, new List<Room> { Ethan.Home, RG, RG }, badgeList[4]);
+            Ethan.NPCQuest = new Quest("Energy-efficient Ethan's Quest", "Ethan, a tech-savvy resident, is concerned about high energy bills and the building's carbon footprint. The player must assist Ethan in implementing renewable energy solutions and promoting energy-saving practices. The player task is reducing energy consumption in an apartment building.", new List<Item>{posters}, new List<Room>{Ethan.Home, RG, RG}, badgeList[4]);
             NPC? Piper = new("Plumber Piper", null);
             Piper.NPCQuest = new Quest("Plumber Piper's Quest", "An eccentric individual with a big scruffy beard and a pipe for a peg leg. Piper says that he’s a retired plumber and is in need of an assistant willing to help him tame the “Kraken” (normally known as the piping system) and conquer the “Mighty seas” (also known as his flooded basement),  which are currently in that condition due to poor water management systems.", new List<Item> { wrench, barrels }, new List<Room> { B, RG, B, B }, badgeList[5]);
             NPC? Lucy = new("Lonely Lucy", new Quest("Lonely Lucy's Quest", "Lucy, a long-time resident, struggles with community disconnection and seeks ways to rebuild social connections within the building. The player must help Lucy organise community spaces and events. The player task is addressing social isolation in an apartment building.", new List<Item> { benches, communityBoard, gardenTools }, new List<Room> { ABE, RG, RG }, badgeList[6]));
             NPC? Ben = new("Biodiversity Ben", null);
             Ben.NPCQuest = new Quest("Biodiversity Ben's Quest", "Biodiversity Ben is an enthusiastic advocate for urban nature, always wearing his signature yellow jacket with a bee patch and a cosy green beanie, a nod to his love for all things natural and sustainable. His bright demeanour, boundless energy and endless optimism makes him ready for any task at hand.", new List<Item> { birdFeed, birdFeeders, localFlowers }, new List<Room> { RG, Ben.Home, RG, RG }, badgeList[7]);
             NPC? Nora = new("Noisy Nora", null);
-            Nora.NPCQuest = new Quest("Noisy Nora's Quest", "Noisy Nora lives in a neighborhood overwhelmed by traffic noise, disrupting sleep and daily life. Determined to improve the community's quality of life, she seeks sustainable landscaping solutions to reduce noise pollution and needs help implementing her ideas and rallying community support.", new List<Item> { noiseMeter, denseBush }, new List<Room> { Nora.Home, RG, RG }, badgeList[8]);
+            Nora.NPCQuest = new Quest("Noisy Nora's Quest", "Noisy Nora lives in a neighborhood overwhelmed by traffic noise, disrupting sleep and daily life. Determined to improve the community's quality of life, she seeks sustainable landscaping solutions to reduce noise pollution and needs help implementing her ideas and rallying community support.", new List<Item>{ noiseMeter, denseBush }, new List<Room>{Nora.Home, RG, RG}, badgeList[8]);
+            NPC? Niko = new("Mayor Niko", null);
+            Niko.NPCQuest = new Quest("Mayor Niko's Quest", "Get aquired with the mayor of the city.", null, new List<Room>{TH, TH}, null);
 
             NPC? Wade = new("Worker Wade", null);
             NPC? Sally = new("Secretary Sally", null);
-            NPC? mayor = new("Mayor Niko", null);
             Niko2 = new("Niko Mayor", null);
-            npcs = new() { Emma, Walter, Paula, Fiona, Ethan, Piper, Lucy, Ben, Nora, Wade, Sally, mayor };
+            npcs = new() { Emma, Walter, Paula, Fiona, Ethan, Piper, Lucy, Ben, Nora };
             quests = new() { Emma.NPCQuest, Walter.NPCQuest, Paula.NPCQuest, Fiona.NPCQuest, Ethan.NPCQuest, Piper.NPCQuest, Lucy.NPCQuest, Ben.NPCQuest, Nora.NPCQuest };
             currentRoom = TH;
+            activeQuest = Niko.NPCQuest;
 
             CC.SetExits(TH, ABE, BG, CW, null);
             TH.SetExit("south", CC);
             BG.SetExit("north", CC);
             CW.SetExit("east", CC);
             CW.AddNPC(Wade);
-            ABE.SetExits(null, null, B, CC, RG);
+            ABE.SetExits(null, null, B, CC, null);
+            ABE.SetExit("elevator", YR);
+            YR.SetExit("elevator", ABE);
             foreach (NPC npc in npcs)
             {
                 ABE.SetExit("elevator", npc.Home);
@@ -105,38 +111,32 @@ namespace SkyGarden
                 }
                 npc.Home.SetExit("elevator", ABE);
                 npc.Home.SetExit("elevator", RG);
-                npc.CurrentRoom?.AddNPC(npc);
             }
             RG.SetExit("elevator", ABE);
             YR.SetExit("elevator", ABE);
             ABE.SetExit("elevator", YR);
-
-            //TH.SetExit("mayorOffice", MO);
-            //MO.SetExit("townHall", TH);
-            TH.AddNPC(mayor);
-
+            TH.AddNPC(Niko);
             TH.AddNPC(Sally);
+            ABE.SetExit("elevator", RG);
             foreach (Item i in items)
             {
                 CW.AddItem(i);
             }
 
-            // Assign NPCs to rooms and load their dialogues
-            Ethan.LoadDialogues("dialogues/Energy-efficient_Ethan.txt");
             RG.AddNPC(Ethan);
         }
         public void Play()
         {
             Parser parser = new();
-            //Console.Clear();
-            //new PreQuiz().StartPreQuiz();
-            //Console.Clear();
-            //new PostQuiz().StartPostQuiz();
+            Console.Clear();
             PrintIntro();
+            //new PreQuiz().StartPreQuiz();
+            activeQuest?.DisplayQuestInfo();
 
             bool continuePlaying = true;
             bool firstNewsToday = true;
-            bool transfer = false;
+            bool transfer;
+            //introDay = false;
             while (continuePlaying)
             {
                 if (AllQuestsCompleted() == true)
@@ -146,15 +146,18 @@ namespace SkyGarden
 
                 transfer = false;
                 Console.WriteLine("\n" + currentRoom?.ShortDescription);
-                Console.Write("> ");
-                string? input = Console.ReadLine();
-                Console.WriteLine();
+                activeQuest?.Check();
 
-                if (npcs != null)
+                if (day == 0)
+                {
+                    introDay = false;
+                }
+
+                if (!introDay && npcs != null)
                 {
                     foreach (NPC n in npcs)
                     {
-                        if (n.NPCQuest != null && n.NPCQuest.Places != null)
+                        if (n.NPCQuest != null && n.NPCQuest.Places != null && !n.NPCQuest.IsCompleted)
                         {
                             var place = n.NPCQuest.Places[n.NPCQuest.QuestProgress];
                             MoveNPC(n, place);
@@ -162,12 +165,25 @@ namespace SkyGarden
                     }
                 }
 
+                if (activeQuest != null && activeQuest.IsCompleted)
+                {
+                    if (activeQuest.Reward != null)
+                        inv.Badges.Add(activeQuest.Reward);
+                    canSleep = true;
+                    activeQuest = null;
+                }
+
+                Console.Write("> ");
+                string? input = Console.ReadLine();
+                
+                Console.WriteLine();
+
                 if (string.IsNullOrEmpty(input))
                 {
                     Console.WriteLine("Please enter a command.");
                     continue;
                 }
-
+                input = input.ToLower().Trim();
                 Command? command = parser.GetCommand(input);
 
                 if (command == null)
@@ -249,11 +265,27 @@ namespace SkyGarden
                     case "south":
                     case "east":
                     case "west":
-                        Move(command.Name);
-                        if (currentRoom?.IsFirstIteration == true)
+                        if (!introDay)
                         {
-                            currentRoom.IsFirstIteration = false;
-                            goto case "look";
+                            Move(command.Name);
+                            if (currentRoom?.IsFirstIteration == true)
+                            {
+                                currentRoom.IsFirstIteration = false;
+                                goto case "look";
+                            }
+                        }
+                        else if (activeQuest != null)
+                        {
+                            Console.WriteLine("You can't leave the town hall. You have to talk to Mayor Niko.");
+                        }
+                        else if (command.Name == "south")
+                        {
+                            DisplayTextSlowly("After a long day of traveling and meeting the Mayor, you decide to go home.");
+                            currentRoom = currentRoom?.Exits["south"].Exits["east"].ElevatorButtons[0];
+                        }
+                        else
+                        {
+                            Console.WriteLine($"You can't go {command.Name}!");
                         }
                         break;
 
@@ -277,7 +309,7 @@ namespace SkyGarden
                                     previousRoom = currentRoom;
                                     currentRoom = currentRoom?.ElevatorButtons[i];
                                     valid = true;
-                                    if (currentRoom.IsFirstIteration)
+                                    if (currentRoom != null && currentRoom.IsFirstIteration)
                                     {
                                         currentRoom.IsFirstIteration = false;
                                         goto case "look";
@@ -296,19 +328,26 @@ namespace SkyGarden
                         break;
 
                     case "news":
-                        if (!transfer)
+                        if (!introDay)
+                        {
+                            if (!transfer)
                             firstNewsToday = false;
 
-                        if (!firstNewsToday)
-                            DisplayTextSlowly("You take out your phone and start reading the news:");
-                        else
-                            DisplayTextSlowly("A newspaper vendor hands you a newspaper and on your way to your next destination you start reading it:");
-                        string[] newspaper = File.ReadAllLines($"newspaper_stories/Story_{day}.txt");
-                        foreach (string segment in newspaper)
-                        {
-                            DisplayTextSlowly(segment);
+                            if (!firstNewsToday)
+                                DisplayTextSlowly("You take out your phone and start reading the news:");
+                            else
+                                DisplayTextSlowly("A newspaper vendor hands you a newspaper and on your way to your next destination you start reading it:");
+                            string[] newspaper = File.ReadAllLines($"newspaper_stories/Story_{day}.txt");
+                            foreach(string segment in newspaper)
+                            {
+                                DisplayTextSlowly(segment);
+                            }
+                            firstNewsToday = false;
                         }
-                        firstNewsToday = false;
+                        else
+                        {
+                            Console.WriteLine("You don't have the news app downloaded, you decide to get it tomorrow.");
+                        }
                         break;
 
                     case "quit":
@@ -322,6 +361,7 @@ namespace SkyGarden
                     case "take":
                         Console.WriteLine("What item would you like to take?\n> ");
                         string? item = Console.ReadLine();
+                        bool itemFound = false;
                         if (currentRoom?.Items.Count > 0)
                         {
                             // A tempitem is needed to remove the item from the room after it has been picked up because the foreach loop can't remove items from a list while iterating over it.
@@ -330,17 +370,18 @@ namespace SkyGarden
                             {
                                 if (i.Name == item)
                                 {
+                                    itemFound = true;
                                     inv.PickUp(i);
                                     tempitem = i;
-                                }
-                                else
-                                {
-                                    Console.WriteLine("There is no such item in the room");
                                 }
                             }
                             if (tempitem != null)
                             {
                                 currentRoom.Items.Remove(tempitem);
+                            }
+                            if (itemFound == false)
+                            {
+                                Console.WriteLine("There is no such item in the room");
                             }
                         }
                         else
@@ -408,10 +449,10 @@ namespace SkyGarden
                         break;
 
                     case "sleep":
-                        if (currentRoom?.ShortDescription == "Your Room" && activeQuest != null && activeQuest.IsCompleted)
+                        if (currentRoom?.ShortDescription == "Your Room" && activeQuest == null && canSleep)
                         {
                             day++;
-                            activeQuest = null;
+                            canSleep = false;
                             PrintNextDay();
                         }
                         break;
@@ -519,8 +560,8 @@ namespace SkyGarden
         private static void PrintIntro()
         {
             string gameIntroduction = "Welcome to Sky Garden, a festival of urban greenery!\n"
-                                    + "You are about to embark on a journey filled with characters and quests.\n"
-                                    + "Prepare yourself for helping a neighbourhood restore it's greenery and beauty.\n"
+                                    + "You're an epmloyee sent by the company Big Green to find out what is needed to build the perfect Sky Garden.\n"
+                                    + "You just finished moving into an old apartment building full of residents and have gone to the Town Hall to meet the Mayor\n"
                                     + "\nPress any key to continue...";
 
             DisplayTextSlowly(gameIntroduction);
