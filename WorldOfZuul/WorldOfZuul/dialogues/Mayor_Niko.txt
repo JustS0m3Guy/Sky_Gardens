@@ -6,7 +6,7 @@ Ah, you must be the one who was sent to help us out. Welcome to our little commu
     I’m here to help with the Sky Garden project. What are your expectations for it?
         The Sky Garden is our chance to bring the community together while tackling some of our sustainability issues. I want it to be a place where people connect, share ideas, and work towards a brighter future.
     Let’s get to work. What’s the first task?
-        That’s what I like to hear! First, I’d like you to meet some key residents. They’ll help you understand what needs to be done and how you can make the most impact.
+        That’s what I like to hear! But it's probably for the best if you go rest for today, you already moved in, you can start work tomorrow by talking to some residents.
 /d
 I trust you to complete the project in a way that will benefit everyone in the building.
 /c

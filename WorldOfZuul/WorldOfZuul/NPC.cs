@@ -109,7 +109,7 @@ namespace SkyGarden
                             else if (key == ConsoleKey.DownArrow)
                             {
                                 selectedIndex = (selectedIndex == dialogue.Count / 2 - 1) ? 0 : selectedIndex + 1;
-                                Console.SetCursorPosition(0, optionsStartLine - dialogue.Count / 2);
+                                Console.SetCursorPosition(0, optionsStartLine);
                             }
                             else if (key == ConsoleKey.Enter)
                             {

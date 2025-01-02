@@ -122,8 +122,8 @@ namespace SkyGarden
         {
             Parser parser = new();
             Console.Clear();
-            //new PreQuiz().StartPreQuiz();
             PrintIntro();
+            //new PreQuiz().StartPreQuiz();
             activeQuest?.DisplayQuestInfo();
 
             bool continuePlaying = true;
@@ -163,6 +163,7 @@ namespace SkyGarden
 
                 Console.Write("> ");
                 string? input = Console.ReadLine();
+                
                 Console.WriteLine();
 
                 if (string.IsNullOrEmpty(input))
@@ -348,6 +349,7 @@ namespace SkyGarden
                     case "take":
                         Console.WriteLine("What item would you like to take?\n> ");
                         string? item = Console.ReadLine();
+                        bool itemFound = false;
                         if (currentRoom?.Items.Count > 0)
                         {
                             // A tempitem is needed to remove the item from the room after it has been picked up because the foreach loop can't remove items from a list while iterating over it.
@@ -356,17 +358,18 @@ namespace SkyGarden
                             {
                                 if (i.Name == item)
                                 {
+                                    itemFound = true;
                                     inv.PickUp(i);
                                     tempitem = i;
-                                }
-                                else
-                                {
-                                    Console.WriteLine("There is no such item in the room");
                                 }
                             }
                             if (tempitem != null)
                             {
                                 currentRoom.Items.Remove(tempitem);
+                            }
+                            if (itemFound == false)
+                            {
+                                Console.WriteLine("There is no such item in the room");
                             }
                         }
                         else
@@ -528,8 +531,8 @@ namespace SkyGarden
         private static void PrintIntro()
         {
             string gameIntroduction = "Welcome to Sky Garden, a festival of urban greenery!\n"
-                                    + "You are about to embark on a journey filled with characters and quests.\n"
-                                    + "Prepare yourself for helping a neighbourhood restore it's greenery and beauty.\n"
+                                    + "You're an epmloyee sent by the company Big Green to find out what is needed to build the perfect Sky Garden.\n"
+                                    + "You just finished moving into an old apartment building full of residents and have gone to the Town Hall to meet the Mayor\n"
                                     + "\nPress any key to continue...";
 
             DisplayTextSlowly(gameIntroduction);
