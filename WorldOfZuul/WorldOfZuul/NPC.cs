@@ -64,7 +64,7 @@ namespace SkyGarden
                 }
             }
         }
-        public void Talk(List<Item> inv)
+        public void Talk(bool canQuest)
         {
             
             if ((NPCQuest == null || NPCQuest.QuestProgress > NPCQuest.QuestLength) && Name != "Niko Mayor")
@@ -73,9 +73,12 @@ namespace SkyGarden
             }
             else
             {
-                Console.WriteLine("required: " + (NPCQuest.QuestProgress == NPCQuest.ItemRemovalIndex && NPCQuest.CanComplete(inv)));
+                Console.WriteLine("progress: " + NPCQuest.QuestProgress);
+                Console.WriteLine("index: " + NPCQuest.ItemRemovalIndex);
+                Console.WriteLine("can complete: " + canQuest);
+                Console.WriteLine("required: " + (NPCQuest.QuestProgress == NPCQuest.ItemRemovalIndex && canQuest));
                 Console.WriteLine("not required: " + (NPCQuest.QuestProgress != NPCQuest.ItemRemovalIndex));
-                if (NPCQuest != null && ((NPCQuest.QuestProgress == NPCQuest.ItemRemovalIndex && NPCQuest.CanComplete(inv)) || (NPCQuest.QuestProgress != NPCQuest.ItemRemovalIndex)))
+                if (NPCQuest != null && ((NPCQuest.QuestProgress == NPCQuest.ItemRemovalIndex && canQuest) || (NPCQuest.QuestProgress != NPCQuest.ItemRemovalIndex)))
                 {
                     foreach (List<string> dialogue in Dialogues[NPCQuest?.QuestProgress ?? 0])
                     {

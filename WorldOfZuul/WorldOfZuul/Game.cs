@@ -67,20 +67,20 @@ namespace SkyGarden
             Room? BG = new("Botanical Garden", "You are in the botanical garden. You can see the plants, the flowers and the trees. You can see the city center from here.");
             Room? YR = new("Your Room", "You are in your room. You can see the bed, the desk and the window. You can see the city center from here.");
 
-            NPC? Emma = new("Eco-enthusiast Emma", new Quest("Eco-enthusiast Emma's Quest", "Eco Emma is a local environmental advocate in the city. She is passionate about reducing waste and promoting sustainability. Emma notices that the apartment building where the player works on the Sky Garden project has been throwing away large amounts of organic waste that could be composted. She tasks the player with helping to set up a composting system for the rooftop garden and educating the residents about its benefits.", new List<Item> { compostBins }, new List<Room> { BG, RG, RG, BG }, badgeList[0], 3));
+            NPC? Emma = new("Eco-enthusiast Emma", new Quest("Eco-enthusiast Emma's Quest", "Eco Emma is a local environmental advocate in the city. She is passionate about reducing waste and promoting sustainability. Emma notices that the apartment building where the player works on the Sky Garden project has been throwing away large amounts of organic waste that could be composted. She tasks the player with helping to set up a composting system for the rooftop garden and educating the residents about its benefits.", new List<Item> { compostBins }, new List<Room> { BG, RG, RG, BG }, badgeList[0], 2));
             NPC? Walter = new("Wasteful Walter", null);
-            Walter.NPCQuest = new Quest("Wasteful Walter's Quest", "Wasteful Walter is an elderly man living in the Apartment complex who tends to be quite forgetful. He has recently had problems when it comes to recycling and ended up hoarding a large amount of waste in his living space because he refuses to throw anything out without properly sorting the trash first. He tasks the player with setting up respective trash containers that are easily recognizable by colour and posters detailing information on how to recycle, so Walter would have no problem sorting his waste.", new List<Item> { recyclingBins, solarPanels }, new List<Room> { CC, Walter.Home, BG, Walter.Home, RG }, badgeList[1], 3);
-            NPC? Paula = new("Polluted Paula", new Quest("Polluted Paula's Quest", "Polluted Paula is deeply concerned about the air quality in her community, which has suffered due to emissions from nearby factories. The poor air quality has led to increased health issues, especially respiratory problems among children. Paula is determined to create a healthier environment for her family and neighbors by implementing sustainable solutions, such as planting trees and establishing green spaces. She needs assistance to turn her vision into a reality and to rally the community for collective action.", new List<Item> { treeSaplings }, new List<Room> { ABE, RG, RG }, badgeList[2], 2));
-            NPC? Fiona = new("Farmer Fiona", new Quest("Farmer Fiona's Quest", "Farmer Fiona is a local urban farmer who runs a small community-supported agriculture (CSA) farm on the outskirts of the city. She’s passionate about creating sustainable farming practices that minimize environmental impact. With the growing popularity of the Sky Garden, Fiona sees an opportunity to integrate her farm into the rooftop garden and create a farm-to-table system. The idea is to provide fresh, local produce directly to the residents while promoting sustainable food practices and reducing the carbon footprint of food transportation. Fiona needs the player’s help to bring her vision to life.", new List<Item> { plantSeeds, sprinkler }, new List<Room> { RG, RG, RG, ABE }, badgeList[3], 3));
+            Walter.NPCQuest = new Quest("Wasteful Walter's Quest", "Wasteful Walter is an elderly man living in the Apartment complex who tends to be quite forgetful. He has recently had problems when it comes to recycling and ended up hoarding a large amount of waste in his living space because he refuses to throw anything out without properly sorting the trash first. He tasks the player with setting up respective trash containers that are easily recognizable by colour and posters detailing information on how to recycle, so Walter would have no problem sorting his waste.", new List<Item> { recyclingBins, solarPanels }, new List<Room> { CC, Walter.Home, BG, Walter.Home, RG }, badgeList[1], 2);
+            NPC? Paula = new("Polluted Paula", new Quest("Polluted Paula's Quest", "Polluted Paula is deeply concerned about the air quality in her community, which has suffered due to emissions from nearby factories. The poor air quality has led to increased health issues, especially respiratory problems among children. Paula is determined to create a healthier environment for her family and neighbors by implementing sustainable solutions, such as planting trees and establishing green spaces. She needs assistance to turn her vision into a reality and to rally the community for collective action.", new List<Item> { treeSaplings }, new List<Room> { ABE, RG, RG }, badgeList[2], 1));
+            NPC? Fiona = new("Farmer Fiona", new Quest("Farmer Fiona's Quest", "Farmer Fiona is a local urban farmer who runs a small community-supported agriculture (CSA) farm on the outskirts of the city. She’s passionate about creating sustainable farming practices that minimize environmental impact. With the growing popularity of the Sky Garden, Fiona sees an opportunity to integrate her farm into the rooftop garden and create a farm-to-table system. The idea is to provide fresh, local produce directly to the residents while promoting sustainable food practices and reducing the carbon footprint of food transportation. Fiona needs the player’s help to bring her vision to life.", new List<Item> { plantSeeds, sprinkler }, new List<Room> { RG, RG, RG, ABE }, badgeList[3], 2));
             NPC? Ethan = new("Energy-efficient Ethan", null);
             Ethan.NPCQuest = new Quest("Energy-efficient Ethan's Quest", "Ethan, a tech-savvy resident, is concerned about high energy bills and the building's carbon footprint. The player must assist Ethan in implementing renewable energy solutions and promoting energy-saving practices. The player task is reducing energy consumption in an apartment building.", new List<Item> { posters }, new List<Room> { Ethan.Home, RG, RG, RG, RG }, badgeList[4], 1);
             NPC? Piper = new("Plumber Piper", null);
-            Piper.NPCQuest = new Quest("Plumber Piper's Quest", "An eccentric individual with a big scruffy beard and a pipe for a peg leg. Piper says that he’s a retired plumber and is in need of an assistant willing to help him tame the “Kraken” (normally known as the piping system) and conquer the “Mighty seas” (also known as his flooded basement),  which are currently in that condition due to poor water management systems.", new List<Item> { wrench, barrels }, new List<Room> { B, RG, B, B }, badgeList[5], 3);
-            NPC? Lucy = new("Lonely Lucy", new Quest("Lonely Lucy's Quest", "Lucy, a long-time resident, struggles with community disconnection and seeks ways to rebuild social connections within the building. The player must help Lucy organise community spaces and events. The player task is addressing social isolation in an apartment building.", new List<Item> { benches, communityBoard, gardenTools }, new List<Room> { ABE, RG, RG }, badgeList[6], 3));
+            Piper.NPCQuest = new Quest("Plumber Piper's Quest", "An eccentric individual with a big scruffy beard and a pipe for a peg leg. Piper says that he’s a retired plumber and is in need of an assistant willing to help him tame the “Kraken” (normally known as the piping system) and conquer the “Mighty seas” (also known as his flooded basement),  which are currently in that condition due to poor water management systems.", new List<Item> { wrench, barrels }, new List<Room> { B, RG, B, B }, badgeList[5], 2);
+            NPC? Lucy = new("Lonely Lucy", new Quest("Lonely Lucy's Quest", "Lucy, a long-time resident, struggles with community disconnection and seeks ways to rebuild social connections within the building. The player must help Lucy organise community spaces and events. The player task is addressing social isolation in an apartment building.", new List<Item> { benches, communityBoard, gardenTools }, new List<Room> { ABE, RG, RG }, badgeList[6], 2));
             NPC? Ben = new("Biodiversity Ben", null);
-            Ben.NPCQuest = new Quest("Biodiversity Ben's Quest", "Biodiversity Ben is an enthusiastic advocate for urban nature, always wearing his signature yellow jacket with a bee patch and a cosy green beanie, a nod to his love for all things natural and sustainable. His bright demeanour, boundless energy and endless optimism makes him ready for any task at hand.", new List<Item> { birdFeed, birdFeeders, localFlowers }, new List<Room> { RG, Ben.Home, RG, RG }, badgeList[7], 3);
+            Ben.NPCQuest = new Quest("Biodiversity Ben's Quest", "Biodiversity Ben is an enthusiastic advocate for urban nature, always wearing his signature yellow jacket with a bee patch and a cosy green beanie, a nod to his love for all things natural and sustainable. His bright demeanour, boundless energy and endless optimism makes him ready for any task at hand.", new List<Item> { birdFeed, birdFeeders, localFlowers }, new List<Room> { RG, Ben.Home, RG, RG }, badgeList[7], 2);
             NPC? Nora = new("Noisy Nora", null);
-            Nora.NPCQuest = new Quest("Noisy Nora's Quest", "Noisy Nora lives in a neighborhood overwhelmed by traffic noise, disrupting sleep and daily life. Determined to improve the community's quality of life, she seeks sustainable landscaping solutions to reduce noise pollution and needs help implementing her ideas and rallying community support.", new List<Item>{ noiseMeter, denseBush }, new List<Room>{Nora.Home, RG, RG}, badgeList[8], 3);
+            Nora.NPCQuest = new Quest("Noisy Nora's Quest", "Noisy Nora lives in a neighborhood overwhelmed by traffic noise, disrupting sleep and daily life. Determined to improve the community's quality of life, she seeks sustainable landscaping solutions to reduce noise pollution and needs help implementing her ideas and rallying community support.", new List<Item>{ noiseMeter, denseBush }, new List<Room>{Nora.Home, RG, RG}, badgeList[8], 2);
             NPC? Niko = new("Mayor Niko", null);
             Niko.NPCQuest = new Quest("Mayor Niko's Quest", "Get aquired with the mayor of the city.", null, new List<Room>{TH, TH}, null, -1);
 
@@ -92,11 +92,11 @@ namespace SkyGarden
             {
                 quests = new() { Emma.NPCQuest, Walter.NPCQuest, Paula.NPCQuest, Fiona.NPCQuest, Ethan.NPCQuest, Piper.NPCQuest, Lucy.NPCQuest, Ben.NPCQuest, Nora.NPCQuest };
             }
-            currentRoom = RG;
+            currentRoom = TH;
             inv.Items.Add(birdFeed);
             inv.Items.Add(birdFeeders);
             inv.Items.Add(localFlowers);
-            //activeQuest = Niko.NPCQuest;
+            activeQuest = Niko.NPCQuest;
 
             CC.SetExits(TH, ABE, BG, CW, null);
             TH.SetExit("south", CC);
@@ -133,15 +133,14 @@ namespace SkyGarden
         public void Play()
         {
             Parser parser = new();
-            //Console.Clear();
-            //new PreQuiz().StartPreQuiz();
+            Console.Clear();
+            new PreQuiz().StartPreQuiz();
             PrintIntro();
             activeQuest?.DisplayQuestInfo();
 
             bool continuePlaying = true;
             bool firstNewsToday = true;
             bool transfer;
-            introDay = false;
             while (continuePlaying)
             {
                 if (AllQuestsCompleted() == true)
@@ -423,14 +422,16 @@ namespace SkyGarden
                                     }
                                     else if (activeQuest == n.NPCQuest || activeQuest == null)
                                     {
-                                        n.Talk(inv.Items);
+                                        bool canQuest = false;
                                         if (n.NPCQuest != null && n.NPCQuest.RequiredItems != null && n.NPCQuest.CanComplete(inv.Items) && n.NPCQuest.QuestProgress == n.NPCQuest.ItemRemovalIndex)
                                         {
+                                            canQuest = true;
                                             foreach (Item i in n.NPCQuest.RequiredItems)
                                             {
                                                 inv.Items.Remove(i);
                                             }
                                         }
+                                        n.Talk(canQuest);
                                         if (n.NPCQuest != null && !n.NPCQuest.IsCompleted && activeQuest == null)
                                         {
                                             activeQuest = n.NPCQuest;
@@ -501,10 +502,9 @@ namespace SkyGarden
                 Console.WriteLine("Thank you for playing Sky Garden! Hope you come back another time to play the game through to the end!");
             else
             {
-                Niko2?.Talk(inv.Items);
+                Niko2?.Talk(true);
                 new PostQuiz().StartPostQuiz();   
             }
-
         }
 
         private void MoveNPC(NPC n, Room to)
