@@ -6,12 +6,7 @@ Hi, I’m Paula. I’m really worried about the air quality in our community. Th
     Ask about solutions for the community
         I believe we should start planting trees and creating green spaces to help filter the air.
 /d
-I’d love for you to help me plant some trees and create a green space in this area.
-/c
-    Ask how to plant trees
-        First, we need to select the right trees for our climate. I'll show you how to plant them properly.
-    Ask about the benefits of green spaces
-        Planting trees not only improves air quality but also provides shade and a nice place for the community to enjoy.
+I’d love for you to help me plant some trees and create a green space in this area. First, we need to select the right trees for our climate. I'll show you how to plant them properly.
 /d
 Great job! Now that we’ve planted the trees, I’ll talk to the neighbours about our initiative.
 /c

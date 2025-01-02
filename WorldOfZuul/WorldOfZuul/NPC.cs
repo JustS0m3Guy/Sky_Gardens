@@ -39,8 +39,8 @@ namespace SkyGarden
                 // Adds Dialogue a string to the end of the list
                 else
                     Dialogues[^1][^1].Add(dialogue[i]);
-                //Diagnostics("Niko Mayor", dialogue, i);
             }
+            //Diagnostics("Niko Mayor", dialogue);
         }
 
         private void Diagnostics(string name,string[] dialogue, int i = -1)
@@ -64,63 +64,74 @@ namespace SkyGarden
                 }
             }
         }
-        public void Talk()
+        public void Talk(List<Item> inv)
         {
-            if (NPCQuest == null || NPCQuest.QuestProgress > NPCQuest.QuestLength)
+            
+            if ((NPCQuest == null || NPCQuest.QuestProgress > NPCQuest.QuestLength) && Name != "Niko Mayor")
             {
-                Console.WriteLine(Dialogues[^1][^1][^1]);
+                Console.WriteLine("The person is satesfied with the the work you've done.");
             }
             else
             {
-                foreach (List<string> dialogue in Dialogues[NPCQuest?.QuestProgress ?? 0])
+                Console.WriteLine("required: " + (NPCQuest.QuestProgress == NPCQuest.ItemRemovalIndex && NPCQuest.CanComplete(inv)));
+                Console.WriteLine("not required: " + (NPCQuest.QuestProgress != NPCQuest.ItemRemovalIndex));
+                if (NPCQuest != null && ((NPCQuest.QuestProgress == NPCQuest.ItemRemovalIndex && NPCQuest.CanComplete(inv)) || (NPCQuest.QuestProgress != NPCQuest.ItemRemovalIndex)))
                 {
-                    if (dialogue.Count%2 == 1)
-                        Game.DisplayTextSlowly(dialogue[0]);
-                    else if (dialogue.Count > 0)
+                    foreach (List<string> dialogue in Dialogues[NPCQuest?.QuestProgress ?? 0])
                     {
-                        int selectedIndex = 0;
-                        bool selected = false;
-                        int optionsStartLine = Console.CursorTop;
-                        bool firstLoop = true;
-                        while (!selected)
+                        if (dialogue.Count % 2 == 1)
+                            Game.DisplayTextSlowly(dialogue[0]);
+                        else if (dialogue.Count > 0)
                         {
-                            for (int i = 0; i < dialogue.Count; i += 2)
+                            int selectedIndex = 0;
+                            bool selected = false;
+                            int optionsStartLine = Console.CursorTop;
+                            bool firstLoop = true;
+                            while (!selected)
                             {
-                                if (i / 2 == selectedIndex)
+                                for (int i = 0; i < dialogue.Count; i += 2)
                                 {
-                                    Console.BackgroundColor = ConsoleColor.DarkGreen;
-                                    Console.ForegroundColor = ConsoleColor.Black;
-                                    Console.Write("> " + dialogue[i]);
+                                    if (i / 2 == selectedIndex)
+                                    {
+                                        Console.BackgroundColor = ConsoleColor.DarkGreen;
+                                        Console.ForegroundColor = ConsoleColor.Black;
+                                        Console.Write("> " + dialogue[i]);
+                                    }
+                                    else
+                                        Console.Write(dialogue[i] + "  ");
+                                    if (firstLoop)
+                                        Thread.Sleep(750);
+                                    Console.ResetColor();
+                                    Console.WriteLine();
                                 }
-                                else
-                                    Console.Write(dialogue[i] + "  ");
-                                if (firstLoop)
-                                    Thread.Sleep(750);
-                                Console.ResetColor();
-                                Console.WriteLine();
-                            }
 
-                            var key = Console.ReadKey(true).Key;
-                            if (key == ConsoleKey.UpArrow)
-                            {
-                                selectedIndex = (selectedIndex == 0) ? (dialogue.Count / 2 - 1) : selectedIndex - 1;
-                                Console.SetCursorPosition(0, optionsStartLine);
+                                var key = Console.ReadKey(true).Key;
+                                if (key == ConsoleKey.UpArrow)
+                                {
+                                    selectedIndex = (selectedIndex == 0) ? (dialogue.Count / 2 - 1) : selectedIndex - 1;
+                                    Console.SetCursorPosition(0, optionsStartLine);
+                                }
+                                else if (key == ConsoleKey.DownArrow)
+                                {
+                                    selectedIndex = (selectedIndex == dialogue.Count / 2 - 1) ? 0 : selectedIndex + 1;
+                                    Console.SetCursorPosition(0, optionsStartLine);
+                                }
+                                else if (key == ConsoleKey.Enter)
+                                {
+                                    Game.DisplayTextSlowly(dialogue[selectedIndex * 2 + 1]);
+                                    selected = true;
+                                }
+                                firstLoop = false;
                             }
-                            else if (key == ConsoleKey.DownArrow)
-                            {
-                                selectedIndex = (selectedIndex == dialogue.Count / 2 - 1) ? 0 : selectedIndex + 1;
-                                Console.SetCursorPosition(0, optionsStartLine);
-                            }
-                            else if (key == ConsoleKey.Enter)
-                            {
-                                Game.DisplayTextSlowly(dialogue[selectedIndex * 2 + 1]);
-                                selected = true;
-                            }
-                            firstLoop = false;
                         }
                     }
+                    if (NPCQuest != null)
+                        NPCQuest.QuestProgress++;
                 }
-                NPCQuest.QuestProgress++;
+                else
+                {
+                    Game.DisplayTextSlowly("You don't have the required items to complete the quest.");
+                }
             }
         }
     }
