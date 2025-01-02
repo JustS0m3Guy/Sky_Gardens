@@ -138,10 +138,12 @@ namespace SkyGarden
                 {
                     foreach (NPC n in npcs)
                     {
-                        if (n.Quest != null && n.Quest.Places != null)
+                        n.Quest?.Check();
+                        if (n.Quest != null && n.Quest.Places != null && !n.Quest.IsCompleted)
                         {
                             var place = n.Quest.Places[n.Quest.QuestProgress];
                             MoveNPC(n, place);
+                            Console.WriteLine("Moved to " + place.ShortDescription);
                         }
                     }
                 }

@@ -86,5 +86,12 @@ namespace SkyGarden
                 Console.WriteLine("There is no active quest.");
             }
         }
+        public void Check()
+        {
+            if (QuestProgress == QuestLength)
+            {
+                IsCompleted = true;
+            }
+        }
     }
 }
