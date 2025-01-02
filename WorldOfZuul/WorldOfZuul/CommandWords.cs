@@ -8,7 +8,7 @@ namespace SkyGarden
 {
     public class CommandWords
     {
-        public List<string> ValidCommands { get; } = new List<string> { "north", "east", "south", "west", "look", "back", "elevator", "quit", "take", "inventory", "talk", "news", "map", "sleep", "startreworks", "questinfo" };
+        public List<string> ValidCommands { get; } = new List<string> { "north", "east", "south", "west", "look", "back", "elevator", "quit", "take", "inventory", "talk", "news", "map", "sleep", "startreworks", "questinfo","help"};
         public bool IsValidCommand(string command)
         {
             return ValidCommands.Contains(command);

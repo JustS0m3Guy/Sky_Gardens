@@ -28,7 +28,7 @@ namespace SkyGarden
             new("Silence!")
             };
         }
-        
+
         public List<Badge> GetBadges()
         {
             return badges != null ? new List<Badge>(badges) : new List<Badge>();
@@ -70,6 +70,16 @@ namespace SkyGarden
             {
                 Console.WriteLine($"Current Quest: {this.Title}");
                 Console.WriteLine($"Description: {this.Description}");
+
+                if (Places != null && Places.Count > 0)
+                {
+                    Room currentLocation = Places[QuestProgress];
+                    Console.WriteLine($"Current Location of NPC: {currentLocation.ShortDescription}");
+                }
+                else
+                {
+                    Console.WriteLine("Current Location of NPC: Unknown");
+                }
             }
             else
             {
