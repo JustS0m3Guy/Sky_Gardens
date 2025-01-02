@@ -170,7 +170,7 @@ namespace SkyGarden
                     Console.WriteLine("Please enter a command.");
                     continue;
                 }
-
+                input = input.ToLower().Trim();
                 Command? command = parser.GetCommand(input);
 
                 if (command == null)
