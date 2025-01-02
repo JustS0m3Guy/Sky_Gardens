@@ -88,10 +88,9 @@ namespace SkyGarden
         }
         public void Talk()
         {
-            if (Quest != null && Quest.QuestProgress > Quest.QuestLength)
+            if (Quest == null || Quest.QuestProgress > Quest.QuestLength)
             {
                 Console.WriteLine(Dialogues[^1][^1][^1]);
-                Quest.IsCompleted = true;
             }
             else
             {

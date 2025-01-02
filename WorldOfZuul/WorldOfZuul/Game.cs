@@ -76,11 +76,13 @@ namespace SkyGarden
             Ben.Quest = new Quest("Biodiversity Ben's Quest", "Biodiversity Ben is an enthusiastic advocate for urban nature, always wearing his signature yellow jacket with a bee patch and a cosy green beanie, a nod to his love for all things natural and sustainable. His bright demeanour, boundless energy and endless optimism makes him ready for any task at hand.", new List<Item>{birdFeed, birdFeeders, localFlowers}, new List<Room>{RG, Ben.Home, RG, RG}, badgeList[7]);
             NPC? Nora = new("Noisy Nora", null);
             Nora.Quest = new Quest("Noisy Nora's Quest", "Noisy Nora lives in a neighborhood overwhelmed by traffic noise, disrupting sleep and daily life. Determined to improve the community's quality of life, she seeks sustainable landscaping solutions to reduce noise pollution and needs help implementing her ideas and rallying community support.", new List<Item>{noiseMeter, denseBush}, new List<Room>{Nora.Home, RG, RG}, badgeList[8]);
+            NPC? Niko = new("Mayor Niko", null);
+            Niko.Quest = new Quest("Mayor Niko's Quest", "Mayor Niko wants you to meet everyone at the Apartment Building Entrance so you get to know your fellow residences.", null, new List<Room>{TH, ABE}, null);
 
             NPC? Wade = new("Worker Wade", null);
             NPC? Sally = new("Secretary Sally", null);
             npcs = new() { Emma, Walter, Paula, Fiona, Ethan, Piper, Lucy, Ben, Nora, Wade, Sally };
-            currentRoom = ABE;
+            currentRoom = BG;
 
             CC.SetExits(TH, ABE, BG, CW, null);
             TH.SetExit("south", CC);
@@ -125,7 +127,7 @@ namespace SkyGarden
             
             bool continuePlaying = true;
             bool firstNewsToday = true;
-            bool transfer = false;
+            bool transfer;
             while (continuePlaying)
             {
                 transfer = false;
@@ -143,9 +145,14 @@ namespace SkyGarden
                         {
                             var place = n.Quest.Places[n.Quest.QuestProgress];
                             MoveNPC(n, place);
-                            Console.WriteLine("Moved to " + place.ShortDescription);
                         }
                     }
+                }
+                Console.WriteLine(activeQuest?.QuestProgress);
+                Console.WriteLine(activeQuest?.QuestLength);
+                if (activeQuest != null && activeQuest.IsCompleted)
+                {
+                    activeQuest = null;
                 }
 
                 if (string.IsNullOrEmpty(input))
@@ -263,7 +270,7 @@ namespace SkyGarden
                                     previousRoom = currentRoom;
                                     currentRoom = currentRoom?.ElevatorButtons[i];
                                     valid = true;
-                                    if (currentRoom.IsFirstIteration)
+                                    if (currentRoom != null && currentRoom.IsFirstIteration)
                                     {
                                         currentRoom.IsFirstIteration = false;
                                         goto case "look";

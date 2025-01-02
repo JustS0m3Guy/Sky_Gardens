@@ -60,7 +60,7 @@ namespace SkyGarden
             Reward = reward;
             Places = places;
             QuestProgress = 0;
-            QuestLength = places.Count - 1;
+            QuestLength = places.Count;
             //ItemRemovalIndex = itemRemovalIndex;
         }
 
@@ -91,6 +91,7 @@ namespace SkyGarden
             if (QuestProgress == QuestLength)
             {
                 IsCompleted = true;
+                Console.WriteLine($"{Title} Completed!");
             }
         }
     }
