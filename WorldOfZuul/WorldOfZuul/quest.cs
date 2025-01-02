@@ -41,7 +41,7 @@ namespace SkyGarden
         public string Description { get; private set; }
         public List<Item>? RequiredItems { get; private set; }
         public Badge? Reward { get; }
-        public bool IsCompleted { get; set; } = false;
+        public bool IsCompleted { get; set; } = true;
         public List<Room>? Places = new();
         public int QuestProgress { get; set; }
         public int QuestLength { get; set; }
