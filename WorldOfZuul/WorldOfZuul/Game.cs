@@ -354,7 +354,7 @@ namespace SkyGarden
                                     if (n.Quest != null && !n.Quest.IsCompleted && activeQuest == null)
                                     {
                                         activeQuest = n.Quest;
-                                        Console.WriteLine($"You have received a new quest: {n.Quest.Title}");
+                                        Console.WriteLine($"\nYou have received a new quest: {n.Quest.Title}");
                                         Console.WriteLine(n.Quest.Description);
                                     }
                                 }
